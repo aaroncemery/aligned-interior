@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import './globals.css';
 import { Cinzel, La_Belle_Aurore, Inter } from 'next/font/google';
+import './globals.css';
+import { Navigation } from '../components/Navigation';
 
 const cinzel = Cinzel({
   subsets: ['latin'],
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${belleAurore.variable} ${cinzel.variable} ${inter.variable}`}
       >
+        <Navigation />
         {children}
       </body>
     </html>
