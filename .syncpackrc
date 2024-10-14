@@ -1,0 +1,18 @@
+{
+  "lintFormatting": false,
+  "lintSemverRanges": false,
+  "lintVersions": true,
+  "versionGroups": [
+    {
+      "label": "Use 'workspace:*' for local packages",
+      "pinVersion": "workspace:*",
+      "dependencies": [
+        "$LOCAL"
+      ],
+      "dependencyTypes": [
+        "dev",
+        "prod"
+      ]
+    }
+  ]
+}
