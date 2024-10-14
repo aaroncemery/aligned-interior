@@ -31,5 +31,5 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo lint",
     "prepare": "husky"
-  }
+  },"version": "0.1.0"
 }
