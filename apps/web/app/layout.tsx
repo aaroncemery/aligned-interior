@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
 import './globals.css';
-import { Cinzel, La_Belle_Aurore } from 'next/font/google';
+import { Cinzel, La_Belle_Aurore, Inter } from 'next/font/google';
 
 const cinzel = Cinzel({
   subsets: ['latin'],
@@ -14,13 +13,9 @@ const belleAurore = La_Belle_Aurore({
   variable: '--font-belle-aurore',
 });
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
@@ -35,7 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${belleAurore.variable} ${cinzel.variable}`}>
+      <body
+        className={`${belleAurore.variable} ${cinzel.variable} ${inter.variable}`}
+      >
         {children}
       </body>
     </html>
