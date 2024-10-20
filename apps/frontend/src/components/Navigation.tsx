@@ -15,7 +15,7 @@ const NavLink = ({ href, children }: NavLinkProps) => (
 
 const Logo = () => (
   <Link href='/'>
-    <div className='flex gap-x-1'>
+    <div className='flex gap-x-1 text-white'>
       <div className='font-cinzel text-2xl tracking-[3.2px]'>Aligned</div>
       <div className='font-belleAurore text-3xl tracking-[4.8px]'>Interior</div>
     </div>
@@ -32,7 +32,7 @@ export const Navigation = () => {
   return (
     <nav className='container mx-auto flex justify-between items-center py-4 absolute top-0 left-0 right-0 z-10'>
       <Logo />
-      <div className='font-belleAurore text-2xl tracking-[3.2px] flex gap-x-4'>
+      <div className='font-belleAurore text-2xl tracking-[3.2px] flex gap-x-4 text-white'>
         {navLinks.map(({ href, label }) => (
           <NavLink key={href} href={href}>
             {label}
