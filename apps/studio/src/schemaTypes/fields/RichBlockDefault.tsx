@@ -1,10 +1,11 @@
-import {defineArrayMember} from 'sanity'
+import {defineArrayMember, defineType} from 'sanity'
 
-export const RichBlockDefault = defineArrayMember({
-  name: 'RichBlockDefault',
+export const RichBlockDefault = defineType({
+  name: 'richBlockDefault',
+  title: 'Rich Block Default',
   type: 'array',
   of: [
-    {
+    defineArrayMember({
       type: 'block',
       styles: [
         {
@@ -75,6 +76,6 @@ export const RichBlockDefault = defineArrayMember({
           }
         ]
       }
-    }
+    })
   ]
 })

@@ -1,4 +1,4 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {defineArrayMember, defineType} from 'sanity'
 
 export const RichBlockHeadline = defineType({
   name: 'richBlockHeadline',
@@ -13,8 +13,9 @@ export const RichBlockHeadline = defineType({
         decorators: [],
         annotations: [
           {
+            type: 'fontStyle',
             name: 'fontStyle',
-            type: 'fontStyle'
+            title: 'Font Style'
           }
         ]
       }
