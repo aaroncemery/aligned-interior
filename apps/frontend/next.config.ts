@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
     ],
   },
   /* additional config options here */
+  experimental: {
+    taint: true,
+  },
 };
 
 export default nextConfig;

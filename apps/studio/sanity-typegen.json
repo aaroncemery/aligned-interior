@@ -1,0 +1,9 @@
+{
+  "path": [
+    "'../../apps/frontend/src/**/*.{ts,tsx,js,jsx}'",
+    "'../../apps/studio/src/**/*.{ts,tsx,js,jsx}'"
+  ],
+  "schema": "./schema.json",
+  "generates": "../../apps/frontend/sanity.types.ts",
+  "formatGeneratedCode": true
+}

@@ -1,4 +1,4 @@
-import {type DocumentActionComponent, type DocumentDefinition} from 'sanity'
+import {type DocumentDefinition} from 'sanity'
 import {type StructureResolver} from 'sanity/structure'
 
 // The StructureResolver is how we're changing the DeskTool structure to
