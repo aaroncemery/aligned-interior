@@ -4,7 +4,7 @@ const project = resolve(process.cwd(), 'tsconfig.json');
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  extends: [require.resolve('@sanity/eslint-config-studio"'), 'turbo'],
+  extends: [require.resolve('@sanity/eslint-config-studio'), 'turbo'],
   globals: {
     React: true,
     JSX: true,

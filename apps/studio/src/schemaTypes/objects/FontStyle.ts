@@ -1,5 +1,5 @@
-import {defineField, defineType} from 'sanity'
 import {BiFont} from 'react-icons/bi'
+import {defineField, defineType} from 'sanity'
 
 export const FontStyle = defineType({
   name: 'fontStyle',

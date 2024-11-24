@@ -1,5 +1,5 @@
-import {defineField, defineType} from 'sanity'
 import {GiNinjaHeroicStance} from 'react-icons/gi'
+import {defineField, defineType} from 'sanity'
 
 export const Hero = defineType({
   name: 'hero',
