@@ -39,11 +39,11 @@ export const MobileNavigation = () => {
         <Logo />
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-white p-2"
+          className="p-2 text-white"
           aria-label="Toggle menu"
         >
           <svg
-            className="w-6 h-6"
+            className="h-6 w-6"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
