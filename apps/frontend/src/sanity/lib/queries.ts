@@ -1,6 +1,6 @@
 // ./src/sanity/lib/queries.ts
 
-import { defineQuery } from 'next-sanity';
+import { defineQuery } from "next-sanity";
 
 export const HomePageQuery = defineQuery(
   `*[_type == "home"][0] {
@@ -35,5 +35,5 @@ export const HomePageQuery = defineQuery(
         "metadata": image.image.asset->metadata,
       },
     },
-  }`
+  }`,
 );

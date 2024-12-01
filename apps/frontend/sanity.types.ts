@@ -79,9 +79,11 @@ export type RichBlockHeadline = Array<{
   }>;
   style?: "normal";
   listItem?: never;
-  markDefs?: Array<{
-    _key: string;
-  } & FontStyle>;
+  markDefs?: Array<
+    {
+      _key: string;
+    } & FontStyle
+  >;
   level?: number;
   _type: "block";
   _key: string;
@@ -106,13 +108,17 @@ export type RichBlockDefault = Array<{
   _key: string;
 }>;
 
-export type PageBuilder = Array<{
-  _key: string;
-} & Hero | {
-  _key: string;
-} & FeatureSection | {
-  _key: string;
-} & VisualHeader>;
+export type PageBuilder = Array<
+  | ({
+      _key: string;
+    } & Hero)
+  | ({
+      _key: string;
+    } & FeatureSection)
+  | ({
+      _key: string;
+    } & VisualHeader)
+>;
 
 export type VisualHeader = {
   _type: "visualHeader";
@@ -134,18 +140,21 @@ export type FeatureSection = {
     }>;
     style?: "h2" | "normal";
     listItem?: never;
-    markDefs?: Array<{
-      reference?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      };
-      _key: string;
-    } | {
-      url?: string;
-      _key: string;
-    }>;
+    markDefs?: Array<
+      | {
+          reference?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "page";
+          };
+          _key: string;
+        }
+      | {
+          url?: string;
+          _key: string;
+        }
+    >;
     level?: number;
     _type: "block";
     _key: string;
@@ -320,17 +329,21 @@ export type SanityAssistInstructionTask = {
 
 export type SanityAssistTaskStatus = {
   _type: "sanity.assist.task.status";
-  tasks?: Array<{
-    _key: string;
-  } & SanityAssistInstructionTask>;
+  tasks?: Array<
+    {
+      _key: string;
+    } & SanityAssistInstructionTask
+  >;
 };
 
 export type SanityAssistSchemaTypeAnnotations = {
   _type: "sanity.assist.schemaType.annotations";
   title?: string;
-  fields?: Array<{
-    _key: string;
-  } & SanityAssistSchemaTypeField>;
+  fields?: Array<
+    {
+      _key: string;
+    } & SanityAssistSchemaTypeField
+  >;
 };
 
 export type SanityAssistOutputType = {
@@ -383,18 +396,23 @@ export type SanityAssistInstructionUserInput = {
 };
 
 export type SanityAssistInstructionPrompt = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  } | {
-    _key: string;
-  } & SanityAssistInstructionFieldRef | {
-    _key: string;
-  } & SanityAssistInstructionContext | {
-    _key: string;
-  } & SanityAssistInstructionUserInput>;
+  children?: Array<
+    | {
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }
+    | ({
+        _key: string;
+      } & SanityAssistInstructionFieldRef)
+    | ({
+        _key: string;
+      } & SanityAssistInstructionContext)
+    | ({
+        _key: string;
+      } & SanityAssistInstructionUserInput)
+  >;
   style?: "normal";
   listItem?: never;
   markDefs?: null;
@@ -415,103 +433,151 @@ export type SanityAssistInstruction = {
   title?: string;
   userId?: string;
   createdById?: string;
-  output?: Array<{
-    _key: string;
-  } & SanityAssistOutputField | {
-    _key: string;
-  } & SanityAssistOutputType>;
+  output?: Array<
+    | ({
+        _key: string;
+      } & SanityAssistOutputField)
+    | ({
+        _key: string;
+      } & SanityAssistOutputType)
+  >;
 };
 
 export type SanityAssistSchemaTypeField = {
   _type: "sanity.assist.schemaType.field";
   path?: string;
-  instructions?: Array<{
-    _key: string;
-  } & SanityAssistInstruction>;
+  instructions?: Array<
+    {
+      _key: string;
+    } & SanityAssistInstruction
+  >;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | UrlDefault | RichBlockHeadline | RichBlockDefault | PageBuilder | VisualHeader | FeatureSection | ImageObject | Cta | Hero | FontStyle | Home | Page | Seo | Slug | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityFileAsset
+  | Geopoint
+  | UrlDefault
+  | RichBlockHeadline
+  | RichBlockDefault
+  | PageBuilder
+  | VisualHeader
+  | FeatureSection
+  | ImageObject
+  | Cta
+  | Hero
+  | FontStyle
+  | Home
+  | Page
+  | Seo
+  | Slug
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | SanityAssistInstructionTask
+  | SanityAssistTaskStatus
+  | SanityAssistSchemaTypeAnnotations
+  | SanityAssistOutputType
+  | SanityAssistOutputField
+  | SanityAssistInstructionContext
+  | AssistInstructionContext
+  | SanityAssistInstructionUserInput
+  | SanityAssistInstructionPrompt
+  | SanityAssistInstructionFieldRef
+  | SanityAssistInstruction
+  | SanityAssistSchemaTypeField;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../../apps/frontend/src/sanity/lib/queries.ts
 // Variable: HomePageQuery
 // Query: *[_type == "home"][0] {    "seo": seo,    "pageBuilder": pageBuilder[] {      _type == "hero" => {        _type,        _key,        title,        subtitle,        backgroundImage,        cta[] {          ...,        }      },      _type == "featureSection" => {        _type,        _key,        title,        description,        image {          image,          alt,        },        "metadata": image.image.asset->metadata,      },      _type == "visualHeader" => {        _type,        _key,        headline,        image,        "metadata": image.image.asset->metadata,      },    },  }
 export type HomePageQueryResult = {
   seo: Seo | null;
-  pageBuilder: Array<{
-    _type: "featureSection";
-    _key: string;
-    title: string | null;
-    description: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
+  pageBuilder: Array<
+    | {
+        _type: "featureSection";
         _key: string;
-      }>;
-      style?: "h2" | "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        reference?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "page";
-        };
+        title: string | null;
+        description: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "h2" | "normal";
+          listItem?: never;
+          markDefs?: Array<
+            | {
+                reference?: {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "page";
+                };
+                _key: string;
+              }
+            | {
+                url?: string;
+                _key: string;
+              }
+          >;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }> | null;
+        image: {
+          image: {
+            asset?: {
+              _ref: string;
+              _type: "reference";
+              _weak?: boolean;
+              [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+            };
+            hotspot?: SanityImageHotspot;
+            crop?: SanityImageCrop;
+            alt?: string;
+            _type: "image";
+          } | null;
+          alt: null;
+        } | null;
+        metadata: SanityImageMetadata | null;
+      }
+    | {
+        _type: "hero";
         _key: string;
-      } | {
-        url?: string;
+        title: string | null;
+        subtitle: string | null;
+        backgroundImage: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        } | null;
+        cta: null;
+      }
+    | {
+        _type: "visualHeader";
         _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }> | null;
-    image: {
-      image: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        _type: "image";
-      } | null;
-      alt: null;
-    } | null;
-    metadata: SanityImageMetadata | null;
-  } | {
-    _type: "hero";
-    _key: string;
-    title: string | null;
-    subtitle: string | null;
-    backgroundImage: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    } | null;
-    cta: null;
-  } | {
-    _type: "visualHeader";
-    _key: string;
-    headline: RichBlockHeadline | null;
-    image: ImageObject | null;
-    metadata: SanityImageMetadata | null;
-  }> | null;
+        headline: RichBlockHeadline | null;
+        image: ImageObject | null;
+        metadata: SanityImageMetadata | null;
+      }
+  > | null;
 } | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"home\"][0] {\n    \"seo\": seo,\n    \"pageBuilder\": pageBuilder[] {\n      _type == \"hero\" => {\n        _type,\n        _key,\n        title,\n        subtitle,\n        backgroundImage,\n        cta[] {\n          ...,\n        }\n      },\n      _type == \"featureSection\" => {\n        _type,\n        _key,\n        title,\n        description,\n        image {\n          image,\n          alt,\n        },\n        \"metadata\": image.image.asset->metadata,\n      },\n      _type == \"visualHeader\" => {\n        _type,\n        _key,\n        headline,\n        image,\n        \"metadata\": image.image.asset->metadata,\n      },\n    },\n  }": HomePageQueryResult;
+    '*[_type == "home"][0] {\n    "seo": seo,\n    "pageBuilder": pageBuilder[] {\n      _type == "hero" => {\n        _type,\n        _key,\n        title,\n        subtitle,\n        backgroundImage,\n        cta[] {\n          ...,\n        }\n      },\n      _type == "featureSection" => {\n        _type,\n        _key,\n        title,\n        description,\n        image {\n          image,\n          alt,\n        },\n        "metadata": image.image.asset->metadata,\n      },\n      _type == "visualHeader" => {\n        _type,\n        _key,\n        headline,\n        image,\n        "metadata": image.image.asset->metadata,\n      },\n    },\n  }': HomePageQueryResult;
   }
 }

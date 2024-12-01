@@ -1,13 +1,13 @@
 import {
   VisualHeader as VisualHeaderType,
   SanityImageMetadata,
-} from '../../../sanity.types';
+} from "../../../sanity.types";
 import {
   PortableText,
   PortableTextComponentProps,
   PortableTextBlock,
-} from '@portabletext/react';
-import { urlForImage } from '@/sanity/lib/utils';
+} from "@portabletext/react";
+import { urlForImage } from "@/sanity/lib/utils";
 
 export type VisualHeaderProps = VisualHeaderType & {
   metadata?: SanityImageMetadata;
@@ -20,10 +20,10 @@ type FontStyleProps = {
 const ptComponents = {
   block: {
     normal: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
-      <p className='font-sans font-extralight tracking-widest'>{children}</p>
+      <p className="font-sans font-extralight tracking-widest">{children}</p>
     ),
     h1: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
-      <h1 className='text-4xl font-bold'>{children}</h1>
+      <h1 className="text-4xl font-bold">{children}</h1>
     ),
   },
   marks: {
@@ -34,11 +34,11 @@ const ptComponents = {
       children: React.ReactNode;
       value?: FontStyleProps;
     }) => {
-      console.log('value', value);
+      console.log("value", value);
       const { fontFamily } = value || {};
       return (
         <span
-          className={`font-${fontFamily} ${fontFamily === 'belleAurore' ? 'text-7xl' : 'text-6xl'}`}
+          className={`font-${fontFamily} ${fontFamily === "belleAurore" ? "text-7xl" : "text-6xl"}`}
         >
           {children}
         </span>
@@ -50,14 +50,14 @@ const ptComponents = {
 export const VisualHeader = ({ headline, image }: VisualHeaderProps) => {
   const imageUrl =
     image && image?.image
-      ? urlForImage({ ...image?.image, _type: 'imageObject' })?.url()
-      : '';
+      ? urlForImage({ ...image?.image, _type: "imageObject" })?.url()
+      : "";
   return (
     <div
-      className='container mx-auto flex justify-center bg-cover bg-center px-4 py-10 lg:py-28'
+      className="container mx-auto flex justify-center bg-cover bg-center px-4 py-10 lg:py-28"
       style={{ backgroundImage: `url(${imageUrl})` }}
     >
-      <h1 className='font-cinzel text-4xl text-brand-winter-morning lg:text-6xl'>
+      <h1 className="font-cinzel text-4xl text-brand-winter-morning lg:text-6xl">
         {headline && (
           <PortableText value={headline} components={ptComponents} />
         )}

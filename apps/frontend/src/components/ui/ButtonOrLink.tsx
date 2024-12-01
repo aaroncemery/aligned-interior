@@ -1,7 +1,7 @@
-import { ComponentProps } from 'react';
-import Link from 'next/link';
+import { ComponentProps } from "react";
+import Link from "next/link";
 
-type ButtonOrLinkProps = ComponentProps<'button'> & ComponentProps<'div'>;
+type ButtonOrLinkProps = ComponentProps<"button"> & ComponentProps<"div">;
 
 export interface Props extends ButtonOrLinkProps {
   href?: string;
@@ -14,14 +14,14 @@ export interface Props extends ButtonOrLinkProps {
  * page-to-page transitions.
  */
 export function ButtonOrLink({ href, ...props }: Props) {
-  const isLink = typeof href !== 'undefined';
-  const ButtonOrLink = isLink ? 'div' : 'button';
+  const isLink = typeof href !== "undefined";
+  const ButtonOrLink = isLink ? "div" : "button";
 
   const content = <ButtonOrLink {...props} />;
 
   if (isLink) {
     return (
-      <Link className='hover:cursor-pointer' href={href}>
+      <Link className="hover:cursor-pointer" href={href}>
         {content}
       </Link>
     );

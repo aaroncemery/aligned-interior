@@ -1,8 +1,8 @@
-import type { ClientPerspective, QueryParams } from 'next-sanity';
-import { draftMode } from 'next/headers';
+import type { ClientPerspective, QueryParams } from "next-sanity";
+import { draftMode } from "next/headers";
 
-import { client } from '@/sanity/lib/client';
-import { token } from '@/sanity/lib/token';
+import { client } from "@/sanity/lib/client";
+import { token } from "@/sanity/lib/token";
 
 /**
  * Used to fetch data in Server Components, it has built in support for handling Draft Mode and perspectives.
@@ -19,26 +19,26 @@ export async function sanityFetch<QueryResponse>({
 }: {
   query: string;
   params?: QueryParams;
-  perspective?: Omit<ClientPerspective, 'raw'>;
+  perspective?: Omit<ClientPerspective, "raw">;
   stega?: boolean;
 }) {
   const isDraftMode = (await draftMode()).isEnabled;
-  perspective = perspective ?? (isDraftMode ? 'previewDrafts' : 'published');
+  perspective = perspective ?? (isDraftMode ? "previewDrafts" : "published");
   stega =
     stega ??
-    (perspective === 'previewDrafts' || process.env.VERCEL_ENV === 'preview');
+    (perspective === "previewDrafts" || process.env.VERCEL_ENV === "preview");
 
-  if (perspective === 'previewDrafts') {
-    console.log('Token available:', !!token);
-    console.log('Environment variables:', process.env);
+  if (perspective === "previewDrafts") {
+    console.log("Token available:", !!token);
+    console.log("Environment variables:", process.env);
     if (!token) {
       throw new Error(
-        'Missing SANITY_API_READ_TOKEN: Preview mode requires an API token'
+        "Missing SANITY_API_READ_TOKEN: Preview mode requires an API token",
       );
     }
     return client.fetch<QueryResponse>(query, params, {
       stega,
-      perspective: 'previewDrafts',
+      perspective: "previewDrafts",
       token,
       useCdn: false,
       next: { revalidate: 0 },
@@ -46,7 +46,7 @@ export async function sanityFetch<QueryResponse>({
   }
   return client.fetch<QueryResponse>(query, params, {
     stega,
-    perspective: 'published',
+    perspective: "published",
     // The `published` perspective is available on the API CDN
     useCdn: true,
     // Only enable Stega in production if it's a Vercel Preview Deployment, as the Vercel Toolbar supports Visual Editing
