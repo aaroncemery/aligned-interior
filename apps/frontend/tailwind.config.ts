@@ -76,6 +76,8 @@ const config: Config = {
           "linear-gradient(90deg, rgba(225, 235, 220, 0.2), rgba(102, 34, 29, 0.2)), linear-gradient(rgba(245, 249, 249, 0.8), rgba(245, 249, 249, 0.8))",
         "button-gradient-hover":
           "linear-gradient(90deg, rgba(225, 235, 220, 0.2), rgba(102, 34, 29, 0.2)), linear-gradient(rgba(245, 249, 249, 0.9), rgba(245, 249, 249, 0.9))",
+        "line-gradient":
+          "linear-gradient(90deg, transparent, hsl(var(--winter-morning)), transparent)",
       },
     },
   },
