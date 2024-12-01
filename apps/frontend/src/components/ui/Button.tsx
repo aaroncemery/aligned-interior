@@ -1,29 +1,29 @@
-import { cva, type VariantProps } from 'class-variance-authority';
-import { twMerge } from 'tailwind-merge';
-import { CgArrowLongRight } from 'react-icons/cg';
-import { ButtonOrLink, Props as ButtonOrLinkProps } from './ButtonOrLink';
+import { cva, type VariantProps } from "class-variance-authority";
+import { twMerge } from "tailwind-merge";
+import { CgArrowLongRight } from "react-icons/cg";
+import { ButtonOrLink, Props as ButtonOrLinkProps } from "./ButtonOrLink";
 
 const buttonVariants = cva(
   [
-    'py-2 px-4 font-sans font-light rounded-md text-lg tracking-widest flex items-center gap-2',
+    "py-2 px-4 font-sans font-light rounded-md text-lg tracking-widest flex items-center gap-2",
   ],
   {
     variants: {
       intent: {
         primary: [
-          'bg-button-gradient hover:bg-[position:75%] bg-[length:200%] bg-[position:0%] transition-[background-position] duration-300 text-black backdrop-blur-sm',
+          "bg-button-gradient hover:bg-[position:75%] bg-[length:200%] bg-[position:0%] transition-[background-position] duration-300 text-black backdrop-blur-sm",
         ],
       },
       withArrow: {
-        true: '',
-        false: '',
+        true: "",
+        false: "",
       },
     },
     defaultVariants: {
-      intent: 'primary',
+      intent: "primary",
       withArrow: false,
     },
-  }
+  },
 );
 
 export interface Props
@@ -38,11 +38,11 @@ export const Button = ({
 }: Props) => {
   return (
     <ButtonOrLink
-      className={twMerge(buttonVariants({ intent, withArrow }), 'group')}
+      className={twMerge(buttonVariants({ intent, withArrow }), "group")}
       {...props}
     >
       {children}
-      <div className='max-w-0 translate-x-[-10px] transform overflow-hidden opacity-0 transition-all duration-300 group-hover:max-w-[20px] group-hover:translate-x-0 group-hover:opacity-100'>
+      <div className="max-w-0 translate-x-[-10px] transform overflow-hidden opacity-0 transition-all duration-300 group-hover:max-w-[20px] group-hover:translate-x-0 group-hover:opacity-100">
         {withArrow && <CgArrowLongRight />}
       </div>
     </ButtonOrLink>
