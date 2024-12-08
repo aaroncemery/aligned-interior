@@ -34,7 +34,6 @@ const ptComponents = {
       children: React.ReactNode;
       value?: FontStyleProps;
     }) => {
-      console.log("value", value);
       const { fontFamily } = value || {};
       return (
         <span

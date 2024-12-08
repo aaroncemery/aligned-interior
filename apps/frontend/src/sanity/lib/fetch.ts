@@ -29,8 +29,6 @@ export async function sanityFetch<QueryResponse>({
     (perspective === "previewDrafts" || process.env.VERCEL_ENV === "preview");
 
   if (perspective === "previewDrafts") {
-    console.log("Token available:", !!token);
-    console.log("Environment variables:", process.env);
     if (!token) {
       throw new Error(
         "Missing SANITY_API_READ_TOKEN: Preview mode requires an API token",
