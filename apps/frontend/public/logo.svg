@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 305.04">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #424254;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
+      }
+
+      .cls-2 {
+        font-family: CinzelDecorative-Regular, 'Cinzel Decorative';
+        font-size: 180px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #424254;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <polygon class="cls-1" points="200.5 93.54 200.5 303.54 1.5 303.54 1.5 93.54 101.1 2.04 200.5 93.54"/>
+      <g>
+        <text class="cls-2" transform="translate(16.37 231.99)"><tspan x="0" y="0">A</tspan></text>
+        <circle class="cls-3" cx="129.26" cy="182.54" r="6"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-
 interface NavLinkProps {
   href: string;
   children: React.ReactNode;
@@ -15,7 +14,10 @@ const NavLink = ({ href, children }: NavLinkProps) => (
 
 const Logo = () => (
   <Link href="/">
-    <div className="flex gap-x-1 text-white">
+    <div className="flex items-center gap-x-1 text-white">
+      {/* <div className="w-10">
+        <LogoIcon />
+      </div> */}
       <div className="font-cinzel text-2xl tracking-[3.2px]">Aligned</div>
       <div className="font-belleAurore text-3xl tracking-[4.8px]">Interior</div>
     </div>
