@@ -1,6 +1,8 @@
 import {PiFlagBannerBold} from 'react-icons/pi'
 import {defineField, defineType} from 'sanity'
 
+import Link from '../../components/Link'
+
 export const VisualHeader = defineType({
   name: 'visualHeader',
   title: 'Visual Header',
@@ -21,6 +23,14 @@ export const VisualHeader = defineType({
       name: 'image',
       title: 'Image',
       type: 'imageObject'
+    }),
+    defineField({
+      name: 'link',
+      title: 'Link',
+      type: 'string',
+      components: {
+        field: Link
+      }
     })
   ],
   preview: {
