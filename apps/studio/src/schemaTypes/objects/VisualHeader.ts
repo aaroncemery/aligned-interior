@@ -21,6 +21,18 @@ export const VisualHeader = defineType({
       name: 'image',
       title: 'Image',
       type: 'imageObject'
+    }),
+    defineField({
+      name: 'showCta',
+      title: 'Show CTA',
+      type: 'boolean',
+      initialValue: false
+    }),
+    defineField({
+      name: 'cta',
+      title: 'CTA',
+      type: 'cta',
+      hidden: ({parent}) => !parent?.showCta
     })
   ],
   preview: {

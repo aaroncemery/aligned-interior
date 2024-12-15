@@ -17,25 +17,31 @@ const ContentBlock = ({ description, image, metadata }: ContentBlockProps) => {
       : "";
   return (
     <div
-      className={`items-top container relative mx-auto flex justify-center px-4 py-10 lg:py-28 ${image && "gap-x-9"}`}
+      className={`items-top relative mx-auto flex justify-center bg-brand-winter-morning px-4 py-10 lg:py-20 ${image && "gap-x-9"}`}
     >
-      {image && imageUrl && (
-        <Image
-          className="rounded-md"
-          src={imageUrl}
-          alt={image?.image?.alt || ""}
-          width={metadata?.dimensions?.width}
-          height={metadata?.dimensions?.height}
-        />
-      )}
-      {description && (
-        <div className={`mx-auto w-full max-w-7xl text-left`}>
-          <PortableText
-            value={description}
-            components={PortableTextSerializer}
+      <div className="container">
+        {image && imageUrl && (
+          <Image
+            className="rounded-md"
+            src={imageUrl}
+            alt={image?.image?.alt || ""}
+            width={metadata?.dimensions?.width}
+            height={metadata?.dimensions?.height}
           />
-        </div>
-      )}
+        )}
+        {description && (
+          <div
+            className={`mx-auto w-full max-w-7xl ${
+              image && imageUrl ? "text-left" : "text-center"
+            }`}
+          >
+            <PortableText
+              value={description}
+              components={PortableTextSerializer}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
