@@ -7,6 +7,7 @@ import {singletonPlugin} from './src/plugins/singletons'
 import {pageStructure} from './src/plugins/structure'
 import {schemaTypes} from './src/schemaTypes'
 import {Home} from './src/schemaTypes/Home'
+import {Testimonial} from './src/schemaTypes/objects/TestimonialType/Testimonial'
 
 export default defineConfig({
   name: 'default',
@@ -17,7 +18,7 @@ export default defineConfig({
 
   plugins: [
     structureTool({
-      structure: pageStructure([Home])
+      structure: pageStructure([Home], [Testimonial])
     }),
     visionTool(),
     assist(),
