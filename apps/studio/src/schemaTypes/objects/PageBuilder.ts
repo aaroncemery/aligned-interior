@@ -4,7 +4,12 @@ export const PageBuilder = defineType({
   name: 'pageBuilder',
   title: 'Page Builder',
   type: 'array',
-  of: [{type: 'hero'}, {type: 'featureSection'}, {type: 'visualHeader'}],
+  of: [
+    {type: 'hero'},
+    {type: 'featureSection'},
+    {type: 'visualHeader'},
+    {type: 'testimonialSection'}
+  ],
   options: {
     insertMenu: {
       groups: [
@@ -16,7 +21,7 @@ export const PageBuilder = defineType({
         {
           name: 'content',
           title: 'Content',
-          of: ['featureSection', 'visualHeader']
+          of: ['featureSection', 'visualHeader', 'testimonialSection']
         }
       ],
       views: [

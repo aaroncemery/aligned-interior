@@ -9,6 +9,9 @@ import {schemaTypes} from './src/schemaTypes'
 import {Home} from './src/schemaTypes/Home'
 import {Testimonial} from './src/schemaTypes/objects/TestimonialType/Testimonial'
 
+const typeDefArray = [Home]
+const customGroupItems = [Testimonial]
+
 export default defineConfig({
   name: 'default',
   title: 'Aligned Interior',
@@ -18,7 +21,7 @@ export default defineConfig({
 
   plugins: [
     structureTool({
-      structure: pageStructure([Home], [Testimonial])
+      structure: pageStructure(typeDefArray, customGroupItems)
     }),
     visionTool(),
     assist(),

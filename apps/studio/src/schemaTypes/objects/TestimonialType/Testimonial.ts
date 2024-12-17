@@ -24,6 +24,11 @@ export const Testimonial = defineType({
       type: 'string'
     }),
     defineField({
+      name: 'location',
+      title: 'Location',
+      type: 'string'
+    }),
+    defineField({
       name: 'image',
       title: 'Image',
       type: 'imageObject'
@@ -31,13 +36,14 @@ export const Testimonial = defineType({
   ],
   preview: {
     select: {
-      title: 'title',
+      author: 'author',
+      location: 'location',
       image: 'image'
     },
-    prepare({title, image}) {
+    prepare({author, location, image}) {
       return {
-        title,
-        subtitle: 'Testimonial',
+        title: author,
+        subtitle: location,
         media: image?.image ?? BsChatLeftQuoteFill
       }
     }
