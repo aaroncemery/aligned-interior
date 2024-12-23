@@ -1,12 +1,11 @@
-import Hero from "@/components/Hero";
+import Hero, { type HeroProps } from "@/components/Hero/Hero";
 import ContentBlock from "@/components/ContentBlock";
 import { HomePageQuery } from "@/sanity/lib/queries";
 import { HomePageQueryResult } from "../../sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { SanityImageObject } from "@sanity/image-url/lib/types/types";
-import { HeroProps } from "@/components/Hero";
 import { VisualHeader } from "@/components/ui/VisualHeader";
-import TestimonialBlock from "@/components/testimonial/TestimonialBlock";
+import TestimonialSection from "@/components/testimonial/TestimonialSection";
 export default async function Home() {
   const data = await sanityFetch<HomePageQueryResult>({ query: HomePageQuery });
   return (
@@ -25,8 +24,10 @@ export default async function Home() {
         if (block._type === "visualHeader") {
           return <VisualHeader key={block._key} {...block} />;
         }
+        if (block._type === "testimonialSection") {
+          return <TestimonialSection key={block._key} {...block} />;
+        }
       })}
-      <TestimonialBlock />
     </>
   );
 }

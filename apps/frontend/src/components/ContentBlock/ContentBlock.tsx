@@ -1,9 +1,8 @@
 import Image from "next/image";
 import { urlForImage } from "@/sanity/lib/utils";
 import { PortableText } from "@portabletext/react";
-import { SanityImageMetadata } from "../../sanity.types";
-import { PortableTextSerializer } from "./builders/PortableTextSerializer";
-import { FeatureSection } from "../../sanity.types";
+import { SanityImageMetadata, FeatureSection } from "../../../sanity.types";
+import { PortableTextSerializer } from "../builders/PortableTextSerializer";
 
 export type ContentBlockProps = FeatureSection & {
   _key: string;

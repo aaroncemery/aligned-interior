@@ -1,6 +1,6 @@
 import { urlForImage } from "@/sanity/lib/utils";
 import { SanityImageObject } from "@sanity/image-url/lib/types/types";
-import { Button } from "./ui";
+import { Button } from "../ui";
 
 export type HeroProps = {
   _type: string;
@@ -10,7 +10,7 @@ export type HeroProps = {
   subtitle?: string;
 };
 
-const Hero = ({ backgroundImage, title, subtitle }: HeroProps) => {
+const HeroComponent = ({ backgroundImage, title, subtitle }: HeroProps) => {
   const imageUrl = backgroundImage ? urlForImage(backgroundImage) : "";
   return (
     <>
@@ -36,4 +36,4 @@ const Hero = ({ backgroundImage, title, subtitle }: HeroProps) => {
   );
 };
 
-export default Hero;
+export default HeroComponent;
