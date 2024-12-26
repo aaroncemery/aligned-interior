@@ -17,6 +17,7 @@ export const TestimonialFragment = `{
 export const TestimonialSectionFragment = `{
   _type,
   _key,
+  _id,
   title,
   testimonials[] -> ${TestimonialFragment},
 }`;

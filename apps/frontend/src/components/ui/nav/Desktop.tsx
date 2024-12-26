@@ -32,7 +32,7 @@ export const DesktopNavigation = () => {
   ];
 
   return (
-    <nav className="container absolute left-0 right-0 top-0 z-10 mx-auto flex items-center justify-between py-4">
+    <nav className="container absolute left-0 right-0 top-0 z-10 mx-auto hidden items-center justify-between py-4 lg:flex">
       <Logo />
       <div className="flex gap-x-4 font-belleAurore text-2xl tracking-[3.2px] text-white">
         {navLinks.map(({ href, label }) => (

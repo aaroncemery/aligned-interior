@@ -8,6 +8,8 @@ import { VisualHeader } from "@/components/ui/VisualHeader";
 import TestimonialSection from "@/components/testimonial/TestimonialSection";
 export default async function Home() {
   const data = await sanityFetch<HomePageQueryResult>({ query: HomePageQuery });
+
+  console.log(data);
   return (
     <>
       {data?.pageBuilder?.map((block: any) => {
