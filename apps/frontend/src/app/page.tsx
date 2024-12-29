@@ -6,6 +6,8 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import { VisualHeader } from "@/components/ui/VisualHeader";
 import TestimonialSection from "@/components/testimonial/TestimonialSection";
+import { Accordion } from "@/components/ui/Accordion";
+
 export default async function Home() {
   const data = await sanityFetch<HomePageQueryResult>({ query: HomePageQuery });
 
@@ -29,6 +31,12 @@ export default async function Home() {
           return <TestimonialSection key={block._key} {...block} />;
         }
       })}
+      <div className="mx-auto bg-brand-winter-morning py-10">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="mb-10 text-center font-cinzel text-4xl">Services</h2>
+          <Accordion />
+        </div>
+      </div>
     </>
   );
 }
