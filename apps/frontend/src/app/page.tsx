@@ -11,6 +11,8 @@ import { Accordion } from "@/components/ui/Accordion";
 export default async function Home() {
   const data = await sanityFetch<HomePageQueryResult>({ query: HomePageQuery });
 
+  console.log("data", data);
+
   return (
     <>
       {data?.pageBuilder?.map((block: any) => {
@@ -29,6 +31,9 @@ export default async function Home() {
         }
         if (block._type === "testimonialSection") {
           return <TestimonialSection key={block._key} {...block} />;
+        }
+        if (block._type === "accordionSection") {
+          return <Accordion key={block._key} {...block} />;
         }
       })}
       <div className="mx-auto bg-brand-winter-morning py-10">

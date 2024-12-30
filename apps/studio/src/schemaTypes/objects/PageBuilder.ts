@@ -8,7 +8,8 @@ export const PageBuilder = defineType({
     {type: 'hero'},
     {type: 'featureSection'},
     {type: 'visualHeader'},
-    {type: 'testimonialSection'}
+    {type: 'testimonialSection'},
+    {type: 'accordionSection'}
   ],
   options: {
     insertMenu: {
@@ -21,7 +22,7 @@ export const PageBuilder = defineType({
         {
           name: 'content',
           title: 'Content',
-          of: ['featureSection', 'visualHeader', 'testimonialSection']
+          of: ['featureSection', 'visualHeader', 'testimonialSection', 'accordionSection']
         }
       ],
       views: [
