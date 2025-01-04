@@ -2,34 +2,34 @@
 
 import { defineQuery } from "next-sanity";
 
-// Fragment for individual testimonial. Update this to update the testimonial card queries.
+// Fragment for individual testimonial
 export const TestimonialFragment = `{
   _type,
   _key,
+  _id,
   title,
   testimonial,
   author,
   location,
-  image,
+  image {
+    image,
+    caption
+  }
 }`;
 
-// Fragment for testimonial section. Update this to update the testimonial section queries.
+// Fragment for testimonial section
 export const TestimonialSectionFragment = `{
   _type,
   _key,
   _id,
   title,
-  testimonials[] -> ${TestimonialFragment},
+  "testimonials": testimonials[]-> ${TestimonialFragment}
 }`;
 
 export const TestimonialQuery = defineQuery(
-  `*[_type == "testimonial"] {
-    ${TestimonialFragment}
-  }`,
+  `*[_type == "testimonial"] ${TestimonialFragment}`,
 );
 
 export const TestimonialSectionQuery = defineQuery(
-  `*[_type == "testimonialSection"] {
-    ${TestimonialSectionFragment}
-  }`,
+  `*[_type == "testimonialSection"] ${TestimonialSectionFragment}`,
 );

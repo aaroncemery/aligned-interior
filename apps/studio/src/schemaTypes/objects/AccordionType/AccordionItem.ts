@@ -27,7 +27,7 @@ export const AccordionItem = defineType({
                 name: 'link',
                 fields: [
                   {
-                    type: 'UrlDefault',
+                    type: 'url',
                     title: 'URL',
                     name: 'link'
                   }
