@@ -6,8 +6,12 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import { VisualHeader } from "@/components/ui/VisualHeader";
 import TestimonialSection from "@/components/testimonial/TestimonialSection";
+import { AccordionSection } from "@/components/ui/Accordion/AccordionSection";
+
 export default async function Home() {
   const data = await sanityFetch<HomePageQueryResult>({ query: HomePageQuery });
+
+  console.log("data", data);
 
   return (
     <>
@@ -27,6 +31,9 @@ export default async function Home() {
         }
         if (block._type === "testimonialSection") {
           return <TestimonialSection key={block._key} {...block} />;
+        }
+        if (block._type === "accordionSection") {
+          return <AccordionSection key={block._key} {...block} />;
         }
       })}
     </>

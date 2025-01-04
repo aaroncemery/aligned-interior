@@ -62,19 +62,7 @@ export const RichBlockDefault = defineType({
             value: 'em'
           }
         ],
-        annotations: [
-          {
-            type: 'object',
-            name: 'externalLink',
-            fields: [
-              {
-                type: 'UrlDefault',
-                title: 'External URL',
-                name: 'link'
-              }
-            ]
-          }
-        ]
+        annotations: []
       }
     })
   ]
