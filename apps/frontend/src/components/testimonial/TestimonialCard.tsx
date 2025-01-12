@@ -21,9 +21,11 @@ export default function TestimonialCard({
       className={`flex min-h-[200px] flex-col items-start justify-between rounded-lg bg-white bg-cover bg-center p-4 shadow-md lg:min-h-[440px] ${
         imageUrl ? "bg-no-repeat" : ""
       }`}
-      style={{ backgroundImage: `url(${imageUrl})` }}
+      style={{
+        backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5)),url(${imageUrl})`,
+      }}
     >
-      <p className="font-belleAurore text-2xl">{testimonial}</p>
+      <p className="font-cormorant text-2xl font-light">{testimonial}</p>
       <p className="mt-auto font-cinzel text-base">{`${authorInitials}, ${location}`}</p>
     </div>
   );
