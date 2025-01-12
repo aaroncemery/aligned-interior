@@ -13,6 +13,7 @@ const config: Config = {
       fontFamily: {
         cinzel: ["var(--font-cinzel)"],
         belleAurore: ["var(--font-belle-aurore)"],
+        cormorant: ["var(--font-cormorant)"],
         sans: ["var(--font-inter)"],
       },
       colors: {
