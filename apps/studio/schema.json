@@ -345,6 +345,14 @@
           },
           "optional": true
         },
+        "image": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "imageObject"
+          },
+          "optional": true
+        },
         "items": {
           "type": "objectAttribute",
           "value": {

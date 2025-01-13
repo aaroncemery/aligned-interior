@@ -2,7 +2,12 @@ import Accordion from "./Accordian";
 import { AccordionSection as AccordionSectionType } from "../../../../sanity.types";
 import { Button } from "../Button";
 
-export const AccordionSection = ({ title, items }: AccordionSectionType) => {
+export const AccordionSection = ({
+  title,
+  image,
+  items,
+}: AccordionSectionType) => {
+  console.log(image);
   return (
     <div className="mx-auto bg-brand-winter-morning py-10">
       <div className="container mx-auto max-w-3xl">
