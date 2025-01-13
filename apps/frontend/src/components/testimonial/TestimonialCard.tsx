@@ -22,7 +22,7 @@ export default function TestimonialCard({
         imageUrl ? "bg-no-repeat" : ""
       }`}
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5)),url(${imageUrl})`,
+        backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)),url(${imageUrl})`,
       }}
     >
       <p className="font-cormorant text-2xl font-light">{testimonial}</p>
