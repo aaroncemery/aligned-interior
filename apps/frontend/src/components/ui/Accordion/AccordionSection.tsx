@@ -7,6 +7,13 @@ export const AccordionSection = ({ title, items }: AccordionSectionType) => {
     <div className="mx-auto bg-brand-winter-morning py-10">
       <div className="container mx-auto max-w-3xl">
         <h2 className="mb-10 text-center font-cinzel text-4xl">{title}</h2>
+        {/* <Image
+          src={image}
+          alt={title}
+          width={1000}
+          height={1000}
+          className="mx-auto mb-10"
+        /> */}
         <div className="flex flex-col items-center gap-4">
           {items && <Accordion items={items} />}
           <Button>Contact</Button>

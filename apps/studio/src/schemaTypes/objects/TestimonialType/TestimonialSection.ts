@@ -13,6 +13,11 @@ export const TestimonialSection = defineType({
       type: 'string'
     }),
     defineField({
+      name: 'image',
+      title: 'Image',
+      type: 'imageObject'
+    }),
+    defineField({
       name: 'testimonials',
       title: 'Testimonials',
       type: 'array',
