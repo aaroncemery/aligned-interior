@@ -2,6 +2,7 @@ import {assist} from '@sanity/assist'
 import {visionTool} from '@sanity/vision'
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
+import {vercelDeployTool} from 'sanity-plugin-vercel-deploy'
 
 import {singletonPlugin} from './src/plugins/singletons'
 import {pageStructure} from './src/plugins/structure'
@@ -25,7 +26,8 @@ export default defineConfig({
     }),
     visionTool(),
     assist(),
-    singletonPlugin([Home.name])
+    singletonPlugin([Home.name]),
+    vercelDeployTool()
   ],
 
   schema: {
