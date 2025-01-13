@@ -1,9 +1,10 @@
 // ./src/sanity/lib/queries.ts
 
 import { defineQuery } from "next-sanity";
-import { TestimonialSectionFragment } from "@/components/testimonial/query";
-import { HeroFragment } from "@/components/Hero/query";
-import { ContentBlockFragment } from "@/components/ContentBlock";
+import { TestimonialSectionFragment } from "../../components/testimonial/query";
+import { HeroFragment } from "../../components/Hero/query";
+import { ContentBlockFragment } from "../../components/ContentBlock/query";
+import { AccordionFragment } from "../../components/ui/Accordion/query";
 
 export const HomePageQuery = defineQuery(
   `*[_type == "home"][0] {
@@ -19,6 +20,7 @@ export const HomePageQuery = defineQuery(
         "metadata": image.image.asset->metadata,
       },
       _type == "testimonialSection" => ${TestimonialSectionFragment},
-    },
+      _type == "accordionSection" => ${AccordionFragment},
+    }
   }`,
 );
