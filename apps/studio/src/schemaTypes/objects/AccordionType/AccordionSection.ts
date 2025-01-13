@@ -8,6 +8,7 @@ export const AccordionSection = defineType({
   icon: TfiLayoutAccordionSeparated,
   fields: [
     defineField({name: 'title', type: 'string'}),
+    defineField({name: 'image', type: 'imageObject'}),
     defineField({name: 'items', type: 'array', of: [{type: 'accordionItem'}]})
   ]
 })
