@@ -18,10 +18,16 @@ const buttonVariants = cva(
         true: "",
         false: "",
       },
+      width: {
+        full: "w-full",
+        auto: "w-auto",
+        fit: "w-fit",
+      },
     },
     defaultVariants: {
       intent: "primary",
       withArrow: false,
+      width: "auto",
     },
   },
 );
@@ -34,11 +40,12 @@ export const Button = ({
   children,
   intent,
   withArrow = false,
+  width = "auto",
   ...props
 }: Props) => {
   return (
     <ButtonOrLink
-      className={twMerge(buttonVariants({ intent, withArrow }), "group")}
+      className={twMerge(buttonVariants({ intent, withArrow, width }), "group")}
       {...props}
     >
       {children}

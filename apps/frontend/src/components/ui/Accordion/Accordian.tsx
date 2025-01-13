@@ -5,6 +5,7 @@ import { PortableText } from "@portabletext/react";
 import { AccordionItem } from "./AccordionItem";
 import { AccordionTrigger } from "./AccordionTrigger";
 import { AccordionContent } from "./AccordionContent";
+import { Button } from "../Button";
 const Accordion = ({ items }: { items: AccordionItemType[] }) => (
   <AccordionPrimitive.Root
     className="bg-mauve6 mx-auto w-full rounded-md shadow-[0_2px_10px] shadow-black/5"
@@ -18,6 +19,7 @@ const Accordion = ({ items }: { items: AccordionItemType[] }) => (
         {item.content && (
           <AccordionContent>
             <PortableText value={item.content} />
+            <Button width="fit">Contact</Button>
           </AccordionContent>
         )}
       </AccordionItem>

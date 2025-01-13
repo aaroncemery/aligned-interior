@@ -16,9 +16,6 @@ const ContentBlock = ({ description, image, metadata }: ContentBlockProps) => {
       ? urlForImage({ ...image?.image, _type: "imageObject" })?.url()
       : "";
 
-  console.log(imageUrl);
-  console.log("image", image?.image);
-
   return (
     <div
       className={`items-top relative mx-auto flex justify-center bg-brand-winter-morning px-4 py-10 lg:py-20 ${image && "gap-x-9"}`}
