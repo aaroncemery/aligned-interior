@@ -18,7 +18,7 @@ export default function TestimonialCard({
     .join("");
   return (
     <div
-      className={`flex min-h-[200px] flex-col items-start justify-between rounded-lg bg-white bg-cover bg-center p-4 shadow-md lg:min-h-[440px] ${
+      className={`flex h-full min-h-[200px] flex-col items-start justify-between rounded-lg bg-white bg-cover bg-center p-4 shadow-md lg:min-h-[440px] ${
         imageUrl ? "bg-no-repeat" : ""
       }`}
       style={{
@@ -26,7 +26,7 @@ export default function TestimonialCard({
       }}
     >
       <p className="font-cormorant text-2xl font-light">{testimonial}</p>
-      <p className="mt-auto font-cinzel text-base">{`${authorInitials}, ${location}`}</p>
+      <p className="mt-auto pt-4 font-cinzel text-base">{`${authorInitials}, ${location}`}</p>
     </div>
   );
 }

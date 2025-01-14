@@ -8,14 +8,16 @@ export default function TestimonialSection({
   title: string;
 }) {
   return (
-    <div className="container mx-auto px-4">
-      <div className="mb-8 mt-10 flex flex-[1_0_0] flex-col items-center justify-center lg:mb-10 lg:mt-28">
+    <div className="container mx-auto px-4 py-10">
+      <div className="mb-8 flex flex-[1_0_0] flex-col items-center justify-center">
         <h2 className="font-cinzel text-4xl lg:text-6xl">{title}</h2>
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-4 lg:flex-nowrap">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {testimonials.map((testimonial: any, index: number) => {
           return (
-            <TestimonialCard key={`testimonial-${index}`} {...testimonial} />
+            <div className="h-full" key={`testimonial-${index}`}>
+              <TestimonialCard {...testimonial} />
+            </div>
           );
         })}
       </div>

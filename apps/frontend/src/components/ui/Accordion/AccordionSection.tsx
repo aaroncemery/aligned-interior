@@ -1,12 +1,42 @@
 import Accordion from "./Accordian";
-import { AccordionSection as AccordionSectionType } from "../../../../sanity.types";
+import {
+  AccordionSection as AccordionSectionType,
+  SanityImageMetadata,
+} from "../../../../sanity.types";
+import { Button } from "../Button";
+import { urlForImage } from "@/sanity/lib/utils";
 
-export const AccordionSection = ({ title, items }: AccordionSectionType) => {
+type AccordionSectionProps = AccordionSectionType & {
+  metadata?: SanityImageMetadata;
+};
+
+export const AccordionSection = ({
+  title,
+  image,
+  items,
+}: AccordionSectionProps) => {
+  const imageUrl =
+    image && image?.image
+      ? urlForImage({ ...image?.image, _type: "imageObject" })
+          ?.fit("crop")
+          .auto("format")
+          .url()
+      : "";
   return (
-    <div className="mx-auto bg-brand-winter-morning py-10">
-      <div className="container mx-auto max-w-3xl">
-        <h2 className="mb-10 text-center font-cinzel text-4xl">{title}</h2>
-        {items && <Accordion items={items} />}
+    <div
+      className={`mx-auto bg-brand-winter-morning bg-cover bg-center py-10 ${
+        imageUrl ? "bg-no-repeat" : ""
+      }`}
+      style={{
+        backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)),url(${imageUrl})`,
+      }}
+    >
+      <h2 className="mb-10 text-center font-cinzel text-4xl">{title}</h2>
+      <div className="container mx-auto max-w-3xl px-4">
+        <div className="flex flex-col items-center gap-4">
+          {items && <Accordion items={items} />}
+          <Button>Contact</Button>
+        </div>
       </div>
     </div>
   );

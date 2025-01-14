@@ -40,8 +40,7 @@ export default function RootLayout({
       <body
         className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
       >
-        {/* <Navigation.Desktop /> */}
-        <Navigation.Mobile />
+        <Navigation.Desktop />
         {children}
       </body>
     </html>

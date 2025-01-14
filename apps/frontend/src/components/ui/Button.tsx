@@ -5,7 +5,7 @@ import { ButtonOrLink, Props as ButtonOrLinkProps } from "./ButtonOrLink";
 
 const buttonVariants = cva(
   [
-    "py-2 px-4 font-sans font-light rounded-md text-lg tracking-widest flex items-center gap-2",
+    "py-2 px-4 font-sans font-light rounded-md tracking-widest flex items-center gap-2",
   ],
   {
     variants: {
@@ -18,10 +18,22 @@ const buttonVariants = cva(
         true: "",
         false: "",
       },
+      size: {
+        small: "text-sm",
+        medium: "text-base",
+        large: "text-lg",
+      },
+      width: {
+        full: "w-full",
+        auto: "w-auto",
+        fit: "w-fit",
+      },
     },
     defaultVariants: {
       intent: "primary",
       withArrow: false,
+      width: "auto",
+      size: "medium",
     },
   },
 );
@@ -34,11 +46,16 @@ export const Button = ({
   children,
   intent,
   withArrow = false,
+  size = "medium",
+  width = "auto",
   ...props
 }: Props) => {
   return (
     <ButtonOrLink
-      className={twMerge(buttonVariants({ intent, withArrow }), "group")}
+      className={twMerge(
+        buttonVariants({ intent, withArrow, width, size }),
+        "group",
+      )}
       {...props}
     >
       {children}
