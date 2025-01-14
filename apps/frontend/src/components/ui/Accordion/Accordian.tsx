@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { AccordionItem as AccordionItemType } from "../../../../sanity.types";
@@ -6,6 +8,8 @@ import { AccordionItem } from "./AccordionItem";
 import { AccordionTrigger } from "./AccordionTrigger";
 import { AccordionContent } from "./AccordionContent";
 import { Button } from "../Button";
+import { handleScrollToSection } from "@/lib/utils";
+
 const Accordion = ({ items }: { items: AccordionItemType[] }) => (
   <AccordionPrimitive.Root
     className="mx-auto w-full rounded-md bg-brand-winter-morning/10 shadow-[0_2px_10px] shadow-black/5 backdrop-blur-sm"
@@ -24,6 +28,7 @@ const Accordion = ({ items }: { items: AccordionItemType[] }) => (
               size={"small"}
               intent="secondary"
               withArrow={true}
+              onClick={() => handleScrollToSection("contact")}
             >
               Contact
             </Button>
