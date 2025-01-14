@@ -23,7 +23,8 @@ const ContentBlock = ({ description, image, metadata }: ContentBlockProps) => {
       <div
         className={cn(
           "container",
-          image && "grid grid-cols-1 gap-5 gap-x-6 lg:grid-cols-2 lg:gap-x-10",
+          image &&
+            "grid grid-cols-1 items-center justify-center gap-5 gap-x-6 md:grid-cols-2 md:gap-x-10",
         )}
       >
         {image && imageUrl && (
@@ -39,7 +40,7 @@ const ContentBlock = ({ description, image, metadata }: ContentBlockProps) => {
           <div
             className={`w-full ${
               image && imageUrl
-                ? "max-w-lg text-left"
+                ? "text-left lg:max-w-lg"
                 : "mx-auto max-w-7xl text-center"
             }`}
           >

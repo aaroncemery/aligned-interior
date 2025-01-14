@@ -13,6 +13,9 @@ const buttonVariants = cva(
         primary: [
           "bg-button-gradient hover:bg-[position:75%] bg-[length:200%] bg-[position:0%] transition-[background-position] duration-300 text-black backdrop-blur-sm",
         ],
+        secondary: [
+          "bg-brand-aligned-black backdrop-blur-sm hover:bg-brand-aligned-black/90 backdrop-blur-sm transition-colors duration-300 text-white",
+        ],
       },
       withArrow: {
         true: "",
