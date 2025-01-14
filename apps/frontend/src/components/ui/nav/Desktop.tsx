@@ -56,7 +56,7 @@ export const DesktopNavigation = () => {
     <nav
       className={`fixed left-0 right-0 top-0 z-10 transition-colors duration-200 ${
         isScrolled
-          ? "shadow-nav-shadow bg-brand-winter-morning/80 backdrop-blur-sm"
+          ? "bg-brand-winter-morning/80 shadow-nav-shadow backdrop-blur-sm"
           : "bg-transparent"
       }`}
     >
