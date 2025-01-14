@@ -7,6 +7,8 @@ import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import { VisualHeader } from "@/components/ui/VisualHeader";
 import TestimonialSection from "@/components/testimonial/TestimonialSection";
 import { AccordionSection } from "@/components/ui/Accordion/AccordionSection";
+import ContactForm from "@/components/Forms/Contact";
+import FormWrapper from "@/components/Forms/Wrapper";
 
 export default async function Home() {
   const data = await sanityFetch<HomePageQueryResult>({ query: HomePageQuery });
@@ -34,6 +36,9 @@ export default async function Home() {
           return <AccordionSection key={block._key} {...block} />;
         }
       })}
+      <FormWrapper id="contact" title="Contact">
+        <ContactForm />
+      </FormWrapper>
     </>
   );
 }

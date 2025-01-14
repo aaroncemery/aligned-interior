@@ -1,3 +1,5 @@
+"use client";
+
 import Accordion from "./Accordian";
 import {
   AccordionSection as AccordionSectionType,
@@ -5,6 +7,7 @@ import {
 } from "../../../../sanity.types";
 import { Button } from "../Button";
 import { urlForImage } from "@/sanity/lib/utils";
+import { handleScrollToSection } from "@/lib/utils";
 
 type AccordionSectionProps = AccordionSectionType & {
   metadata?: SanityImageMetadata;
@@ -24,6 +27,7 @@ export const AccordionSection = ({
       : "";
   return (
     <div
+      id="services"
       className={`mx-auto bg-brand-winter-morning bg-cover bg-center py-10 ${
         imageUrl ? "bg-no-repeat" : ""
       }`}
@@ -37,7 +41,9 @@ export const AccordionSection = ({
       <div className="container mx-auto max-w-3xl px-4">
         <div className="flex flex-col items-center gap-4">
           {items && <Accordion items={items} />}
-          <Button withArrow>Contact</Button>
+          <Button withArrow onClick={() => handleScrollToSection("contact")}>
+            Contact
+          </Button>
         </div>
       </div>
     </div>

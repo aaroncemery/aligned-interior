@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "../Button";
 import { cn } from "@/lib/utils";
+import { handleScrollToSection } from "@/lib/utils";
 // interface NavLinkProps {
 //   href: string;
 //   children: React.ReactNode;
@@ -62,7 +63,12 @@ export const DesktopNavigation = () => {
     >
       <div className="container relative z-20 mx-auto flex items-center justify-between px-4 py-2 transition-colors duration-200 lg:flex">
         <Logo isScrolled={isScrolled} />
-        <Button intent="secondary" href="#contact" size={"small"} withArrow>
+        <Button
+          intent="secondary"
+          onClick={() => handleScrollToSection("contact")}
+          size={"small"}
+          withArrow
+        >
           <span>Contact</span>
         </Button>
       </div>
