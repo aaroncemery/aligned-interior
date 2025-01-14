@@ -10,7 +10,7 @@ export const AccordionTrigger = React.forwardRef<
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       className={twMerge(
-        "text-violet11 shadow-mauve6 hover:bg-mauve2 group flex h-[45px] flex-1 cursor-default items-center justify-between bg-white px-5 font-cinzel text-xl leading-none shadow-[0_1px_0] outline-none",
+        "text-violet11 shadow-mauve6 hover:bg-mauve2 group flex h-[45px] flex-1 cursor-default items-center justify-between bg-white/50 px-5 text-left font-cinzel text-xl leading-none shadow-[0_1px_0] outline-none",
         className,
       )}
       {...props}

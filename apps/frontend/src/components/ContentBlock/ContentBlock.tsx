@@ -20,7 +20,12 @@ const ContentBlock = ({ description, image, metadata }: ContentBlockProps) => {
     <div
       className={`items-top relative mx-auto flex justify-center bg-brand-winter-morning px-4 py-10 lg:py-20 ${image && "gap-x-9"}`}
     >
-      <div className={cn("container", image && "grid grid-cols-2 gap-x-6")}>
+      <div
+        className={cn(
+          "container",
+          image && "grid grid-cols-1 gap-5 gap-x-6 lg:grid-cols-2 lg:gap-x-10",
+        )}
+      >
         {image && imageUrl && (
           <Image
             className="max-h-[400px] rounded-md object-cover object-left-top"

@@ -12,7 +12,7 @@ export default function TestimonialSection({
       <div className="mb-8 flex flex-[1_0_0] flex-col items-center justify-center">
         <h2 className="font-cinzel text-4xl lg:text-6xl">{title}</h2>
       </div>
-      <div className="grid grid-cols-3 items-stretch justify-center gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {testimonials.map((testimonial: any, index: number) => {
           return (
             <div className="h-full" key={`testimonial-${index}`}>
