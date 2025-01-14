@@ -56,13 +56,13 @@ export const DesktopNavigation = () => {
     <nav
       className={`fixed left-0 right-0 top-0 z-10 transition-colors duration-200 ${
         isScrolled
-          ? "bg-brand-winter-morning/80 shadow-nav-shadow backdrop-blur-sm"
+          ? "shadow-nav-shadow bg-brand-winter-morning/80 backdrop-blur-sm"
           : "bg-transparent"
       }`}
     >
-      <div className="container relative z-20 mx-auto flex items-center justify-between py-2 transition-colors duration-200 lg:flex">
+      <div className="container relative z-20 mx-auto flex items-center justify-between px-4 py-2 transition-colors duration-200 lg:flex">
         <Logo isScrolled={isScrolled} />
-        <Button intent="secondary" href="/contact" size={"small"} withArrow>
+        <Button intent="secondary" href="#contact" size={"small"} withArrow>
           <span>Contact</span>
         </Button>
       </div>
