@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
+import { Button } from "../Button";
+import { cn } from "@/lib/utils";
 // interface NavLinkProps {
 //   href: string;
 //   children: React.ReactNode;
@@ -12,9 +16,15 @@ import React from "react";
 //   </Link>
 // );
 
-const Logo = () => (
+const Logo = ({ isScrolled }: { isScrolled: boolean }) => (
   <Link href="/">
-    <div className="flex items-center gap-x-1 text-white">
+    <div
+      className={cn(
+        "flex items-center gap-x-1 transition-colors duration-200",
+        isScrolled && "text-brand-aligned-black",
+        !isScrolled && "text-brand-winter-morning",
+      )}
+    >
       {/* <div className="w-10">
         <LogoIcon />
       </div> */}
@@ -25,6 +35,17 @@ const Logo = () => (
 );
 
 export const DesktopNavigation = () => {
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   // const navLinks = [
   //   { href: "#services", label: "Services" },
   //   { href: "#about", label: "About" },
@@ -32,8 +53,19 @@ export const DesktopNavigation = () => {
   // ];
 
   return (
-    <nav className="container absolute left-0 right-0 top-0 z-10 mx-auto hidden items-center justify-between py-4 lg:flex">
-      <Logo />
+    <nav
+      className={`fixed left-0 right-0 top-0 z-10 transition-colors duration-200 ${
+        isScrolled
+          ? "bg-brand-winter-morning/80 shadow-nav-shadow backdrop-blur-sm"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="container relative z-20 mx-auto flex items-center justify-between py-2 transition-colors duration-200 lg:flex">
+        <Logo isScrolled={isScrolled} />
+        <Button intent="secondary" href="/contact" size={"small"} withArrow>
+          <span>Contact</span>
+        </Button>
+      </div>
       {/* <div className="flex gap-x-4 font-belleAurore text-2xl tracking-[3.2px] text-white">
         {navLinks.map(({ href, label }) => (
           <NavLink key={href} href={href}>

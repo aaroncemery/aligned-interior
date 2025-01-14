@@ -31,11 +31,13 @@ export const AccordionSection = ({
         backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)),url(${imageUrl})`,
       }}
     >
-      <h2 className="mb-10 text-center font-cinzel text-4xl">{title}</h2>
+      <h2 className="mb-10 text-center font-cinzel text-4xl lg:text-6xl">
+        {title}
+      </h2>
       <div className="container mx-auto max-w-3xl px-4">
         <div className="flex flex-col items-center gap-4">
           {items && <Accordion items={items} />}
-          <Button>Contact</Button>
+          <Button withArrow>Contact</Button>
         </div>
       </div>
     </div>

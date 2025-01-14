@@ -19,7 +19,12 @@ const Accordion = ({ items }: { items: AccordionItemType[] }) => (
         {item.content && (
           <AccordionContent>
             <PortableText value={item.content} />
-            <Button width="fit" size={"small"} withArrow={true}>
+            <Button
+              width="fit"
+              size={"small"}
+              intent="secondary"
+              withArrow={true}
+            >
               Contact
             </Button>
           </AccordionContent>
