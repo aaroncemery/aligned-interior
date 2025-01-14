@@ -59,7 +59,7 @@ export default function ContactForm() {
           Thank you for your message!
         </h3>
         <p className="font-sans text-sm text-brand-aligned-black">
-          We'll get back to you as soon as possible.
+          We&apos;ll get back to you as soon as possible.
         </p>
       </div>
     );
