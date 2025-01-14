@@ -4,8 +4,6 @@ import * as React from "react";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-console.log("process.env.RESEND_API_KEY", process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
   try {
     const formData = await request.json();
@@ -15,8 +13,6 @@ export async function POST(request: Request) {
       subject: "Hello world",
       react: EmailTemplate(formData) as React.ReactElement,
     });
-
-    console.log(data);
 
     if (error) {
       return Response.json({ error }, { status: 500 });
