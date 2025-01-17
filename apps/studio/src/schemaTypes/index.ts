@@ -1,5 +1,6 @@
 import {fields} from './fields'
 import {Home} from './Home'
+import {Settings} from './Settings'
 import {objects} from './objects'
 import {AccordionType} from './objects/AccordionType'
 import {testimonialTypes} from './objects/TestimonialType'
@@ -11,5 +12,6 @@ export const schemaTypes = [
   ...objects,
   ...fields,
   ...testimonialTypes,
-  ...AccordionType
+  ...AccordionType,
+  Settings
 ]
