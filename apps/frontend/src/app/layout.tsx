@@ -29,7 +29,6 @@ const inter = Inter({
 
 export async function generateMetadata() {
   const settings = await sanityFetch<any>({ query: SeoQuery });
-  console.log("icons", settings?.favicon?.ico);
   return {
     title: settings?.seo?.title,
     description: settings?.seo?.description,
