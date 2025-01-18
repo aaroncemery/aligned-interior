@@ -8,9 +8,10 @@ import {singletonPlugin} from './src/plugins/singletons'
 import {pageStructure} from './src/plugins/structure'
 import {schemaTypes} from './src/schemaTypes'
 import {Home} from './src/schemaTypes/Home'
+import {Settings} from './src/schemaTypes/SettingsType/Settings'
 import {Testimonial} from './src/schemaTypes/objects/TestimonialType/Testimonial'
 
-const typeDefArray = [Home]
+const typeDefArray = [Home, Settings]
 const customGroupItems = [Testimonial]
 
 export default defineConfig({
@@ -26,7 +27,7 @@ export default defineConfig({
     }),
     visionTool(),
     assist(),
-    singletonPlugin([Home.name]),
+    singletonPlugin([Home.name, Settings.name]),
     vercelDeployTool()
   ],
 

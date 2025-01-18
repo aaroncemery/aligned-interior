@@ -24,3 +24,22 @@ export const HomePageQuery = defineQuery(
     }
   }`,
 );
+
+export const SeoQuery = defineQuery(`
+  *[_type == "settings"][0] {
+    seo {
+      _type,
+      title,
+      description,
+      keywords,
+      noIndex,
+      noFollow
+    },
+    favicon {
+      'svg': svg.asset->url,
+      'png96': png96.asset->url,
+      'ico': ico.asset->url,
+      'appleTouchIcon': appleTouchIcon.asset->url
+    }
+  }
+`);

@@ -4,6 +4,7 @@ import {objects} from './objects'
 import {AccordionType} from './objects/AccordionType'
 import {testimonialTypes} from './objects/TestimonialType'
 import Page from './Page'
+import {settingsTypes} from './SettingsType'
 
 export const schemaTypes = [
   Home,
@@ -11,5 +12,6 @@ export const schemaTypes = [
   ...objects,
   ...fields,
   ...testimonialTypes,
-  ...AccordionType
+  ...AccordionType,
+  ...settingsTypes
 ]
