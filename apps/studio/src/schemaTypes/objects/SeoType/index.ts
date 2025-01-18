@@ -27,9 +27,23 @@ export const SeoType = defineType({
       of: [{type: 'string'}]
     }),
     defineField({
+      name: 'noIndex',
+      title: 'No Index',
+      type: 'boolean',
+      initialValue: false
+    }),
+    defineField({
+      name: 'noFollow',
+      title: 'No Follow',
+      type: 'boolean',
+      initialValue: false
+    }),
+    defineField({
       name: 'robots',
       title: 'Robots',
-      type: 'string'
+      type: 'string',
+      description:
+        'Comma separated list of robots directives. Only use if you want to override the default robots settings.'
     }),
     defineField({
       name: 'canonicalUrl',

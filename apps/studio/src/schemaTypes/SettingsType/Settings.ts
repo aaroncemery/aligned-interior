@@ -19,6 +19,12 @@ export const Settings = defineType({
       title: 'SEO',
       type: 'seo',
       group: 'seo'
+    }),
+    defineField({
+      name: 'favicon',
+      title: 'Favicon',
+      type: 'favicon',
+      group: 'seo'
     })
   ],
   preview: {
