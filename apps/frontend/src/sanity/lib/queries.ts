@@ -60,3 +60,10 @@ export const SeoQuery = defineQuery(`
     }
   }
 `);
+
+// get all page slugs
+export const PageSlugsQuery = defineQuery(`
+  *[_type == "page"] {
+    "slug": slug.current
+  }
+`);
