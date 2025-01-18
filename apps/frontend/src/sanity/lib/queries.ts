@@ -25,6 +25,23 @@ export const HomePageQuery = defineQuery(
   }`,
 );
 
+export const PageQuery = defineQuery(`
+  *[_type == "page" && slug.current == $slug][0] {
+    "seo": seo,
+    "pageBuilder": pageBuilder[] {
+      _type == "hero" => ${HeroFragment},
+      _type == "featureSection" => ${ContentBlockFragment},
+      _type == "visualHeader" => {
+        _type,
+        _key,
+        headline,
+        image,
+        "metadata": image.image.asset->metadata,
+      },
+    }
+  }
+`);
+
 export const SeoQuery = defineQuery(`
   *[_type == "settings"][0] {
     seo {

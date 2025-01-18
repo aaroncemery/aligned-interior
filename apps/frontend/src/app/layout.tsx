@@ -4,6 +4,7 @@ import { Navigation } from "@/components/ui/nav";
 import { Footer } from "@/components/ui/Footer";
 import { SeoQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/fetch";
+import { SeoQueryResult } from "../../sanity.types";
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -28,7 +29,7 @@ const inter = Inter({
 });
 
 export async function generateMetadata() {
-  const settings = await sanityFetch<any>({ query: SeoQuery });
+  const settings = await sanityFetch<SeoQueryResult>({ query: SeoQuery });
   return {
     title: settings?.seo?.title,
     description: settings?.seo?.description,
@@ -38,8 +39,6 @@ export async function generateMetadata() {
     openGraph: {
       title: settings?.seo?.title,
       description: settings?.seo?.description,
-      url: settings?.seo?.url || "",
-      images: settings?.seo?.images || [],
     },
     icons: {
       icon: [
