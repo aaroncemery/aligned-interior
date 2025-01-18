@@ -14,8 +14,7 @@ const ContentBlock = ({ description, image, metadata }: ContentBlockProps) => {
   const imageUrl =
     image && image?.image
       ? urlForImage({ ...image?.image, _type: "imageObject" })
-          ?.width(600)
-          .quality(90)
+          ?.width(1200)
           .url()
       : "";
   console.log("imageUrl", imageUrl);
