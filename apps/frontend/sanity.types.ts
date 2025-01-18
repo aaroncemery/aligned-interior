@@ -39,6 +39,23 @@ export type SanityImageDimensions = {
   aspectRatio?: number;
 };
 
+export type Geopoint = {
+  _type: "geopoint";
+  lat?: number;
+  lng?: number;
+  alt?: number;
+};
+
+export type Settings = {
+  _id: string;
+  _type: "settings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seo?: Seo;
+  favicon?: Favicon;
+};
+
 export type SanityFileAsset = {
   _id: string;
   _type: "sanity.fileAsset";
@@ -61,11 +78,50 @@ export type SanityFileAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type Geopoint = {
-  _type: "geopoint";
-  lat?: number;
-  lng?: number;
-  alt?: number;
+export type Favicon = {
+  _type: "favicon";
+  svg?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  png96?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  ico?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    _type: "file";
+  };
+  appleTouchIcon?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type AccordionSection = {
@@ -314,6 +370,8 @@ export type Seo = {
     _type: "image";
   };
   keywords?: Array<string>;
+  noIndex?: boolean;
+  noFollow?: boolean;
   robots?: string;
   canonicalUrl?: string;
 };
@@ -520,8 +578,10 @@ export type AllSanitySchemaTypes =
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
-  | SanityFileAsset
   | Geopoint
+  | Settings
+  | SanityFileAsset
+  | Favicon
   | AccordionSection
   | AccordionItem
   | TestimonialSection
@@ -730,6 +790,24 @@ export type HomePageQueryResult = {
       }
   > | null;
 } | null;
+// Variable: SeoQuery
+// Query: *[_type == "settings"][0] {    seo {      _type,      title,      description,      keywords,      noIndex,      noFollow    },    favicon {      'svg': svg.asset->url,      'png96': png96.asset->url,      'ico': ico.asset->url,      'appleTouchIcon': appleTouchIcon.asset->url    }  }
+export type SeoQueryResult = {
+  seo: {
+    _type: "seo";
+    title: string | null;
+    description: string | null;
+    keywords: Array<string> | null;
+    noIndex: boolean | null;
+    noFollow: boolean | null;
+  } | null;
+  favicon: {
+    svg: string | null;
+    png96: string | null;
+    ico: string | null;
+    appleTouchIcon: string | null;
+  } | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -738,5 +816,6 @@ declare module "@sanity/client" {
     '*[_type == "testimonial"] {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}': TestimonialQueryResult;
     '*[_type == "testimonialSection"] {\n  _type,\n  _key,\n  _id,\n  title,\n  "testimonials": testimonials[]-> {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}\n}': TestimonialSectionQueryResult;
     '*[_type == "home"][0] {\n    "seo": seo,\n    "pageBuilder": pageBuilder[] {\n      _type == "hero" => {\n  _type,\n  _key,\n  title,\n  subtitle,\n  backgroundImage,\n  cta[] {\n    ...,\n  }\n},\n      _type == "featureSection" => {\n  _type,\n  _key,\n  title,\n  description,\n  image {\n    image,\n    alt,\n  },\n  "metadata": image.image.asset->metadata,\n},\n      _type == "visualHeader" => {\n        _type,\n        _key,\n        headline,\n        image,\n        "metadata": image.image.asset->metadata,\n      },\n      _type == "testimonialSection" => {\n  _type,\n  _key,\n  _id,\n  title,\n  "testimonials": testimonials[]-> {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}\n},\n      _type == "accordionSection" => {\n  _type,\n  _key,\n  title,\n  image,\n  items[] {\n    ...,\n  }\n},\n    }\n  }': HomePageQueryResult;
+    "\n  *[_type == \"settings\"][0] {\n    seo {\n      _type,\n      title,\n      description,\n      keywords,\n      noIndex,\n      noFollow\n    },\n    favicon {\n      'svg': svg.asset->url,\n      'png96': png96.asset->url,\n      'ico': ico.asset->url,\n      'appleTouchIcon': appleTouchIcon.asset->url\n    }\n  }\n": SeoQueryResult;
   }
 }
