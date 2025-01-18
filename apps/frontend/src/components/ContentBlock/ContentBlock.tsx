@@ -13,8 +13,12 @@ export type ContentBlockProps = FeatureSection & {
 const ContentBlock = ({ description, image, metadata }: ContentBlockProps) => {
   const imageUrl =
     image && image?.image
-      ? urlForImage({ ...image?.image, _type: "imageObject" })?.url()
+      ? urlForImage({ ...image?.image, _type: "imageObject" })
+          ?.width(600)
+          .quality(90)
+          .url()
       : "";
+  console.log("imageUrl", imageUrl);
 
   return (
     <div

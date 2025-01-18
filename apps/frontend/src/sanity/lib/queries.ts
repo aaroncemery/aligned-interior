@@ -26,7 +26,7 @@ export const HomePageQuery = defineQuery(
 );
 
 export const PageQuery = defineQuery(`
-  *[_type == "page"][0] {
+  *[_type == "page" && slug.current == $slug][0] {
     "seo": seo,
     "pageBuilder": pageBuilder[] {
       _type == "hero" => ${HeroFragment},
