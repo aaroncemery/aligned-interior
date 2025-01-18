@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Cinzel, La_Belle_Aurore, Inter, Cormorant } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/ui/nav";
