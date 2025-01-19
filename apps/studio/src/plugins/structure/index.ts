@@ -1,6 +1,7 @@
 import {contextDocumentTypeName} from '@sanity/assist'
 import {type DocumentDefinition} from 'sanity'
-import {type StructureResolver} from 'sanity/structure'
+import {ListItemBuilder, type StructureResolver} from 'sanity/structure'
+import {FaGlobe} from 'react-icons/fa'
 
 // The StructureResolver is how we're changing the DeskTool structure to
 // linking to document(named Singleton) like how 'Homepage' is handled.
@@ -9,14 +10,41 @@ export const pageStructure = (
   customGroupItems: DocumentDefinition[]
 ): StructureResolver => {
   return (S) => {
-    // Goes through all of the singletons that were provided and translates them into something
-    // DeskTool can understand.
-    const singletonItems = typeDefArray.map((typeDef) => {
-      return S.listItem()
-        .title(typeDef.title!)
-        .icon(typeDef.icon)
-        .child(S.editor().id(typeDef.name).schemaType(typeDef.name).documentId(typeDef.name))
-    })
+    // Create singletons list items as before
+    const singletonItems = typeDefArray
+      .map((typeDef) => {
+        // Skip global items as they'll be handled separately
+        if (typeDef.name === 'settings' || typeDef.name === 'notFoundPage') {
+          return null
+        }
+        return S.listItem()
+          .title(typeDef.title!)
+          .icon(typeDef.icon)
+          .child(S.editor().id(typeDef.name).schemaType(typeDef.name).documentId(typeDef.name))
+      })
+      .filter((item): item is ListItemBuilder => item !== null) // Type predicate to ensure non-null
+
+    // Create global folder with settings and other global singletons
+    const globalItems = S.listItem()
+      .title('Global')
+      .icon(FaGlobe)
+      .child(
+        S.list()
+          .title('Global')
+          .items([
+            // Add settings
+            ...typeDefArray
+              .filter((typeDef) => typeDef.name === 'settings' || typeDef.name === 'notFoundPage')
+              .map((typeDef) =>
+                S.listItem()
+                  .title(typeDef.title!)
+                  .icon(typeDef.icon)
+                  .child(
+                    S.editor().id(typeDef.name).schemaType(typeDef.name).documentId(typeDef.name)
+                  )
+              )
+          ])
+      )
 
     const customItems = customGroupItems.map((item) => {
       return S.listItem()
@@ -43,6 +71,8 @@ export const pageStructure = (
     return S.list()
       .title('Content')
       .items([
+        globalItems,
+        S.divider(),
         ...singletonItems,
         S.divider(),
         ...customItems,

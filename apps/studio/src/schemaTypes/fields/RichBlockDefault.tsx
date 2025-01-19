@@ -1,3 +1,5 @@
+import {CgExternal, CgInternal} from 'react-icons/cg'
+import {FaLink} from 'react-icons/fa'
 import {defineArrayMember, defineType} from 'sanity'
 
 export const RichBlockDefault = defineType({
@@ -62,7 +64,50 @@ export const RichBlockDefault = defineType({
             value: 'em'
           }
         ],
-        annotations: []
+        annotations: [
+          {
+            name: 'link',
+            type: 'object',
+            title: 'External Link',
+            icon: CgExternal,
+            fields: [
+              {
+                name: 'href',
+                type: 'url',
+                title: 'URL',
+                validation: (Rule) => Rule.uri({scheme: ['http', 'https', 'mailto', 'tel']})
+              }
+            ]
+          },
+          {
+            name: 'internalLink',
+            type: 'object',
+            title: 'Internal Link',
+            icon: CgInternal,
+            fields: [
+              {
+                name: 'reference',
+                type: 'reference',
+                title: 'Reference',
+                to: [
+                  // Add your internal document types that can be linked to
+                  {type: 'page'},
+                  {type: 'home'}
+                ]
+              },
+              {
+                name: 'anchor',
+                type: 'string',
+                title: 'Anchor',
+                description: 'Optional ID to scroll to (without the #)',
+                validation: (Rule) =>
+                  Rule.regex(/^[a-zA-Z0-9-_]+$/)
+                    .optional()
+                    .warning('Anchor should only contain letters, numbers, underscores, or dashes')
+              }
+            ]
+          }
+        ]
       }
     })
   ]

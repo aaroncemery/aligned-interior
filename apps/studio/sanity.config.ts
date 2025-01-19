@@ -8,10 +8,11 @@ import {singletonPlugin} from './src/plugins/singletons'
 import {pageStructure} from './src/plugins/structure'
 import {schemaTypes} from './src/schemaTypes'
 import {Home} from './src/schemaTypes/Home'
+import {NotFoundPage} from './src/schemaTypes/SettingsType/NotFoundPage'
 import {Settings} from './src/schemaTypes/SettingsType/Settings'
 import {Testimonial} from './src/schemaTypes/objects/TestimonialType/Testimonial'
 
-const typeDefArray = [Home, Settings]
+const typeDefArray = [Home, Settings, NotFoundPage]
 const customGroupItems = [Testimonial]
 
 export default defineConfig({
