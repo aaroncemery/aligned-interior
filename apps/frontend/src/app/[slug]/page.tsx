@@ -1,53 +1,43 @@
-import ContentBlock from "@/components/ContentBlock";
-import ContactForm from "@/components/Forms/Contact";
-import FormWrapper from "@/components/Forms/Wrapper";
-import Hero, { HeroProps } from "@/components/Hero";
-import TestimonialSection from "@/components/testimonial/TestimonialSection";
-import { AccordionSection } from "@/components/ui/Accordion/AccordionSection";
-import { VisualHeader } from "@/components/ui/VisualHeader";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { PageQuery, PageSlugsQuery } from "@/sanity/lib/queries";
-import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import { notFound } from "next/navigation";
+import PageLayout from "../PageLayout";
+import PageBuilder from "@/components/builders/PageBuilder";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const slug = `${(await params).slug}`;
+// Fix the generateStaticParams function
+export async function generateStaticParams() {
+  const slugs = await sanityFetch<Array<{ slug: { current: string } }>>({
+    query: PageSlugsQuery,
+  });
+
+  return slugs.map((page) => ({
+    slug: page.slug.current,
+  }));
+}
+
+export const dynamicParams = true;
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  // Wait for params to be resolved
+  const resolvedParams = await Promise.resolve(params);
+  const slug = resolvedParams.slug;
   const data = await sanityFetch<any>({ query: PageQuery, params: { slug } });
 
+  // Check if data exists at all
   if (!data) {
     notFound();
   }
 
+  // Check if pageBuilder exists and has content
+  if (!data.pageBuilder || data.pageBuilder.length === 0) {
+    notFound();
+  }
+
   return (
-    <>
-      {data?.pageBuilder?.map((block: any) => {
-        if (block._type === "hero") {
-          const heroProps: HeroProps = {
-            ...block,
-            backgroundImage: block.backgroundImage as SanityImageObject,
-          };
-          return <Hero key={block._key} {...heroProps} />;
-        }
-        if (block._type === "featureSection") {
-          return <ContentBlock key={block._key} {...block} />;
-        }
-        if (block._type === "visualHeader") {
-          return <VisualHeader key={block._key} {...block} />;
-        }
-        if (block._type === "testimonialSection") {
-          return <TestimonialSection key={block._key} {...block} />;
-        }
-        if (block._type === "accordionSection") {
-          return <AccordionSection key={block._key} {...block} />;
-        }
-      })}
-      <FormWrapper id="contact" title="Contact">
-        <ContactForm />
-      </FormWrapper>
-    </>
+    <PageLayout>
+      {data?.pageBuilder && (
+        <PageBuilder pageBuilder={data?.pageBuilder} showContactForm={true} />
+      )}
+    </PageLayout>
   );
 }

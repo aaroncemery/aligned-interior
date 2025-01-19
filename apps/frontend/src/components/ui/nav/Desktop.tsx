@@ -39,7 +39,11 @@ const Logo = ({ isScrolled }: { isScrolled: boolean }) => (
   </Link>
 );
 
-export const DesktopNavigation = () => {
+export const DesktopNavigation = ({
+  forceScrolled = false,
+}: {
+  forceScrolled?: boolean;
+}) => {
   const [isScrolled, setIsScrolled] = React.useState(false);
 
   React.useEffect(() => {
@@ -51,6 +55,8 @@ export const DesktopNavigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const effectiveScrolled = forceScrolled || isScrolled;
+
   // const navLinks = [
   //   { href: "#services", label: "Services" },
   //   { href: "#about", label: "About" },
@@ -60,13 +66,13 @@ export const DesktopNavigation = () => {
   return (
     <nav
       className={`fixed left-0 right-0 top-0 z-10 transition-colors duration-200 ${
-        isScrolled
-          ? "bg-brand-winter-morning/80 shadow-nav-shadow backdrop-blur-sm"
+        effectiveScrolled
+          ? "bg-brand-winter-morning/80 backdrop-blur-sm"
           : "bg-transparent"
-      }`}
+      } ${isScrolled ? "shadow-nav-shadow" : ""}`}
     >
       <div className="container relative z-20 mx-auto flex items-center justify-between px-4 py-2 transition-colors duration-200 lg:flex">
-        <Logo isScrolled={isScrolled} />
+        <Logo isScrolled={effectiveScrolled} />
         <Button
           intent="secondary"
           onClick={() => handleScrollToSection("contact")}
