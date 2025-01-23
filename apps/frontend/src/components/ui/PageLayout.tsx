@@ -2,7 +2,7 @@ import { Navigation } from "@/components/ui/nav";
 import { Footer } from "@/components/ui/Footer";
 import { SeoQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { SeoQueryResult } from "../../sanity.types";
+import { SeoQueryResult } from "../../../sanity.types";
 
 export async function generateMetadata() {
   const settings = await sanityFetch<SeoQueryResult>({ query: SeoQuery });

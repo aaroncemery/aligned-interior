@@ -1,6 +1,7 @@
 import {
   PortableTextComponentProps,
   PortableTextBlock,
+  PortableTextMarkComponentProps,
 } from "@portabletext/react";
 
 export const PortableTextSerializer = {
@@ -15,5 +16,25 @@ export const PortableTextSerializer = {
       <h2 className="mb-4 font-cinzel text-3xl lg:text-5xl">{children}</h2>
     ),
     // ... other block types
+  },
+  marks: {
+    internalLink: ({
+      value,
+      children,
+    }: PortableTextMarkComponentProps<{
+      _type: string;
+      href: string;
+    }>) => {
+      return (
+        <a
+          href={value?.href}
+          className="text-blue-600 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      );
+    },
   },
 };

@@ -1,19 +1,19 @@
-import Hero, { type HeroProps } from "@/components/Hero/Hero";
-import ContentBlock from "@/components/ContentBlock";
-import { HomePageQuery } from "@/sanity/lib/queries";
-import { HomePageQueryResult } from "../../sanity.types";
+import { HomePageQuery, SeoQuery } from "@/sanity/lib/queries";
+import { HomePageQueryResult, SeoQueryResult } from "../../sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { SanityImageObject } from "@sanity/image-url/lib/types/types";
-import { VisualHeader } from "@/components/ui/VisualHeader";
-import TestimonialSection from "@/components/testimonial/TestimonialSection";
-import { AccordionSection } from "@/components/ui/Accordion/AccordionSection";
-import ContactForm from "@/components/Forms/Contact";
-import FormWrapper from "@/components/Forms/Wrapper";
-import PageLayout from "./PageLayout";
+import { Metadata } from "next";
+
+import PageLayout from "../components/ui/PageLayout";
 import PageBuilder from "@/components/builders/PageBuilder";
 
 export default async function Home() {
   const data = await sanityFetch<HomePageQueryResult>({ query: HomePageQuery });
+  const seo = await sanityFetch<SeoQueryResult>({ query: SeoQuery });
+
+  const metadata: Metadata = {
+    title: seo?.seo?.title || "Aligned Interior",
+    description: seo?.seo?.description || "Aligned Interior",
+  };
 
   return (
     <PageLayout>

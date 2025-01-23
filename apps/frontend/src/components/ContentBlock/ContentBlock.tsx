@@ -17,7 +17,6 @@ const ContentBlock = ({ description, image, metadata }: ContentBlockProps) => {
           ?.width(1200)
           .url()
       : "";
-  "imageUrl", imageUrl;
 
   return (
     <div

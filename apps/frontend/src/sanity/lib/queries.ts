@@ -67,3 +67,11 @@ export const PageSlugsQuery = defineQuery(`
     "slug": slug.current
   }
 `);
+
+export const NotFoundPageQuery = defineQuery(`
+  *[_type == "notFoundPage"][0] {
+    title,
+    description,
+    image
+  }
+`);

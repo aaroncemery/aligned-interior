@@ -1,28 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import { Footer } from "@/components/ui/Footer";
 import { Navigation } from "@/components/ui/nav";
 
 export default function NotFound() {
-  const [footerHeight, setFooterHeight] = useState(0);
-
-  useEffect(() => {
-    const getFooterHeight = () => {
-      const footer = document.querySelector("footer");
-      return footer ? footer.clientHeight : 0;
-    };
-    setFooterHeight(getFooterHeight());
-  }, []);
-
-  const pageHeightMinusFooter = `calc(100vh - ${footerHeight}px)`;
-
   return (
     <>
       <Navigation.Desktop forceScrolled={true} />
-      <div
-        style={{ minHeight: pageHeightMinusFooter }}
-        className="grid grid-cols-1 grid-rows-[1fr_auto_1fr] bg-white lg:grid-cols-[max(50%,36rem)_1fr]"
-      >
+      <div className="grid h-screen grid-cols-1 grid-rows-[1fr_auto_1fr] bg-white lg:grid-cols-[max(50%,36rem)_1fr]">
         <main className="mx-auto w-full max-w-7xl px-6 py-24 sm:py-32 lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:px-8">
           <div className="max-w-lg">
             <p className="text-base/8 font-semibold text-indigo-600">404</p>
@@ -47,6 +30,7 @@ export default function NotFound() {
           />
         </div>
       </div>
+      <Footer />
     </>
   );
 }
