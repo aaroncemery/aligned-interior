@@ -1,0 +1,47 @@
+{
+  "dependencyTypes": [
+    "prod"
+  ],
+  "versionGroups": [
+    {
+      "label": "frontend react version",
+      "packages": [
+        "apps/frontend"
+      ],
+      "dependencies": [
+        "react",
+        "react-dom"
+      ],
+      "pinVersion": "^19.0.0"
+    },
+    {
+      "label": "studio react version",
+      "packages": [
+        "apps/studio"
+      ],
+      "dependencies": [
+        "react",
+        "react-dom"
+      ],
+      "pinVersion": "^18.3.1"
+    }
+  ],
+  "semverGroups": [
+    {
+      "label": "use exact version numbers in production",
+      "packages": [
+        "**"
+      ],
+      "dependencyTypes": [
+        "prod"
+      ],
+      "dependencies": [
+        "**",
+        "!react",
+        "!react-dom"
+      ],
+      "range": ""
+    }
+  ],
+  "formatRepository": "true"
+}
