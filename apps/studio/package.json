@@ -30,7 +30,8 @@
     "@sanity/eslint-config-studio": "^5.0.1",
     "@types/react": "18.3.18",
     "eslint": "^8.57.1",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "eslint-plugin-simple-import-sort": "^12.1.1"
   },
   "prettier": {
     "semi": false,
