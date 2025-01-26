@@ -4,8 +4,6 @@ import eslintPluginPrettier from 'eslint-plugin-prettier';
 import eslintPluginSimpleImportSort from 'eslint-plugin-simple-import-sort';
 import tseslint from 'typescript-eslint';
 
-const project = resolve(process.cwd(), 'tsconfig.json');
-
 /** @type {import('eslint').Linter.Config} */
 export default [
   ...sanityStudio,
