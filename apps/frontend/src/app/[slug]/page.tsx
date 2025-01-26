@@ -8,6 +8,7 @@ import { VisualHeader } from "@/components/ui/VisualHeader";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { PageQuery } from "@/sanity/lib/queries";
 import { SanityImageObject } from "@sanity/image-url/lib/types/types";
+import { notFound } from "next/navigation";
 
 export default async function Page({
   params,
@@ -15,9 +16,14 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const slug = `${(await params).slug}`;
-  console.log("slug", slug);
   const data = await sanityFetch<any>({ query: PageQuery, params: { slug } });
+
   console.log(data);
+
+  if (!data) {
+    notFound();
+  }
+
   return (
     <>
       {data?.pageBuilder?.map((block: any) => {

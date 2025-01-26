@@ -16,7 +16,7 @@ const HeroComponent = ({ backgroundImage, title, subtitle }: HeroProps) => {
   const imageUrl = backgroundImage
     ? urlForImage(backgroundImage)?.width(1920).quality(80).url()
     : "";
-  console.log("imageUrl", imageUrl);
+
   return (
     <>
       <div

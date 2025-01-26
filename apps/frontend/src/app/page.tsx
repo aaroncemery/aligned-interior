@@ -9,12 +9,15 @@ import TestimonialSection from "@/components/testimonial/TestimonialSection";
 import { AccordionSection } from "@/components/ui/Accordion/AccordionSection";
 import ContactForm from "@/components/Forms/Contact";
 import FormWrapper from "@/components/Forms/Wrapper";
+import { Footer } from "@/components/ui/Footer";
+import { Navigation } from "@/components/ui/nav";
 
 export default async function Home() {
   const data = await sanityFetch<HomePageQueryResult>({ query: HomePageQuery });
 
   return (
     <>
+      <Navigation.Desktop />
       {data?.pageBuilder?.map((block: any) => {
         if (block._type === "hero") {
           const heroProps: HeroProps = {
@@ -39,6 +42,7 @@ export default async function Home() {
       <FormWrapper id="contact" title="Contact">
         <ContactForm />
       </FormWrapper>
+      <Footer />
     </>
   );
 }

@@ -72,9 +72,7 @@ export default function RootLayout({
       <body
         className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
       >
-        <Navigation.Desktop />
         {children}
-        <Footer />
       </body>
     </html>
   );
