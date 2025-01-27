@@ -9,10 +9,13 @@ import {pageStructure} from './src/plugins/structure'
 import {schemaTypes} from './src/schemaTypes'
 import {Home} from './src/schemaTypes/Home'
 import {Settings} from './src/schemaTypes/SettingsType/Settings'
+import {Category} from './src/schemaTypes/SettingsType/Catergory'
+import {CategoryParent} from './src/schemaTypes/SettingsType/CategoryParent'
 import {Testimonial} from './src/schemaTypes/objects/TestimonialType/Testimonial'
 
-const typeDefArray = [Home, Settings]
+const typeDefArray = [Home]
 const customGroupItems = [Testimonial]
+const globalItems = [Settings, Category, CategoryParent]
 
 export default defineConfig({
   name: 'default',
@@ -23,7 +26,7 @@ export default defineConfig({
 
   plugins: [
     structureTool({
-      structure: pageStructure(typeDefArray, customGroupItems)
+      structure: pageStructure(typeDefArray, customGroupItems, globalItems)
     }),
     visionTool(),
     assist(),

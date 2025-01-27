@@ -18,8 +18,6 @@ export default async function Page({
   const slug = `${(await params).slug}`;
   const data = await sanityFetch<any>({ query: PageQuery, params: { slug } });
 
-  console.log(data);
-
   if (!data) {
     notFound();
   }
