@@ -70,7 +70,8 @@ export default function RootLayout({
       <body
         className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
       >
-        <main>{children}</main>
+        <div aria-hidden="true" className="decorative-element"></div>
+        <main role="main">{children}</main>
       </body>
     </html>
   );
