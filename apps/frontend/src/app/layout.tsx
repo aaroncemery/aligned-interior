@@ -1,7 +1,5 @@
 import { Cinzel, La_Belle_Aurore, Inter, Cormorant } from "next/font/google";
 import "./globals.css";
-import { Navigation } from "@/components/ui/nav";
-import { Footer } from "@/components/ui/Footer";
 import { SeoQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { SeoQueryResult } from "../../sanity.types";
