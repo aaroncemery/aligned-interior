@@ -70,7 +70,7 @@ export default function RootLayout({
       <body
         className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
       >
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );

@@ -155,7 +155,7 @@ export default function ContactForm() {
           />
           <label
             htmlFor="preferText"
-            className="font-sans text-sm text-gray-500"
+            className="font-sans text-sm text-gray-600"
           >
             I prefer to be contacted via text message
           </label>
