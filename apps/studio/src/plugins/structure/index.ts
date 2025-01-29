@@ -1,7 +1,7 @@
 import {contextDocumentTypeName} from '@sanity/assist'
 import {type DocumentDefinition} from 'sanity'
 import {type StructureResolver} from 'sanity/structure'
-import {FaCog, FaTags, FaTag} from 'react-icons/fa'
+import {FaGlobe, FaCog} from 'react-icons/fa'
 
 // The StructureResolver is how we're changing the DeskTool structure to
 // linking to document(named Singleton) like how 'Homepage' is handled.
@@ -36,7 +36,7 @@ export const pageStructure = (
     const settingsStructure = S.listItem()
       .title('Settings')
       .id('settingsGroup')
-      .icon(FaCog)
+      .icon(FaGlobe)
       .child(
         S.list()
           .title('Settings')
