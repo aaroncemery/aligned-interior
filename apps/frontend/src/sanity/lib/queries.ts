@@ -25,8 +25,8 @@ export const HomePageQuery = defineQuery(
   }`,
 );
 
-export const PageQuery = defineQuery(`
-  *[_type == "page" && slug.current == $slug][0] {
+export const PageQuery = defineQuery(
+  `*[_type == "page" && slug.current == $slug][0] {
     "seo": seo,
     "pageBuilder": pageBuilder[] {
       _type == "hero" => ${HeroFragment},
@@ -38,9 +38,11 @@ export const PageQuery = defineQuery(`
         image,
         "metadata": image.image.asset->metadata,
       },
+      _type == "testimonialSection" => ${TestimonialSectionFragment},
+      _type == "accordionSection" => ${AccordionFragment},
     }
-  }
-`);
+  }`,
+);
 
 export const SeoQuery = defineQuery(`
   *[_type == "settings"][0] {
@@ -58,5 +60,16 @@ export const SeoQuery = defineQuery(`
       'ico': ico.asset->url,
       'appleTouchIcon': appleTouchIcon.asset->url
     }
+  }
+`);
+
+export const BlogPostQuery = defineQuery(`
+  *[_type == "blogPage" && slug.current == $slug][0] {
+    title,
+    slug,
+    mainImage,
+    author,
+    content,
+    publishedAt
   }
 `);

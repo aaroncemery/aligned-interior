@@ -32,7 +32,9 @@ export const AccordionSection = ({
         imageUrl ? "bg-no-repeat" : ""
       }`}
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)),url(${imageUrl})`,
+        backgroundImage: imageUrl
+          ? `linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)),url(${imageUrl})`
+          : "none",
       }}
     >
       <h2 className="mb-10 text-center font-cinzel text-4xl lg:text-6xl">

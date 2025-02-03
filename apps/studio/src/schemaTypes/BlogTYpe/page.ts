@@ -17,7 +17,8 @@ export default defineType({
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'title'
+        source: 'title',
+        slugify: (input: string) => `blog/${input.toLowerCase().replace(/\s+/g, '-').slice(0, 200)}`
       }
     }),
     defineField({
