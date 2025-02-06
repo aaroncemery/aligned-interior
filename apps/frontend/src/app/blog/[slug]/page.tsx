@@ -1,7 +1,7 @@
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { BlogPostQuery } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
-
+import BlogPage from "@/components/Pages/BlogPage";
 export default async function BlogPost({
   params,
 }: {
@@ -10,15 +10,12 @@ export default async function BlogPost({
   const slug = `blog/${(await params).slug}`;
   const data = await sanityFetch<any>({
     query: BlogPostQuery,
-    params: { slug: "blog/test-blog" },
+    params: { slug: slug },
   });
 
   if (!data) {
     notFound();
   }
 
-  console.log("slug", slug);
-  console.log("data", data);
-
-  return <div>{data.title}</div>;
+  return <BlogPage data={data} />;
 }
