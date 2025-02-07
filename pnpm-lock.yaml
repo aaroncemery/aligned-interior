@@ -8775,7 +8775,7 @@ snapshots:
       '@pnpm/network.ca-file': 1.0.2
       config-chain: 1.1.13
 
-  '@portabletext/block-tools@1.1.5(@sanity/types@3.74.1(@types/react@18.3.18))(@types/react@18.3.18)':
+  '@portabletext/block-tools@1.1.5(@sanity/types@3.74.1(@types/react@18.3.18)(debug@4.4.0))(@types/react@18.3.18)':
     dependencies:
       '@sanity/types': 3.74.1(@types/react@18.3.18)(debug@4.4.0)
       '@types/react': 18.3.18
@@ -8784,7 +8784,7 @@ snapshots:
 
   '@portabletext/editor@1.30.4(@sanity/schema@3.74.1(@types/react@18.3.18)(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18)(debug@4.4.0))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rxjs@7.8.1)':
     dependencies:
-      '@portabletext/block-tools': 1.1.5(@sanity/types@3.74.1(@types/react@18.3.18))(@types/react@18.3.18)
+      '@portabletext/block-tools': 1.1.5(@sanity/types@3.74.1(@types/react@18.3.18)(debug@4.4.0))(@types/react@18.3.18)
       '@portabletext/patches': 1.1.2
       '@portabletext/to-html': 2.0.13
       '@sanity/schema': 3.74.1(@types/react@18.3.18)(debug@4.4.0)
@@ -8809,7 +8809,7 @@ snapshots:
 
   '@portabletext/editor@1.30.4(@sanity/schema@3.74.1(@types/react@18.3.18)(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rxjs@7.8.1)':
     dependencies:
-      '@portabletext/block-tools': 1.1.5(@sanity/types@3.74.1(@types/react@18.3.18))(@types/react@18.3.18)
+      '@portabletext/block-tools': 1.1.5(@sanity/types@3.74.1(@types/react@18.3.18)(debug@4.4.0))(@types/react@18.3.18)
       '@portabletext/patches': 1.1.2
       '@portabletext/to-html': 2.0.13
       '@sanity/schema': 3.74.1(@types/react@18.3.18)(debug@4.4.0)
@@ -9646,11 +9646,11 @@ snapshots:
       - debug
       - supports-color
 
-  '@sanity/presentation-comlink@1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18))':
+  '@sanity/presentation-comlink@1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18)(debug@4.4.0))':
     dependencies:
       '@sanity/client': 6.27.2(debug@4.4.0)
       '@sanity/comlink': 3.0.1
-      '@sanity/visual-editing-types': 1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18))
+      '@sanity/visual-editing-types': 1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18)(debug@4.4.0))
     transitivePeerDependencies:
       - '@sanity/types'
 
@@ -9875,7 +9875,7 @@ snapshots:
       - react-dom
       - react-is
 
-  '@sanity/visual-editing-types@1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18))':
+  '@sanity/visual-editing-types@1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18)(debug@4.4.0))':
     dependencies:
       '@sanity/client': 6.27.2(debug@4.4.0)
     optionalDependencies:
@@ -14334,7 +14334,7 @@ snapshots:
       '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       '@dnd-kit/utilities': 3.2.2(react@19.0.0)
       '@juggle/resize-observer': 3.4.0
-      '@portabletext/block-tools': 1.1.5(@sanity/types@3.74.1(@types/react@18.3.18))(@types/react@18.3.18)
+      '@portabletext/block-tools': 1.1.5(@sanity/types@3.74.1(@types/react@18.3.18)(debug@4.4.0))(@types/react@18.3.18)
       '@portabletext/editor': 1.30.4(@sanity/schema@3.74.1(@types/react@18.3.18)(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rxjs@7.8.1)
       '@portabletext/react': 3.2.0(react@19.0.0)
       '@portabletext/toolkit': 2.0.16
@@ -14356,7 +14356,7 @@ snapshots:
       '@sanity/logos': 2.1.13(@sanity/color@3.0.6)(react@19.0.0)
       '@sanity/migrate': 3.74.1(@types/react@18.3.18)
       '@sanity/mutator': 3.74.1(@types/react@18.3.18)
-      '@sanity/presentation-comlink': 1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18))
+      '@sanity/presentation-comlink': 1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18)(debug@4.4.0))
       '@sanity/preview-url-secret': 2.1.4(@sanity/client@6.27.2(debug@4.4.0))
       '@sanity/schema': 3.74.1(@types/react@18.3.18)(debug@4.4.0)
       '@sanity/telemetry': 0.7.9(react@19.0.0)
@@ -14487,7 +14487,7 @@ snapshots:
       '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@dnd-kit/utilities': 3.2.2(react@18.3.1)
       '@juggle/resize-observer': 3.4.0
-      '@portabletext/block-tools': 1.1.5(@sanity/types@3.74.1(@types/react@18.3.18))(@types/react@18.3.18)
+      '@portabletext/block-tools': 1.1.5(@sanity/types@3.74.1(@types/react@18.3.18)(debug@4.4.0))(@types/react@18.3.18)
       '@portabletext/editor': 1.30.4(@sanity/schema@3.74.1(@types/react@18.3.18)(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18)(debug@4.4.0))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rxjs@7.8.1)
       '@portabletext/react': 3.2.0(react@18.3.1)
       '@portabletext/toolkit': 2.0.16
@@ -14509,7 +14509,7 @@ snapshots:
       '@sanity/logos': 2.1.13(@sanity/color@3.0.6)(react@18.3.1)
       '@sanity/migrate': 3.74.1(@types/react@18.3.18)
       '@sanity/mutator': 3.74.1(@types/react@18.3.18)
-      '@sanity/presentation-comlink': 1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18))
+      '@sanity/presentation-comlink': 1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.1(@types/react@18.3.18)(debug@4.4.0))
       '@sanity/preview-url-secret': 2.1.4(@sanity/client@6.27.2(debug@4.4.0))
       '@sanity/schema': 3.74.1(@types/react@18.3.18)(debug@4.4.0)
       '@sanity/telemetry': 0.7.9(react@18.3.1)
