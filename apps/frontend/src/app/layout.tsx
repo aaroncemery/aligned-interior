@@ -1,8 +1,12 @@
 import { Cinzel, La_Belle_Aurore, Inter, Cormorant } from "next/font/google";
 import "./globals.css";
 import { SeoQuery } from "@/sanity/lib/queries";
-import { sanityFetch } from "@/sanity/lib/fetch";
+import { sanityFetch } from "@/sanity/lib/live";
 import { SeoQueryResult } from "../../sanity.types";
+import { DisableDraftMode } from "@/components/ui/DisableDraftMode";
+import { VisualEditing } from "next-sanity";
+import { draftMode } from "next/headers";
+import { SanityLive } from "@/sanity/lib/live";
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -27,39 +31,40 @@ const inter = Inter({
 });
 
 export async function generateMetadata() {
-  const settings = await sanityFetch<SeoQueryResult>({ query: SeoQuery });
+  const settings = await sanityFetch({ query: SeoQuery });
   return {
-    title: settings?.seo?.title,
-    description: settings?.seo?.description,
-    keywords: settings?.seo?.keywords,
-    noIndex: settings?.seo?.noIndex,
-    noFollow: settings?.seo?.noFollow,
+    title: settings?.data?.seo?.title,
+    description: settings?.data?.seo?.description,
+    keywords: settings?.data?.seo?.keywords,
+    noIndex: settings?.data?.seo?.noIndex,
+    noFollow: settings?.data?.seo?.noFollow,
     openGraph: {
-      title: settings?.seo?.title,
-      description: settings?.seo?.description,
+      title: settings?.data?.seo?.title,
+      description: settings?.data?.seo?.description,
     },
     icons: {
       icon: [
         {
-          url: settings?.favicon?.svg || "/favicon/favicon.svg",
+          url: settings?.data?.favicon?.svg || "/favicon/favicon.svg",
           type: "image/svg+xml",
         },
         {
-          url: settings?.favicon?.png96 || "/favicon/favicon-96x96.png",
+          url: settings?.data?.favicon?.png96 || "/favicon/favicon-96x96.png",
           sizes: "96x96",
           type: "image/png",
         },
       ],
-      shortcut: { url: settings?.favicon?.ico },
+      shortcut: { url: settings?.data?.favicon?.ico },
       apple: {
         url:
-          settings?.favicon?.appleTouchIcon || "/favicon/apple-touch-icon.png",
+          settings?.data?.favicon?.appleTouchIcon ||
+          "/favicon/apple-touch-icon.png",
       },
     },
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -71,7 +76,16 @@ export default function RootLayout({
         className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
       >
         <div aria-hidden="true" className="decorative-element"></div>
-        <main role="main">{children}</main>
+        <main role="main">
+          {children}
+          <SanityLive />
+          {(await draftMode()).isEnabled && (
+            <>
+              <DisableDraftMode />
+              <VisualEditing />
+            </>
+          )}
+        </main>
       </body>
     </html>
   );
