@@ -6,6 +6,7 @@ import { SeoQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { SeoQueryResult } from "../../sanity.types";
 import Script from "next/script";
+import Analytics from "@/components/tracking/Analytics";
 
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
@@ -92,6 +93,7 @@ export default function RootLayout({
           }}
         />
       )}
+      <Analytics />
       <html lang="en">
         <link rel="manifest" href="/favicon/site.webmanifest" />
         <body
