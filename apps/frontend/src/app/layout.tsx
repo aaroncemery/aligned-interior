@@ -6,6 +6,9 @@ import { DisableDraftMode } from "@/components/ui/DisableDraftMode";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 import { SanityLive } from "@/sanity/lib/live";
+import Script from "next/script";
+
+const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -69,23 +72,47 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <link rel="manifest" href="/favicon/site.webmanifest" />
-      <body
-        className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
-      >
-        <div aria-hidden="true" className="decorative-element"></div>
-        <main role="main">
-          {children}
-          <SanityLive />
-          {(await draftMode()).isEnabled && (
-            <>
-              <DisableDraftMode />
-              <VisualEditing />
-            </>
-          )}
-        </main>
-      </body>
-    </html>
+    <>
+      {GA_TRACKING_ID && (
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+        />
+      )}
+      {GA_TRACKING_ID && (
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+          }}
+        />
+      )}
+      <html lang="en">
+        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <body
+          className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
+        >
+          <div aria-hidden="true" className="decorative-element"></div>
+          <main role="main">
+            {children}
+            <SanityLive />
+            {(await draftMode()).isEnabled && (
+              <>
+                <DisableDraftMode />
+                <VisualEditing />
+              </>
+            )}
+          </main>
+        </body>
+      </html>
+    </>
   );
 }
