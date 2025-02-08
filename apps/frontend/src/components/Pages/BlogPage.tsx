@@ -1,18 +1,24 @@
-type BlogPageProps = {
-  data: {
-    title: string;
-    slug: {
-      current: string;
-    };
-  };
-};
+"use client";
 
-export default function BlogPage(props: BlogPageProps) {
-  const { title, slug } = props.data;
+import { BlogPostQueryResult } from "../../../sanity.types";
+import { useEffect, useState } from "react";
+
+export default function BlogPage(props: { data: BlogPostQueryResult }) {
+  const [hasRendered, setHasRendered] = useState(false);
+  const { title = "Add a title" } = props.data || {};
+
+  useEffect(() => {
+    setHasRendered(true);
+  }, []);
+
+  // Don't render content until after first mount
+  if (!hasRendered) {
+    return null;
+  }
+
   return (
     <div>
-      <div>{title}</div>
-      <div>{slug.current}</div>
+      <div>hero</div>
     </div>
   );
 }
