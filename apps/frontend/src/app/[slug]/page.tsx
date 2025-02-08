@@ -9,6 +9,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { PageQuery } from "@/sanity/lib/queries";
 import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import { notFound } from "next/navigation";
+import { PageQueryResult } from "../../../sanity.types";
 
 export default async function Page({
   params,
@@ -16,7 +17,10 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const slug = `${(await params).slug}`;
-  const data = await sanityFetch<any>({ query: PageQuery, params: { slug } });
+  const data = await sanityFetch<PageQueryResult>({
+    query: PageQuery,
+    params: { slug },
+  });
 
   if (!data) {
     notFound();
