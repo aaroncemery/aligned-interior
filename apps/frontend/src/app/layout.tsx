@@ -5,6 +5,10 @@ import { Footer } from "@/components/ui/Footer";
 import { SeoQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { SeoQueryResult } from "../../sanity.types";
+import Script from "next/script";
+import Analytics from "@/components/tracking/Analytics";
+
+const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -67,15 +71,39 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <link rel="manifest" href="/favicon/site.webmanifest" />
-      <body
-        className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
-      >
-        <Navigation.Desktop />
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <>
+      {GA_TRACKING_ID && (
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+        />
+      )}
+      {GA_TRACKING_ID && (
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+          }}
+        />
+      )}
+      <Analytics />
+      <html lang="en">
+        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <body
+          className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
+        >
+          <Navigation.Desktop />
+          {children}
+          <Footer />
+        </body>
+      </html>
+    </>
   );
 }
