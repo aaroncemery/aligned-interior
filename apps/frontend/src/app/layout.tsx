@@ -1,12 +1,12 @@
 import { Cinzel, La_Belle_Aurore, Inter, Cormorant } from "next/font/google";
 import "./globals.css";
 import { SeoQuery } from "@/sanity/lib/queries";
-import { sanityFetch } from "@/sanity/lib/live";
 import { DisableDraftMode } from "@/components/ui/DisableDraftMode";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
-import { SanityLive } from "@/sanity/lib/live";
+import { SanityLive, sanityFetch } from "@/sanity/lib/live";
 import Script from "next/script";
+import Analytics from "@/components/tracking/Analytics";
 
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
@@ -95,6 +95,7 @@ export default async function RootLayout({
           }}
         />
       )}
+      <Analytics />
       <html lang="en">
         <link rel="manifest" href="/favicon/site.webmanifest" />
         <body
@@ -111,6 +112,7 @@ export default async function RootLayout({
               </>
             )}
           </main>
+          {children}
         </body>
       </html>
     </>
