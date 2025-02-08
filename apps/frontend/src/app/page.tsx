@@ -2,7 +2,7 @@ import Hero, { type HeroProps } from "@/components/Hero/Hero";
 import ContentBlock from "@/components/ContentBlock";
 import { HomePageQuery } from "@/sanity/lib/queries";
 import { HomePageQueryResult } from "../../sanity.types";
-import { sanityFetch } from "@/sanity/lib/fetch";
+import { sanityFetch } from "@/sanity/lib/live";
 import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import { VisualHeader } from "@/components/ui/VisualHeader";
 import TestimonialSection from "@/components/testimonial/TestimonialSection";
@@ -13,12 +13,12 @@ import { Footer } from "@/components/ui/Footer";
 import { Navigation } from "@/components/ui/nav";
 
 export default async function Home() {
-  const data = await sanityFetch<HomePageQueryResult>({ query: HomePageQuery });
+  const data = await sanityFetch({ query: HomePageQuery });
 
   return (
     <>
       <Navigation.Desktop />
-      {data?.pageBuilder?.map((block: any) => {
+      {data?.data?.pageBuilder?.map((block: any) => {
         if (block._type === "hero") {
           const heroProps: HeroProps = {
             ...block,
