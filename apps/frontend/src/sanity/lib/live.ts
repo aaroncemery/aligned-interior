@@ -3,7 +3,6 @@
 import { defineLive } from "next-sanity";
 import { token } from "./token";
 import { client } from "./client";
-import { QueryParams } from "next-sanity";
 
 export const { sanityFetch, SanityLive } = defineLive({
   client,
