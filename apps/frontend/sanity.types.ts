@@ -46,6 +46,75 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type BlogPage = {
+  _id: string;
+  _type: "blogPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  mainImage?: ImageObject;
+  author?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "author";
+  };
+  content?: BlogContent;
+  publishedAt?: string;
+  categories?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "category";
+  }>;
+};
+
+export type Author = {
+  _id: string;
+  _type: "author";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  image?: ImageObject;
+  bio?: string;
+  slug?: Slug;
+  socialLinks?: Array<
+    {
+      _key: string;
+    } & SocialLink
+  >;
+};
+
+export type Category = {
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  parent?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "categoryParent";
+  };
+};
+
+export type CategoryParent = {
+  _id: string;
+  _type: "categoryParent";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+};
+
 export type Settings = {
   _id: string;
   _type: "settings";
@@ -218,6 +287,39 @@ export type RichBlockDefault = Array<{
   _type: "block";
   _key: string;
 }>;
+
+export type SocialLink = {
+  _type: "socialLink";
+  url?: string;
+  socialPlatform?: "facebook" | "instagram" | "linkedin";
+};
+
+export type BlogContent = {
+  _type: "blogContent";
+  content?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h2" | "h3" | "h4" | "h5" | "h6";
+        listItem?: never;
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | ({
+        _key: string;
+      } & ImageObject)
+  >;
+};
 
 export type PageBuilder = Array<
   | ({
@@ -579,6 +681,10 @@ export type AllSanitySchemaTypes =
   | SanityImagePalette
   | SanityImageDimensions
   | Geopoint
+  | BlogPage
+  | Author
+  | Category
+  | CategoryParent
   | Settings
   | SanityFileAsset
   | Favicon
@@ -589,6 +695,8 @@ export type AllSanitySchemaTypes =
   | UrlDefault
   | RichBlockHeadline
   | RichBlockDefault
+  | SocialLink
+  | BlogContent
   | PageBuilder
   | VisualHeader
   | FeatureSection
@@ -790,6 +898,146 @@ export type HomePageQueryResult = {
       }
   > | null;
 } | null;
+// Variable: PageQuery
+// Query: *[_type == "page" && slug.current == $slug][0] {    "seo": seo,    "pageBuilder": pageBuilder[] {      _type == "hero" => {  _type,  _key,  title,  subtitle,  backgroundImage,  cta[] {    ...,  }},      _type == "featureSection" => {  _type,  _key,  title,  description,  image {    image,    alt,  },  "metadata": image.image.asset->metadata,},      _type == "visualHeader" => {        _type,        _key,        headline,        image,        "metadata": image.image.asset->metadata,      },      _type == "testimonialSection" => {  _type,  _key,  _id,  title,  "testimonials": testimonials[]-> {  _type,  _key,  _id,  title,  testimonial,  author,  location,  image {    image,    caption  }}},      _type == "accordionSection" => {  _type,  _key,  title,  image,  items[] {    ...,  }},    }  }
+export type PageQueryResult = {
+  seo: Seo | null;
+  pageBuilder: Array<
+    | {
+        _type: "testimonialSection";
+        _key: string;
+        _id: null;
+        title: string | null;
+        testimonials: Array<{
+          _type: "testimonial";
+          _key: null;
+          _id: string;
+          title: string | null;
+          testimonial: string | null;
+          author: string | null;
+          location: string | null;
+          image: {
+            image: {
+              asset?: {
+                _ref: string;
+                _type: "reference";
+                _weak?: boolean;
+                [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+              };
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
+            caption: string | null;
+          } | null;
+        }> | null;
+      }
+    | {
+        _type: "accordionSection";
+        _key: string;
+        title: string | null;
+        image: ImageObject | null;
+        items: Array<{
+          _key: string;
+          _type: "accordionItem";
+          title?: string;
+          content?: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs?: Array<{
+              link?: string;
+              _type: "link";
+              _key: string;
+            }>;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+        }> | null;
+      }
+    | {
+        _type: "featureSection";
+        _key: string;
+        title: string | null;
+        description: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "h2" | "normal";
+          listItem?: never;
+          markDefs?: Array<
+            | {
+                reference?: {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "page";
+                };
+                _key: string;
+              }
+            | {
+                url?: string;
+                _key: string;
+              }
+          >;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }> | null;
+        image: {
+          image: {
+            asset?: {
+              _ref: string;
+              _type: "reference";
+              _weak?: boolean;
+              [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+            };
+            hotspot?: SanityImageHotspot;
+            crop?: SanityImageCrop;
+            alt?: string;
+            _type: "image";
+          } | null;
+          alt: null;
+        } | null;
+        metadata: SanityImageMetadata | null;
+      }
+    | {
+        _type: "hero";
+        _key: string;
+        title: string | null;
+        subtitle: string | null;
+        backgroundImage: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        } | null;
+        cta: null;
+      }
+    | {
+        _type: "visualHeader";
+        _key: string;
+        headline: RichBlockHeadline | null;
+        image: ImageObject | null;
+        metadata: SanityImageMetadata | null;
+      }
+  > | null;
+} | null;
 // Variable: SeoQuery
 // Query: *[_type == "settings"][0] {    seo {      _type,      title,      description,      keywords,      noIndex,      noFollow    },    favicon {      'svg': svg.asset->url,      'png96': png96.asset->url,      'ico': ico.asset->url,      'appleTouchIcon': appleTouchIcon.asset->url    }  }
 export type SeoQueryResult = {
@@ -808,6 +1056,21 @@ export type SeoQueryResult = {
     appleTouchIcon: string | null;
   } | null;
 } | null;
+// Variable: BlogPostQuery
+// Query: *[_type == "blogPage" && slug.current == $slug][0] {    title,    slug,    mainImage,    author,    content,    publishedAt  }
+export type BlogPostQueryResult = {
+  title: string | null;
+  slug: Slug | null;
+  mainImage: ImageObject | null;
+  author: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "author";
+  } | null;
+  content: BlogContent | null;
+  publishedAt: string | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -816,6 +1079,8 @@ declare module "@sanity/client" {
     '*[_type == "testimonial"] {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}': TestimonialQueryResult;
     '*[_type == "testimonialSection"] {\n  _type,\n  _key,\n  _id,\n  title,\n  "testimonials": testimonials[]-> {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}\n}': TestimonialSectionQueryResult;
     '*[_type == "home"][0] {\n    "seo": seo,\n    "pageBuilder": pageBuilder[] {\n      _type == "hero" => {\n  _type,\n  _key,\n  title,\n  subtitle,\n  backgroundImage,\n  cta[] {\n    ...,\n  }\n},\n      _type == "featureSection" => {\n  _type,\n  _key,\n  title,\n  description,\n  image {\n    image,\n    alt,\n  },\n  "metadata": image.image.asset->metadata,\n},\n      _type == "visualHeader" => {\n        _type,\n        _key,\n        headline,\n        image,\n        "metadata": image.image.asset->metadata,\n      },\n      _type == "testimonialSection" => {\n  _type,\n  _key,\n  _id,\n  title,\n  "testimonials": testimonials[]-> {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}\n},\n      _type == "accordionSection" => {\n  _type,\n  _key,\n  title,\n  image,\n  items[] {\n    ...,\n  }\n},\n    }\n  }': HomePageQueryResult;
+    '*[_type == "page" && slug.current == $slug][0] {\n    "seo": seo,\n    "pageBuilder": pageBuilder[] {\n      _type == "hero" => {\n  _type,\n  _key,\n  title,\n  subtitle,\n  backgroundImage,\n  cta[] {\n    ...,\n  }\n},\n      _type == "featureSection" => {\n  _type,\n  _key,\n  title,\n  description,\n  image {\n    image,\n    alt,\n  },\n  "metadata": image.image.asset->metadata,\n},\n      _type == "visualHeader" => {\n        _type,\n        _key,\n        headline,\n        image,\n        "metadata": image.image.asset->metadata,\n      },\n      _type == "testimonialSection" => {\n  _type,\n  _key,\n  _id,\n  title,\n  "testimonials": testimonials[]-> {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}\n},\n      _type == "accordionSection" => {\n  _type,\n  _key,\n  title,\n  image,\n  items[] {\n    ...,\n  }\n},\n    }\n  }': PageQueryResult;
     "\n  *[_type == \"settings\"][0] {\n    seo {\n      _type,\n      title,\n      description,\n      keywords,\n      noIndex,\n      noFollow\n    },\n    favicon {\n      'svg': svg.asset->url,\n      'png96': png96.asset->url,\n      'ico': ico.asset->url,\n      'appleTouchIcon': appleTouchIcon.asset->url\n    }\n  }\n": SeoQueryResult;
+    '\n  *[_type == "blogPage" && slug.current == $slug][0] {\n    title,\n    slug,\n    mainImage,\n    author,\n    content,\n    publishedAt\n  }\n': BlogPostQueryResult;
   }
 }
