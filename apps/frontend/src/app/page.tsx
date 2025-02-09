@@ -1,7 +1,6 @@
 import Hero, { type HeroProps } from "@/components/Hero/Hero";
 import ContentBlock from "@/components/ContentBlock";
 import { HomePageQuery } from "@/sanity/lib/queries";
-import { HomePageQueryResult } from "../../sanity.types";
 import { sanityFetch } from "@/sanity/lib/live";
 import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import { VisualHeader } from "@/components/ui/VisualHeader";
@@ -13,7 +12,9 @@ import { Footer } from "@/components/ui/Footer";
 import { Navigation } from "@/components/ui/nav";
 
 export default async function Home() {
-  const data = await sanityFetch({ query: HomePageQuery });
+  const data = await sanityFetch({
+    query: HomePageQuery,
+  });
 
   return (
     <>
