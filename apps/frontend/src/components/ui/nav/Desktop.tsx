@@ -39,8 +39,9 @@ const Logo = ({ isScrolled }: { isScrolled: boolean }) => (
   </Link>
 );
 
-export const DesktopNavigation = () => {
+export const DesktopNavigation = (props: { isStatic?: boolean }) => {
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const { isStatic } = props;
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -58,31 +59,29 @@ export const DesktopNavigation = () => {
   // ];
 
   return (
-    <nav
-      className={`fixed left-0 right-0 top-0 z-10 transition-colors duration-200 ${
-        isScrolled
-          ? "bg-brand-winter-morning/80 shadow-nav-shadow backdrop-blur-sm"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container relative z-20 mx-auto flex items-center justify-between px-4 py-2 transition-colors duration-200 lg:flex">
-        <Logo isScrolled={isScrolled} />
-        <Button
-          intent="secondary"
-          onClick={() => handleScrollToSection("contact")}
-          size={"small"}
-          withArrow
-        >
-          <span>Contact</span>
-        </Button>
-      </div>
-      {/* <div className="flex gap-x-4 font-belleAurore text-2xl tracking-[3.2px] text-white">
-        {navLinks.map(({ href, label }) => (
-          <NavLink key={href} href={href}>
-            {label}
-          </NavLink>
-        ))}
-      </div> */}
-    </nav>
+    <>
+      {isStatic && <div className="h-[60px]" />}
+      <nav
+        className={`fixed left-0 right-0 top-0 z-10 transition-colors duration-200 ${
+          isScrolled
+            ? "bg-brand-winter-morning/80 shadow-nav-shadow backdrop-blur-sm"
+            : isStatic
+              ? "bg-white"
+              : "bg-transparent"
+        }`}
+      >
+        <div className="container relative z-20 mx-auto flex items-center justify-between px-4 py-2 transition-colors duration-200 lg:flex">
+          <Logo isScrolled={isStatic ? true : isScrolled} />
+          <Button
+            intent="secondary"
+            onClick={() => handleScrollToSection("contact")}
+            size={"small"}
+            withArrow
+          >
+            <span>Contact</span>
+          </Button>
+        </div>
+      </nav>
+    </>
   );
 };
