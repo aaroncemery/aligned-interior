@@ -17,3 +17,25 @@ export const PortableTextSerializer = {
     // ... other block types
   },
 };
+
+export const BlogPostSerializer = {
+  block: {
+    normal: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <p className="mb-4 font-sans text-lg font-light">{children}</p>
+    ),
+    h2: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <h2 className="mb-4 font-cormorant text-4xl font-normal">{children}</h2>
+    ),
+    h3: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <h3 className="mb-4 font-cormorant text-3xl font-normal">{children}</h3>
+    ),
+  },
+  marks: {
+    strong: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <span className="font-bold">{children}</span>
+    ),
+    em: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <span className="font-italic">{children}</span>
+    ),
+  },
+};
