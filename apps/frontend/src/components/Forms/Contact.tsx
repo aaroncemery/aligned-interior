@@ -77,7 +77,7 @@ export default function ContactForm() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="peer w-full rounded-md border border-gray-300 px-4 py-2 pt-4 font-sans placeholder-transparent focus:border-brand-interior-green focus:outline-none"
+              className="peer w-full rounded-md border border-gray-300 px-4 py-2 pt-4 font-sans placeholder-transparent focus:border-brand-interior-green focus:outline-hidden"
               placeholder="Name"
             />
             <label
@@ -96,7 +96,7 @@ export default function ContactForm() {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="peer w-full rounded-md border border-gray-300 px-4 py-2 pt-4 font-sans placeholder-transparent focus:border-brand-interior-green focus:outline-none"
+              className="peer w-full rounded-md border border-gray-300 px-4 py-2 pt-4 font-sans placeholder-transparent focus:border-brand-interior-green focus:outline-hidden"
               placeholder="Phone"
             />
             <label
@@ -117,7 +117,7 @@ export default function ContactForm() {
             required
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
             title="Please enter a valid email address"
-            className="peer w-full rounded-md border border-gray-300 px-4 py-2 pt-4 font-sans placeholder-transparent focus:border-brand-interior-green focus:outline-none"
+            className="peer w-full rounded-md border border-gray-300 px-4 py-2 pt-4 font-sans placeholder-transparent focus:border-brand-interior-green focus:outline-hidden"
             placeholder="Email"
           />
           <label
@@ -134,7 +134,7 @@ export default function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             required
-            className="peer w-full rounded-md border border-gray-300 px-4 py-2 pt-4 font-sans placeholder-transparent focus:border-brand-interior-green focus:outline-none"
+            className="peer w-full rounded-md border border-gray-300 px-4 py-2 pt-4 font-sans placeholder-transparent focus:border-brand-interior-green focus:outline-hidden"
             placeholder="Message"
           />
           <label

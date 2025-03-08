@@ -54,7 +54,7 @@ export const MobileNavigation = () => {
   return (
     <nav className="container absolute left-0 right-0 top-0 z-20 mx-auto py-4">
       {isOpen && (
-        <div className="absolute left-0 right-0 top-full z-10 bg-brand-winter-morning/95 py-4 backdrop-blur-sm">
+        <div className="absolute left-0 right-0 top-full z-10 bg-brand-winter-morning/95 py-4 backdrop-blur-xs">
           <div className="flex flex-col items-center gap-y-4 font-belleAurore text-2xl tracking-[3.2px] text-white">
             {navLinks.map(({ href, label }) => (
               <NavLink key={href} href={href}>
