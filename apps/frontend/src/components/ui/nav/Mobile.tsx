@@ -14,7 +14,7 @@ interface NavLinkProps {
 const NavLink = ({ href, children }: NavLinkProps) => (
   <Link
     href={href}
-    className="group relative px-2 py-1 text-brand-aligned-black"
+    className="group text-brand-aligned-black relative px-2 py-1"
   >
     <span className="relative z-10">{children}</span>
     <span className="absolute bottom-0 left-0 h-0.5 w-full origin-left scale-x-0 transform bg-current transition-transform duration-300 group-hover:scale-x-100" />
@@ -52,10 +52,10 @@ export const MobileNavigation = () => {
   ];
 
   return (
-    <nav className="container absolute left-0 right-0 top-0 z-20 mx-auto py-4">
+    <nav className="absolute top-0 right-0 left-0 z-20 container mx-auto py-4">
       {isOpen && (
-        <div className="absolute left-0 right-0 top-full z-10 bg-brand-winter-morning/95 py-4 backdrop-blur-sm">
-          <div className="flex flex-col items-center gap-y-4 font-belleAurore text-2xl tracking-[3.2px] text-white">
+        <div className="bg-brand-winter-morning/95 absolute top-full right-0 left-0 z-10 py-4 backdrop-blur-xs">
+          <div className="font-belleAurore flex flex-col items-center gap-y-4 text-2xl tracking-[3.2px] text-white">
             {navLinks.map(({ href, label }) => (
               <NavLink key={href} href={href}>
                 {label}

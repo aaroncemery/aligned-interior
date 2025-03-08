@@ -56,7 +56,7 @@ export const VisualHeader = ({ headline, image }: VisualHeaderProps) => {
       className="mx-auto flex justify-center bg-cover bg-center px-4 py-10 lg:py-28"
       style={{ backgroundImage: `url(${imageUrl})` }}
     >
-      <h1 className="max-w-4xl font-cinzel text-4xl text-brand-winter-morning lg:text-6xl">
+      <h1 className="font-cinzel text-brand-winter-morning max-w-4xl text-4xl lg:text-6xl">
         {headline && (
           <PortableText value={headline} components={ptComponents} />
         )}
