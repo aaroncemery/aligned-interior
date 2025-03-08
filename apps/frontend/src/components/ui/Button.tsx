@@ -14,7 +14,7 @@ const buttonVariants = cva(
           "bg-button-gradient hover:bg-[position:75%] bg-[length:200%] bg-[position:0%] transition-[background-position] duration-300 text-black backdrop-blur-xs",
         ],
         secondary: [
-          "bg-brand-aligned-black backdrop-blur-xs hover:bg-brand-aligned-black/90 backdrop-blur-xs transition-colors duration-300 text-white",
+          "bg-brand-aligned-black hover:bg-brand-aligned-black/90 backdrop-blur-xs transition-colors duration-300 text-white",
         ],
       },
       withArrow: {
