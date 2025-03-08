@@ -8,7 +8,7 @@ export const AccordionItem = React.forwardRef<
 >(({ children, className, ...props }, forwardedRef) => (
   <AccordionPrimitive.Item
     className={twMerge(
-      "focus-within:shadow-brand-interior-green/30 mt-px overflow-hidden first:mt-0 first:rounded-t last:rounded-b focus-within:relative focus-within:z-10 focus-within:shadow-[0_0_0_2px]",
+      "mt-px overflow-hidden first:mt-0 first:rounded-t last:rounded-b focus-within:relative focus-within:z-10 focus-within:shadow-[0_0_0_2px] focus-within:shadow-brand-interior-green/30",
       className,
     )}
     {...props}

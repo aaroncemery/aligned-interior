@@ -22,8 +22,8 @@ export default function BlogPage({
 
   return (
     <div className="container mx-auto px-4">
-      <header className="border-brand-interior-green grid grid-cols-1 items-center gap-4 border-t-[1px] border-b-[1px] py-6 lg:grid-cols-2">
-        <div className="border-r-brand-interior-green mb-0 max-w-[700px] gap-4 lg:border-r-[1px] lg:pr-12">
+      <header className="grid grid-cols-1 items-center gap-4 border-b-[1px] border-t-[1px] border-brand-interior-green py-6 lg:grid-cols-2">
+        <div className="mb-0 max-w-[700px] gap-4 border-r-brand-interior-green lg:border-r-[1px] lg:pr-12">
           {imageUrl && (
             <Image
               src={imageUrl}
@@ -34,10 +34,10 @@ export default function BlogPage({
           )}
         </div>
         <div>
-          <div className="font-belleAurore text-brand-wispful-black text-base md:text-lg">
+          <div className="font-belleAurore text-base text-brand-wispful-black md:text-lg">
             {formattedDate}
           </div>
-          <h1 className="font-cormorant text-brand-wispful-black text-5xl lg:text-6xl">
+          <h1 className="font-cormorant text-5xl text-brand-wispful-black lg:text-6xl">
             {title}
           </h1>
         </div>

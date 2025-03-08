@@ -26,7 +26,7 @@ export default function TestimonialCard({
       }}
     >
       <p className="font-cormorant text-2xl font-light">{testimonial}</p>
-      <p className="font-cinzel mt-auto pt-4 text-base">{`${authorInitials}, ${location}`}</p>
+      <p className="mt-auto pt-4 font-cinzel text-base">{`${authorInitials}, ${location}`}</p>
     </div>
   );
 }

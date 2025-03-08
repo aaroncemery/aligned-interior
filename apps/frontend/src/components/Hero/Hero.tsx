@@ -24,7 +24,7 @@ const HeroComponent = ({ backgroundImage, title, subtitle }: HeroProps) => {
         style={{ backgroundImage: `url(${imageUrl})` }}
       >
         <div className="relative max-w-3xl text-center text-white">
-          <h1 className="font-cinzel mb-4 text-4xl tracking-widest md:text-7xl">
+          <h1 className="mb-4 font-cinzel text-4xl tracking-widest md:text-7xl">
             {title}
           </h1>
           {subtitle && (

@@ -18,9 +18,9 @@ export default function FormWrapper({
   return (
     <section className="bg-brand-interior-green px-4 py-16" id={id}>
       <div className={`container mx-auto max-w-4xl`}>
-        <div className="bg-brand-winter-morning/80 rounded-lg p-8 shadow-lg backdrop-blur-sm">
+        <div className="rounded-lg bg-brand-winter-morning/80 p-8 shadow-lg backdrop-blur-sm">
           {title && (
-            <h2 className="font-cinzel text-brand-aligned-black mb-2 text-center text-3xl tracking-wide">
+            <h2 className="mb-2 text-center font-cinzel text-3xl tracking-wide text-brand-aligned-black">
               {title}
             </h2>
           )}

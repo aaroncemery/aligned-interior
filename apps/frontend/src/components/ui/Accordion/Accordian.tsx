@@ -12,7 +12,7 @@ import { handleScrollToSection } from "@/lib/utils";
 
 const Accordion = ({ items }: { items: AccordionItemType[] }) => (
   <AccordionPrimitive.Root
-    className="bg-brand-winter-morning/10 mx-auto w-full rounded-md shadow-[0_2px_10px] shadow-black/5 backdrop-blur-sm"
+    className="mx-auto w-full rounded-md bg-brand-winter-morning/10 shadow-[0_2px_10px] shadow-black/5 backdrop-blur-sm"
     type="single"
     defaultValue="item-1"
     collapsible
