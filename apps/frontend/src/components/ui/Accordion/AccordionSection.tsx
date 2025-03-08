@@ -28,14 +28,14 @@ export const AccordionSection = ({
   return (
     <div
       id="services"
-      className={`mx-auto bg-brand-winter-morning bg-cover bg-center py-10 ${
+      className={`bg-brand-winter-morning mx-auto bg-cover bg-center py-10 ${
         imageUrl ? "bg-no-repeat" : ""
       }`}
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)),url(${imageUrl})`,
       }}
     >
-      <h2 className="mb-10 text-center font-cinzel text-4xl lg:text-6xl">
+      <h2 className="font-cinzel mb-10 text-center text-4xl lg:text-6xl">
         {title}
       </h2>
       <div className="container mx-auto max-w-3xl px-4">

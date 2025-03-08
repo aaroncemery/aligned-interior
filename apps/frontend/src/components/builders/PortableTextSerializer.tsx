@@ -12,7 +12,7 @@ export const PortableTextSerializer = {
       <h1 className="mb-4 text-4xl font-bold">{children}</h1>
     ),
     h2: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
-      <h2 className="mb-4 font-cinzel text-3xl lg:text-5xl">{children}</h2>
+      <h2 className="font-cinzel mb-4 text-3xl lg:text-5xl">{children}</h2>
     ),
     // ... other block types
   },
