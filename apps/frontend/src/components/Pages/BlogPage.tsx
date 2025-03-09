@@ -34,7 +34,7 @@ export default function BlogPage({
           )}
         </div>
         <div>
-          <div className="font-belleAurore text-brand-wispful-black text-base md:text-lg">
+          <div className="font-belle-aurore text-brand-wispful-black text-base md:text-lg">
             {formattedDate}
           </div>
           <h1 className="font-cormorant text-brand-wispful-black text-5xl lg:text-6xl">

@@ -35,7 +35,7 @@ const Logo = ({ isOpen }: LogoProps) => {
         )}
       >
         <div className="font-cinzel text-2xl tracking-[3.2px]">Aligned</div>
-        <div className="font-belleAurore text-3xl tracking-[4.8px]">
+        <div className="font-belle-aurore text-3xl tracking-[4.8px]">
           Interior
         </div>
       </div>
@@ -55,7 +55,7 @@ export const MobileNavigation = () => {
     <nav className="absolute top-0 right-0 left-0 z-20 container mx-auto py-4">
       {isOpen && (
         <div className="bg-brand-winter-morning/95 absolute top-full right-0 left-0 z-10 py-4 backdrop-blur-xs">
-          <div className="font-belleAurore flex flex-col items-center gap-y-4 text-2xl tracking-[3.2px] text-white">
+          <div className="font-belle-aurore flex flex-col items-center gap-y-4 text-2xl tracking-[3.2px] text-white">
             {navLinks.map(({ href, label }) => (
               <NavLink key={href} href={href}>
                 {label}

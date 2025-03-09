@@ -28,7 +28,7 @@ const HeroComponent = ({ backgroundImage, title, subtitle }: HeroProps) => {
             {title}
           </h1>
           {subtitle && (
-            <p className="font-belleAurore text-xl md:text-2xl">{subtitle}</p>
+            <p className="font-belle-aurore text-xl md:text-2xl">{subtitle}</p>
           )}
         </div>
         <div className="mt-8">

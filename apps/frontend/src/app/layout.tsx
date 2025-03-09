@@ -69,37 +69,37 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      {GA_TRACKING_ID && (
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-        />
-      )}
-      {GA_TRACKING_ID && (
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-          }}
-        />
-      )}
-      <Analytics />
-      <html lang="en">
+    <html lang="en">
+      <head>
         <link rel="manifest" href="/favicon/site.webmanifest" />
-        <body
-          className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
-        >
-          {children}
-        </body>
-      </html>
-    </>
+        {GA_TRACKING_ID && (
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
+        )}
+        {GA_TRACKING_ID && (
+          <Script
+            id="google-analytics"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_TRACKING_ID}', {
+                page_path: window.location.pathname,
+              });
+            `,
+            }}
+          />
+        )}
+        <Analytics />
+      </head>
+      <body
+        className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
+      >
+        {children}
+      </body>
+    </html>
   );
 }

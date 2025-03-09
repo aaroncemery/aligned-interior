@@ -32,7 +32,7 @@ const Logo = ({ isScrolled }: { isScrolled: boolean }) => (
       <div className="font-cinzel text-lg tracking-[3.2px] lg:text-2xl">
         Aligned
       </div>
-      <div className="font-belleAurore text-xl tracking-[4.8px] lg:text-3xl">
+      <div className="font-belle-aurore text-xl tracking-[4.8px] lg:text-3xl">
         Interior
       </div>
     </div>
