@@ -73,3 +73,11 @@ export const BlogPostQuery = defineQuery(`
     publishedAt
   }
 `);
+
+export const BlogPostListQuery = defineQuery(`
+  *[_type == "blogPage"] {
+    title,
+    slug,
+    mainImage
+  }
+`);

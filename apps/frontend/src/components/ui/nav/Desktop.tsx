@@ -26,9 +26,6 @@ const Logo = ({ isScrolled }: { isScrolled: boolean }) => (
         !isScrolled && "text-brand-winter-morning",
       )}
     >
-      {/* <div className="w-10">
-        <LogoIcon />
-      </div> */}
       <div className="font-cinzel text-lg tracking-[3.2px] lg:text-2xl">
         Aligned
       </div>

@@ -42,7 +42,7 @@ export default function BlogPage({
           </h1>
         </div>
       </header>
-      <div className="container mx-auto h-screen max-w-5xl px-4 py-10">
+      <div className="container mx-auto max-w-5xl px-4 py-10">
         {content?.content && (
           <PortableText
             value={content.content as any[]}
