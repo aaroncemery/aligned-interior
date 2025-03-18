@@ -1,5 +1,5 @@
 import {TfiLayoutAccordionSeparated} from 'react-icons/tfi'
-import { defineField, defineType } from 'sanity'
+import {defineField, defineType} from 'sanity'
 
 export const AccordionSection = defineType({
   name: 'accordionSection',
@@ -18,7 +18,8 @@ export const AccordionSection = defineType({
           lists: [],
           marks: {
             decorators: [
-              
+              {title: 'Strong', value: 'strong'},
+              {title: 'Emphasis', value: 'em'}
             ]
           }
         }
