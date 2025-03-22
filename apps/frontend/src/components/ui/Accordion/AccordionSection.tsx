@@ -8,6 +8,8 @@ import {
 import { Button } from "../Button";
 import { urlForImage } from "@/sanity/lib/utils";
 import { handleScrollToSection } from "@/lib/utils";
+import { PortableText } from "@portabletext/react";
+import { PortableTextSerializer } from "@/components/builders/PortableTextSerializer";
 
 type AccordionSectionProps = AccordionSectionType & {
   metadata?: SanityImageMetadata;
@@ -15,6 +17,7 @@ type AccordionSectionProps = AccordionSectionType & {
 
 export const AccordionSection = ({
   title,
+  subtitle,
   image,
   items,
 }: AccordionSectionProps) => {
@@ -25,6 +28,10 @@ export const AccordionSection = ({
           .auto("format")
           .url()
       : "";
+
+  console.log("Full props:", { title, subtitle, image, items });
+  console.log("subtitle type:", typeof subtitle);
+
   return (
     <div
       id="services"
@@ -35,9 +42,14 @@ export const AccordionSection = ({
         backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)),url(${imageUrl})`,
       }}
     >
-      <h2 className="mb-10 text-center font-cinzel text-4xl lg:text-6xl">
+      <h2 className="pb-4 text-center font-cinzel text-4xl lg:text-6xl">
         {title}
       </h2>
+      {subtitle && (
+        <div className="container mx-auto max-w-3xl px-4 text-center">
+          <PortableText value={subtitle} components={PortableTextSerializer} />
+        </div>
+      )}
       <div className="container mx-auto max-w-3xl px-4">
         <div className="flex flex-col items-center gap-4">
           {items && <Accordion items={items} />}
