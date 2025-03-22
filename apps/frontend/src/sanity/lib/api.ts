@@ -25,7 +25,7 @@ export const projectId = assertValue(
  * see https://www.sanity.io/docs/api-versioning for how versioning works
  */
 export const apiVersion =
-  process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2024-02-28";
+  process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2025-03-22";
 
 /**
  * This is the studio URL used for the non-embedded, standalone Studio

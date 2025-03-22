@@ -10,6 +10,7 @@ export const AccordionSection = defineType({
     defineField({name: 'title', type: 'string'}),
     defineField({
       name: 'subtitle',
+      title: 'Subtitle',
       type: 'array',
       of: [
         {
