@@ -196,6 +196,24 @@ export type Favicon = {
 export type AccordionSection = {
   _type: "accordionSection";
   title?: string;
+  subtitle?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   image?: ImageObject;
   items?: Array<
     {
@@ -759,7 +777,7 @@ export type TestimonialSectionQueryResult = Array<never>;
 
 // Source: ../../apps/frontend/src/sanity/lib/queries.ts
 // Variable: HomePageQuery
-// Query: *[_type == "home"][0] {    "seo": seo,    "pageBuilder": pageBuilder[] {      _type == "hero" => {  _type,  _key,  title,  subtitle,  backgroundImage,  cta[] {    ...,  }},      _type == "featureSection" => {  _type,  _key,  title,  description,  image {    image,    alt,  },  "metadata": image.image.asset->metadata,},      _type == "visualHeader" => {        _type,        _key,        headline,        image,        "metadata": image.image.asset->metadata,      },      _type == "testimonialSection" => {  _type,  _key,  _id,  title,  "testimonials": testimonials[]-> {  _type,  _key,  _id,  title,  testimonial,  author,  location,  image {    image,    caption  }}},      _type == "accordionSection" => {  _type,  _key,  title,  image,  items[] {    ...,  }},    }  }
+// Query: *[_type == "home"][0] {    "seo": seo,    "pageBuilder": pageBuilder[] {      _type == "hero" => {  _type,  _key,  title,  subtitle,  backgroundImage,  cta[] {    ...,  }},      _type == "featureSection" => {  _type,  _key,  title,  description,  image {    image,    alt,  },  "metadata": image.image.asset->metadata,},      _type == "visualHeader" => {        _type,        _key,        headline,        image,        "metadata": image.image.asset->metadata,      },      _type == "testimonialSection" => {  _type,  _key,  _id,  title,  "testimonials": testimonials[]-> {  _type,  _key,  _id,  title,  testimonial,  author,  location,  image {    image,    caption  }}},      _type == "accordionSection" => {  _type,  _key,  title,  subtitle,  image,  items[] {    ...,  }},    }  }
 export type HomePageQueryResult = {
   seo: Seo | null;
   pageBuilder: Array<
@@ -797,6 +815,24 @@ export type HomePageQueryResult = {
         _type: "accordionSection";
         _key: string;
         title: string | null;
+        subtitle: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }> | null;
         image: ImageObject | null;
         items: Array<{
           _key: string;
@@ -899,7 +935,7 @@ export type HomePageQueryResult = {
   > | null;
 } | null;
 // Variable: PageQuery
-// Query: *[_type == "page" && slug.current == $slug][0] {    "seo": seo,    "pageBuilder": pageBuilder[] {      _type == "hero" => {  _type,  _key,  title,  subtitle,  backgroundImage,  cta[] {    ...,  }},      _type == "featureSection" => {  _type,  _key,  title,  description,  image {    image,    alt,  },  "metadata": image.image.asset->metadata,},      _type == "visualHeader" => {        _type,        _key,        headline,        image,        "metadata": image.image.asset->metadata,      },      _type == "testimonialSection" => {  _type,  _key,  _id,  title,  "testimonials": testimonials[]-> {  _type,  _key,  _id,  title,  testimonial,  author,  location,  image {    image,    caption  }}},      _type == "accordionSection" => {  _type,  _key,  title,  image,  items[] {    ...,  }},    }  }
+// Query: *[_type == "page" && slug.current == $slug][0] {    "seo": seo,    "pageBuilder": pageBuilder[] {      _type == "hero" => {  _type,  _key,  title,  subtitle,  backgroundImage,  cta[] {    ...,  }},      _type == "featureSection" => {  _type,  _key,  title,  description,  image {    image,    alt,  },  "metadata": image.image.asset->metadata,},      _type == "visualHeader" => {        _type,        _key,        headline,        image,        "metadata": image.image.asset->metadata,      },      _type == "testimonialSection" => {  _type,  _key,  _id,  title,  "testimonials": testimonials[]-> {  _type,  _key,  _id,  title,  testimonial,  author,  location,  image {    image,    caption  }}},      _type == "accordionSection" => {  _type,  _key,  title,  subtitle,  image,  items[] {    ...,  }},    }  }
 export type PageQueryResult = {
   seo: Seo | null;
   pageBuilder: Array<
@@ -937,6 +973,24 @@ export type PageQueryResult = {
         _type: "accordionSection";
         _key: string;
         title: string | null;
+        subtitle: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }> | null;
         image: ImageObject | null;
         items: Array<{
           _key: string;
@@ -1085,8 +1139,8 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "testimonial"] {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}': TestimonialQueryResult;
     '*[_type == "testimonialSection"] {\n  _type,\n  _key,\n  _id,\n  title,\n  "testimonials": testimonials[]-> {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}\n}': TestimonialSectionQueryResult;
-    '*[_type == "home"][0] {\n    "seo": seo,\n    "pageBuilder": pageBuilder[] {\n      _type == "hero" => {\n  _type,\n  _key,\n  title,\n  subtitle,\n  backgroundImage,\n  cta[] {\n    ...,\n  }\n},\n      _type == "featureSection" => {\n  _type,\n  _key,\n  title,\n  description,\n  image {\n    image,\n    alt,\n  },\n  "metadata": image.image.asset->metadata,\n},\n      _type == "visualHeader" => {\n        _type,\n        _key,\n        headline,\n        image,\n        "metadata": image.image.asset->metadata,\n      },\n      _type == "testimonialSection" => {\n  _type,\n  _key,\n  _id,\n  title,\n  "testimonials": testimonials[]-> {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}\n},\n      _type == "accordionSection" => {\n  _type,\n  _key,\n  title,\n  image,\n  items[] {\n    ...,\n  }\n},\n    }\n  }': HomePageQueryResult;
-    '*[_type == "page" && slug.current == $slug][0] {\n    "seo": seo,\n    "pageBuilder": pageBuilder[] {\n      _type == "hero" => {\n  _type,\n  _key,\n  title,\n  subtitle,\n  backgroundImage,\n  cta[] {\n    ...,\n  }\n},\n      _type == "featureSection" => {\n  _type,\n  _key,\n  title,\n  description,\n  image {\n    image,\n    alt,\n  },\n  "metadata": image.image.asset->metadata,\n},\n      _type == "visualHeader" => {\n        _type,\n        _key,\n        headline,\n        image,\n        "metadata": image.image.asset->metadata,\n      },\n      _type == "testimonialSection" => {\n  _type,\n  _key,\n  _id,\n  title,\n  "testimonials": testimonials[]-> {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}\n},\n      _type == "accordionSection" => {\n  _type,\n  _key,\n  title,\n  image,\n  items[] {\n    ...,\n  }\n},\n    }\n  }': PageQueryResult;
+    '*[_type == "home"][0] {\n    "seo": seo,\n    "pageBuilder": pageBuilder[] {\n      _type == "hero" => {\n  _type,\n  _key,\n  title,\n  subtitle,\n  backgroundImage,\n  cta[] {\n    ...,\n  }\n},\n      _type == "featureSection" => {\n  _type,\n  _key,\n  title,\n  description,\n  image {\n    image,\n    alt,\n  },\n  "metadata": image.image.asset->metadata,\n},\n      _type == "visualHeader" => {\n        _type,\n        _key,\n        headline,\n        image,\n        "metadata": image.image.asset->metadata,\n      },\n      _type == "testimonialSection" => {\n  _type,\n  _key,\n  _id,\n  title,\n  "testimonials": testimonials[]-> {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}\n},\n      _type == "accordionSection" => {\n  _type,\n  _key,\n  title,\n  subtitle,\n  image,\n  items[] {\n    ...,\n  }\n},\n    }\n  }': HomePageQueryResult;
+    '*[_type == "page" && slug.current == $slug][0] {\n    "seo": seo,\n    "pageBuilder": pageBuilder[] {\n      _type == "hero" => {\n  _type,\n  _key,\n  title,\n  subtitle,\n  backgroundImage,\n  cta[] {\n    ...,\n  }\n},\n      _type == "featureSection" => {\n  _type,\n  _key,\n  title,\n  description,\n  image {\n    image,\n    alt,\n  },\n  "metadata": image.image.asset->metadata,\n},\n      _type == "visualHeader" => {\n        _type,\n        _key,\n        headline,\n        image,\n        "metadata": image.image.asset->metadata,\n      },\n      _type == "testimonialSection" => {\n  _type,\n  _key,\n  _id,\n  title,\n  "testimonials": testimonials[]-> {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}\n},\n      _type == "accordionSection" => {\n  _type,\n  _key,\n  title,\n  subtitle,\n  image,\n  items[] {\n    ...,\n  }\n},\n    }\n  }': PageQueryResult;
     "\n  *[_type == \"settings\"][0] {\n    seo {\n      _type,\n      title,\n      description,\n      keywords,\n      noIndex,\n      noFollow\n    },\n    favicon {\n      'svg': svg.asset->url,\n      'png96': png96.asset->url,\n      'ico': ico.asset->url,\n      'appleTouchIcon': appleTouchIcon.asset->url\n    }\n  }\n": SeoQueryResult;
     '\n  *[_type == "blogPage" && slug.current == $slug][0] {\n    title,\n    slug,\n    mainImage,\n    author,\n    content,\n    publishedAt\n  }\n': BlogPostQueryResult;
     '\n  *[_type == "blogPage"] {\n    title,\n    slug,\n    mainImage\n  }\n': BlogPostListQueryResult;
