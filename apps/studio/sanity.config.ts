@@ -13,10 +13,12 @@ import {Category} from './src/schemaTypes/SettingsType/Catergory'
 import {CategoryParent} from './src/schemaTypes/SettingsType/CategoryParent'
 import {Testimonial} from './src/schemaTypes/objects/TestimonialType/Testimonial'
 import {Author} from './src/schemaTypes/documents/Author'
+import {Navigation} from './src/schemaTypes/SettingsType/Navigation'
+import {blogTypes} from './src/schemaTypes/BlogType'
 
 const typeDefArray = [Home, Author]
 const customGroupItems = [Testimonial, Author]
-const globalItems = [Settings, Category, CategoryParent]
+const globalItems = [Settings, Category, CategoryParent, Navigation, ...blogTypes]
 
 export default defineConfig([
   {

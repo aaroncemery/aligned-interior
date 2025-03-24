@@ -1,7 +1,7 @@
 import {contextDocumentTypeName} from '@sanity/assist'
 import {type DocumentDefinition} from 'sanity'
 import {type StructureResolver} from 'sanity/structure'
-import {FaGlobe, FaCog} from 'react-icons/fa'
+import {FaGlobe, FaCog, FaCompass, FaNewspaper, FaList} from 'react-icons/fa'
 
 // The StructureResolver is how we're changing the DeskTool structure to
 // linking to document(named Singleton) like how 'Homepage' is handled.
@@ -47,6 +47,11 @@ export const pageStructure = (
               .icon(FaCog)
               .child(S.editor().id('siteSettings').schemaType('settings').documentId('settings')),
             S.listItem()
+              .title('Navigation')
+              .id('navigationList')
+              .icon(FaCompass)
+              .child(S.editor().id('navigation').schemaType('navigation').documentId('navigation')),
+            S.listItem()
               .title('Categories')
               .id('categoryList')
               .child(S.documentTypeList('category').title('Categories')),
@@ -54,6 +59,31 @@ export const pageStructure = (
               .title('Category Parents')
               .id('categoryParentList')
               .child(S.documentTypeList('categoryParent').title('Category Parents'))
+          ])
+      )
+    const blogStructure = S.listItem()
+      .title('Blog')
+      .id('blogGroup')
+      .icon(FaNewspaper)
+      .child(
+        S.list()
+          .title('Blog')
+          .items([
+            S.listItem()
+              .title('Blog Listing')
+              .id('blogListingList')
+              .icon(FaList)
+              .child(
+                S.editor()
+                  .id('blogListing')
+                  .schemaType('blogListingPage')
+                  .documentId('blogListingPage')
+              ),
+            S.listItem()
+              .title('Blog Posts')
+              .id('blogPostList')
+              .icon(FaNewspaper)
+              .child(S.documentTypeList('blogPage').title('Blog Posts'))
           ])
       )
 
@@ -76,7 +106,9 @@ export const pageStructure = (
         S.divider(),
         ...customItems,
         S.divider(),
-        ...defaultListItems.filter((item) => item.getId() !== contextDocumentTypeName)
+        ...defaultListItems.filter((item) => item.getId() !== contextDocumentTypeName),
+        S.divider(),
+        blogStructure
       ])
   }
 }
