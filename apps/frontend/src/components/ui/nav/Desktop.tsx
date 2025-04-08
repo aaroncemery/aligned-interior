@@ -5,17 +5,7 @@ import React from "react";
 import { Button } from "../Button";
 import { cn } from "@/lib/utils";
 import { handleScrollToSection } from "@/lib/utils";
-// interface NavLinkProps {
-//   href: string;
-//   children: React.ReactNode;
-// }
-
-// const NavLink = ({ href, children }: NavLinkProps) => (
-//   <Link href={href} className="group relative px-2 py-1">
-//     <span className="relative z-10">{children}</span>
-//     <span className="absolute bottom-0 left-0 h-0.5 w-full origin-left scale-x-0 transform bg-current transition-transform duration-300 group-hover:scale-x-100" />
-//   </Link>
-// );
+import { useNavigation } from "./NavigationProvider";
 
 const Logo = ({ isScrolled }: { isScrolled: boolean }) => (
   <Link href="/">
@@ -39,21 +29,16 @@ interface NavItem {
   isSection?: boolean;
 }
 
-const navItems: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "#services", isSection: true },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "#contact", isSection: true },
-];
-
 const NavMenu = ({
   isOpen,
   onClose,
   isScrolled,
+  navItems,
 }: {
   isOpen: boolean;
   onClose: () => void;
   isScrolled: boolean;
+  navItems: NavItem[];
 }) => {
   return (
     <div
@@ -131,6 +116,9 @@ export const DesktopNavigation = (props: { isStatic?: boolean }) => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const { isStatic } = props;
   const [isOpen, setIsOpen] = React.useState(false);
+  const { items: navItems } = useNavigation();
+
+  console.log(navItems);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -140,12 +128,6 @@ export const DesktopNavigation = (props: { isStatic?: boolean }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // const navLinks = [
-  //   { href: "#services", label: "Services" },
-  //   { href: "#about", label: "About" },
-  //   { href: "#contact", label: "Contact" },
-  // ];
 
   return (
     <>
@@ -165,7 +147,9 @@ export const DesktopNavigation = (props: { isStatic?: boolean }) => {
           <Logo isScrolled={isStatic ? true : isScrolled} />
           <div className="flex items-center gap-x-4">
             <Button
-              intent={isScrolled ? "secondary" : "primary"}
+              intent={
+                isStatic ? "secondary" : isScrolled ? "secondary" : "primary"
+              }
               onClick={() => handleScrollToSection("contact")}
               size={"small"}
               withArrow
@@ -175,13 +159,14 @@ export const DesktopNavigation = (props: { isStatic?: boolean }) => {
             <MenuButton
               onClick={() => setIsOpen(!isOpen)}
               isOpen={isOpen}
-              isScrolled={isScrolled}
+              isScrolled={isStatic ? true : isScrolled}
             />
           </div>
           <NavMenu
             isOpen={isOpen}
             onClose={() => setIsOpen(false)}
             isScrolled={isScrolled}
+            navItems={navItems}
           />
         </div>
       </nav>

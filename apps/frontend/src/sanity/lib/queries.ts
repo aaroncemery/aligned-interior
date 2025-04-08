@@ -81,3 +81,24 @@ export const BlogPostListQuery = defineQuery(`
     mainImage
   }
 `);
+
+export const NavigationQuery = defineQuery(`
+  *[_type == "navigation"] {
+    "items": items[] {
+      _type == "reference" => @-> {
+        _type == "home" => {
+          "label": "Home",
+          "url": "/"
+        },
+        _type == "page" => {
+          "label": title,
+          "url": slug.current
+        }
+      },
+      _type != "reference" => {
+        "label": label,
+        "url": url
+      }
+    }
+  }
+`);

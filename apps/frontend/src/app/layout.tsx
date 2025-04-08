@@ -1,10 +1,20 @@
 import { Cinzel, La_Belle_Aurore, Inter, Cormorant } from "next/font/google";
 import "./globals.css";
-import { SeoQuery } from "@/sanity/lib/queries";
+import { SeoQuery, NavigationQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { SeoQueryResult } from "../../sanity.types";
 import Script from "next/script";
 import Analytics from "@/components/tracking/Analytics";
+import { NavigationProvider } from "@/components/ui/nav/NavigationProvider";
+
+interface NavigationData {
+  data: Array<{
+    items: Array<{
+      label: string;
+      href: string;
+    }>;
+  }>;
+}
 
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
@@ -63,11 +73,26 @@ export async function generateMetadata() {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navigationData = await sanityFetch<NavigationData>({
+    query: NavigationQuery,
+  });
+
+  console.log("navigationData", navigationData);
+
+  const navItems =
+    navigationData?.data?.[0]?.items?.map((item) => ({
+      label: item.label,
+      href: item.href,
+      isSection: item.href.startsWith("#"),
+    })) || [];
+
+  console.log("navItems", navItems);
+
   return (
     <html lang="en">
       <head>
@@ -98,7 +123,7 @@ export default function RootLayout({
       <body
         className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
       >
-        {children}
+        <NavigationProvider items={navItems}>{children}</NavigationProvider>
       </body>
     </html>
   );

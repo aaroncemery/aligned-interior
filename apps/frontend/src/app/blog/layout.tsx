@@ -1,6 +1,6 @@
 import { Navigation } from "@/components/ui/nav";
 import { Footer } from "@/components/ui/Footer";
-import { SeoQuery } from "@/sanity/lib/queries";
+import { SeoQuery, NavigationQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { SeoQueryResult } from "../../../sanity.types";
 

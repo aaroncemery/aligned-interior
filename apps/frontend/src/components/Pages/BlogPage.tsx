@@ -25,12 +25,15 @@ export default function BlogPage({
       <header className="border-brand-interior-green grid grid-cols-1 items-center gap-4 border-t-[1px] border-b-[1px] py-6 lg:grid-cols-2">
         <div className="border-r-brand-interior-green mb-0 max-w-[700px] gap-4 lg:border-r-[1px] lg:pr-12">
           {imageUrl && (
-            <Image
-              src={imageUrl}
-              alt={mainImage?.image?.alt || ""}
-              width={1200}
-              height={1200}
-            />
+            <div className="aspect-square w-full overflow-hidden">
+              <Image
+                src={imageUrl}
+                alt={mainImage?.image?.alt || ""}
+                width={1200}
+                height={1200}
+                className="h-full w-full object-cover"
+              />
+            </div>
           )}
         </div>
         <div>

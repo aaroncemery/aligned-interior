@@ -21,22 +21,24 @@ export default async function Blog() {
           const imageUrl =
             post.mainImage?.image &&
             urlForImage({ ...post.mainImage.image, _type: "imageObject" })
-              ?.width(1200)
+              ?.width(800)
               .url();
           return (
-            <li key={post.slug?.current}>
+            <li key={post.slug?.current} className="max-w-sm">
               <Link
                 href={`${post.slug?.current}`}
                 className="group border-brand-winter-morning hover:border-brand-winter-morning/50 shadow-card-shadow flex flex-col gap-4 rounded-md border p-4 transition-all duration-300"
               >
                 {imageUrl && (
-                  <Image
-                    src={imageUrl}
-                    alt={post.title || ""}
-                    width={1000}
-                    height={1000}
-                    className="w-full rounded-md transition-transform duration-300 group-hover:scale-105"
-                  />
+                  <div className="aspect-[16/10] overflow-hidden rounded-md">
+                    <Image
+                      src={imageUrl}
+                      alt={post.title || ""}
+                      width={800}
+                      height={500}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
                 )}
                 <h2 className="font-cormorant text-2xl">{post.title}</h2>
                 <p className="group-hover:text-brand-burnt-red flex items-center gap-2 text-sm text-gray-500">

@@ -51,5 +51,13 @@ export const BlogPostSerializer = {
     em: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
       <span className="font-italic">{children}</span>
     ),
+    link: ({ children, value }: PortableTextMarkComponentProps) => (
+      <a
+        href={value?.href}
+        className="hover:text-brand-burnt-red font-bold underline"
+      >
+        {children}
+      </a>
+    ),
   },
 };
