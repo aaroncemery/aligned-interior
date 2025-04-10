@@ -118,8 +118,6 @@ export const DesktopNavigation = (props: { isStatic?: boolean }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const { items: navItems } = useNavigation();
 
-  console.log(navItems);
-
   React.useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);

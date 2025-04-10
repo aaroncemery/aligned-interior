@@ -16,8 +16,6 @@ export default async function Home() {
     query: HomePageQuery,
   });
 
-  console.log("data:", data);
-
   return (
     <>
       <Navigation.Desktop />

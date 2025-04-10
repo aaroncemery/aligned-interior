@@ -29,9 +29,6 @@ export const AccordionSection = ({
           .url()
       : "";
 
-  console.log("Full props:", { title, subtitle, image, items });
-  console.log("subtitle type:", typeof subtitle);
-
   return (
     <div
       id="services"

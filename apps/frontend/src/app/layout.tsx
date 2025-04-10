@@ -7,14 +7,13 @@ import Script from "next/script";
 import Analytics from "@/components/tracking/Analytics";
 import { NavigationProvider } from "@/components/ui/nav/NavigationProvider";
 
-interface NavigationData {
-  data: Array<{
+interface NavigationData
+  extends Array<{
     items: Array<{
       label: string;
-      href: string;
+      url: string;
     }>;
-  }>;
-}
+  }> {}
 
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
@@ -82,16 +81,12 @@ export default async function RootLayout({
     query: NavigationQuery,
   });
 
-  console.log("navigationData", navigationData);
-
   const navItems =
-    navigationData?.data?.[0]?.items?.map((item) => ({
+    navigationData[0]?.items?.map((item) => ({
       label: item.label,
-      href: item.href,
-      isSection: item.href.startsWith("#"),
+      href: item.url,
+      isSection: item.url.startsWith("#"),
     })) || [];
-
-  console.log("navItems", navItems);
 
   return (
     <html lang="en">
