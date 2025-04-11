@@ -17,11 +17,10 @@ const ContentBlock = ({ description, image, metadata }: ContentBlockProps) => {
           ?.width(1200)
           .url()
       : "";
-  console.log("imageUrl", imageUrl);
 
   return (
     <div
-      className={`items-top relative mx-auto flex justify-center bg-brand-winter-morning px-4 py-10 lg:py-20 ${image && "gap-x-9"}`}
+      className={`items-top bg-brand-winter-morning relative mx-auto flex justify-center px-4 py-10 lg:py-20 ${image && "gap-x-9"}`}
     >
       <div
         className={cn(

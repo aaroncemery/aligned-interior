@@ -16,7 +16,7 @@ const HeroComponent = ({ backgroundImage, title, subtitle }: HeroProps) => {
   const imageUrl = backgroundImage
     ? urlForImage(backgroundImage)?.width(1920).quality(80).url()
     : "";
-  console.log("imageUrl", imageUrl);
+
   return (
     <>
       <div
@@ -24,11 +24,11 @@ const HeroComponent = ({ backgroundImage, title, subtitle }: HeroProps) => {
         style={{ backgroundImage: `url(${imageUrl})` }}
       >
         <div className="relative max-w-3xl text-center text-white">
-          <h1 className="mb-4 font-cinzel text-4xl tracking-widest md:text-7xl">
+          <h1 className="font-cinzel mb-4 text-4xl tracking-widest md:text-7xl">
             {title}
           </h1>
           {subtitle && (
-            <p className="font-belleAurore text-xl md:text-2xl">{subtitle}</p>
+            <p className="font-belle-aurore text-xl md:text-2xl">{subtitle}</p>
           )}
         </div>
         <div className="mt-8">

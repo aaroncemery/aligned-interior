@@ -1,12 +1,29 @@
 import { Cinzel, La_Belle_Aurore, Inter, Cormorant } from "next/font/google";
 import "./globals.css";
-import { Navigation } from "@/components/ui/nav";
-import { Footer } from "@/components/ui/Footer";
-import { SeoQuery } from "@/sanity/lib/queries";
+import { SeoQuery, NavigationQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { SeoQueryResult } from "../../sanity.types";
 import Script from "next/script";
 import Analytics from "@/components/tracking/Analytics";
+import { NavigationProvider } from "@/components/ui/nav/NavigationProvider";
+import { Footer } from "@/components/ui/Footer";
+import dynamic from "next/dynamic";
+
+const ClientNavigation = dynamic(
+  () => import("@/components/ui/nav/ClientNavigation"),
+  { ssr: true },
+);
+
+type NavigationItem = {
+  label: string;
+  url: string;
+};
+
+type NavigationSection = {
+  items: NavigationItem[];
+};
+
+type NavigationData = NavigationSection[];
 
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
@@ -65,45 +82,60 @@ export async function generateMetadata() {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navigationData = await sanityFetch<NavigationData>({
+    query: NavigationQuery,
+  });
+
+  console.log(navigationData);
+
+  const navItems =
+    navigationData[0]?.items?.map((item) => ({
+      label: item.label,
+      href: item.url,
+      isSection: item.url.startsWith("#"),
+    })) || [];
+
   return (
-    <>
-      {GA_TRACKING_ID && (
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-        />
-      )}
-      {GA_TRACKING_ID && (
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-          }}
-        />
-      )}
-      <Analytics />
-      <html lang="en">
+    <html lang="en">
+      <head>
         <link rel="manifest" href="/favicon/site.webmanifest" />
-        <body
-          className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
-        >
-          <Navigation.Desktop />
+        {GA_TRACKING_ID && (
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
+        )}
+        {GA_TRACKING_ID && (
+          <Script
+            id="google-analytics"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_TRACKING_ID}', {
+                page_path: window.location.pathname,
+              });
+            `,
+            }}
+          />
+        )}
+        <Analytics />
+      </head>
+      <body
+        className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
+      >
+        <NavigationProvider items={navItems}>
+          <ClientNavigation />
           {children}
           <Footer />
-        </body>
-      </html>
-    </>
+        </NavigationProvider>
+      </body>
+    </html>
   );
 }
