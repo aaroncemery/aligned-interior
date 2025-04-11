@@ -1,12 +1,14 @@
 import {contextDocumentTypeName} from '@sanity/assist'
 import {type DocumentDefinition} from 'sanity'
 import {type StructureResolver} from 'sanity/structure'
+import {FaGlobe, FaCog, FaCompass, FaNewspaper, FaList} from 'react-icons/fa'
 
 // The StructureResolver is how we're changing the DeskTool structure to
 // linking to document(named Singleton) like how 'Homepage' is handled.
 export const pageStructure = (
   typeDefArray: DocumentDefinition[],
-  customGroupItems: DocumentDefinition[]
+  customGroupItems: DocumentDefinition[],
+  globalItems: DocumentDefinition[]
 ): StructureResolver => {
   return (S) => {
     // Goes through all of the singletons that were provided and translates them into something
@@ -30,13 +32,69 @@ export const pageStructure = (
         )
     })
 
+    // Create a Settings structure
+    const settingsStructure = S.listItem()
+      .title('Settings')
+      .id('settingsGroup')
+      .icon(FaGlobe)
+      .child(
+        S.list()
+          .title('Settings')
+          .items([
+            S.listItem()
+              .title('Site Settings')
+              .id('siteSettings')
+              .icon(FaCog)
+              .child(S.editor().id('siteSettings').schemaType('settings').documentId('settings')),
+            S.listItem()
+              .title('Navigation')
+              .id('navigationList')
+              .icon(FaCompass)
+              .child(S.editor().id('navigation').schemaType('navigation').documentId('navigation')),
+            S.listItem()
+              .title('Categories')
+              .id('categoryList')
+              .child(S.documentTypeList('category').title('Categories')),
+            S.listItem()
+              .title('Category Parents')
+              .id('categoryParentList')
+              .child(S.documentTypeList('categoryParent').title('Category Parents'))
+          ])
+      )
+    const blogStructure = S.listItem()
+      .title('Blog')
+      .id('blogGroup')
+      .icon(FaNewspaper)
+      .child(
+        S.list()
+          .title('Blog')
+          .items([
+            S.listItem()
+              .title('Blog Listing')
+              .id('blogListingList')
+              .icon(FaList)
+              .child(
+                S.editor()
+                  .id('blogListing')
+                  .schemaType('blogListingPage')
+                  .documentId('blogListingPage')
+              ),
+            S.listItem()
+              .title('Blog Posts')
+              .id('blogPostList')
+              .icon(FaNewspaper)
+              .child(S.documentTypeList('blogPage').title('Blog Posts'))
+          ])
+      )
+
     // The default root list items (except custom and singleton ones)
     const defaultListItems = S.documentTypeListItems().filter((listItem) => {
       const id = listItem.getId()
       if (!id) return false
       return (
         !typeDefArray.find((singleton) => singleton.name === id) &&
-        !customGroupItems.find((item) => item.name === id)
+        !customGroupItems.find((item) => item.name === id) &&
+        !globalItems.find((item) => item.name === id)
       )
     })
 
@@ -44,10 +102,13 @@ export const pageStructure = (
       .title('Content')
       .items([
         ...singletonItems,
+        settingsStructure,
         S.divider(),
         ...customItems,
         S.divider(),
-        ...defaultListItems.filter((item) => item.getId() !== contextDocumentTypeName)
+        ...defaultListItems.filter((item) => item.getId() !== contextDocumentTypeName),
+        S.divider(),
+        blogStructure
       ])
   }
 }

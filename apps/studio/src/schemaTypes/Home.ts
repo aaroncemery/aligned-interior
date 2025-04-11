@@ -26,6 +26,13 @@ export const Home = defineType({
       group: 'content'
     }),
     defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {source: 'title'},
+      group: 'content'
+    }),
+    defineField({
       name: 'pageBuilder',
       title: 'Page Builder',
       type: 'pageBuilder',

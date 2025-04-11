@@ -6,6 +6,8 @@ import {ImageObject} from './ImageObject'
 import {PageBuilder} from './PageBuilder'
 import {SeoType} from './SeoType'
 import {VisualHeader} from './VisualHeader'
+import {richTextTypes} from './RichText'
+import {SocialLink} from './SocialLink'
 
 export const objects = [
   FontStyle,
@@ -15,5 +17,7 @@ export const objects = [
   FeatureSection,
   VisualHeader,
   SeoType,
-  PageBuilder
+  PageBuilder,
+  ...richTextTypes,
+  SocialLink
 ]

@@ -13,7 +13,7 @@ export const PortableTextSerializer = {
       <h1 className="mb-4 text-4xl font-bold">{children}</h1>
     ),
     h2: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
-      <h2 className="mb-4 font-cinzel text-3xl lg:text-5xl">{children}</h2>
+      <h2 className="font-cinzel mb-4 text-3xl lg:text-5xl">{children}</h2>
     ),
     // ... other block types
   },
@@ -26,6 +26,36 @@ export const PortableTextSerializer = {
     ),
     link: ({ children, value }: PortableTextMarkComponentProps) => (
       <a href={value?.href} className="font-bold underline hover:text-blue-500">
+        {children}
+      </a>
+    ),
+  },
+};
+
+export const BlogPostSerializer = {
+  block: {
+    normal: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <p className="mb-4 font-sans text-lg font-light">{children}</p>
+    ),
+    h2: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <h2 className="font-cormorant mb-4 text-4xl font-normal">{children}</h2>
+    ),
+    h3: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <h3 className="font-cormorant mb-4 text-3xl font-normal">{children}</h3>
+    ),
+  },
+  marks: {
+    strong: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <span className="font-bold">{children}</span>
+    ),
+    em: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <span className="font-italic">{children}</span>
+    ),
+    link: ({ children, value }: PortableTextMarkComponentProps) => (
+      <a
+        href={value?.href}
+        className="hover:text-brand-burnt-red font-bold underline"
+      >
         {children}
       </a>
     ),

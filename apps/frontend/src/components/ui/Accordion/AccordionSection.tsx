@@ -29,20 +29,19 @@ export const AccordionSection = ({
           .url()
       : "";
 
-  console.log("Full props:", { title, subtitle, image, items });
-  console.log("subtitle type:", typeof subtitle);
-
   return (
     <div
       id="services"
-      className={`mx-auto bg-brand-winter-morning bg-cover bg-center py-10 ${
+      className={`bg-brand-winter-morning mx-auto bg-cover bg-center py-10 ${
         imageUrl ? "bg-no-repeat" : ""
       }`}
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)),url(${imageUrl})`,
+        backgroundImage: imageUrl
+          ? `linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)),url(${imageUrl})`
+          : "none",
       }}
     >
-      <h2 className="pb-4 text-center font-cinzel text-4xl lg:text-6xl">
+      <h2 className="font-cinzel pb-4 text-center text-4xl lg:text-6xl">
         {title}
       </h2>
       {subtitle && (
