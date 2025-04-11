@@ -14,13 +14,16 @@ const ClientNavigation = dynamic(
   { ssr: true },
 );
 
-interface NavigationData
-  extends Array<{
-    items: Array<{
-      label: string;
-      url: string;
-    }>;
-  }> {}
+type NavigationItem = {
+  label: string;
+  url: string;
+};
+
+type NavigationSection = {
+  items: NavigationItem[];
+};
+
+type NavigationData = NavigationSection[];
 
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
