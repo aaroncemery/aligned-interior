@@ -22,7 +22,7 @@ export const Navigation = defineType({
       title: 'Items',
       type: 'array',
       of: [
-        {type: 'reference', to: [{type: 'page'}, {type: 'home'}]},
+        {type: 'reference', to: [{type: 'page'}, {type: 'home'}, {type: 'blogListingPage'}]},
         {
           type: 'object',
           fields: [

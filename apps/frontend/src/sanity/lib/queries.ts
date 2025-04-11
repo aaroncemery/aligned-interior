@@ -93,6 +93,10 @@ export const NavigationQuery = defineQuery(`
         _type == "page" => {
           "label": title,
           "url": slug.current
+        },
+        _type == "blogListingPage" => {
+          "label": title,
+          "url": slug.current
         }
       },
       _type != "reference" => {

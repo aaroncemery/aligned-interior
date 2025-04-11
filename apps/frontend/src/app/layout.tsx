@@ -6,6 +6,13 @@ import { SeoQueryResult } from "../../sanity.types";
 import Script from "next/script";
 import Analytics from "@/components/tracking/Analytics";
 import { NavigationProvider } from "@/components/ui/nav/NavigationProvider";
+import { Footer } from "@/components/ui/Footer";
+import dynamic from "next/dynamic";
+
+const ClientNavigation = dynamic(
+  () => import("@/components/ui/nav/ClientNavigation"),
+  { ssr: true },
+);
 
 interface NavigationData
   extends Array<{
@@ -81,6 +88,8 @@ export default async function RootLayout({
     query: NavigationQuery,
   });
 
+  console.log(navigationData);
+
   const navItems =
     navigationData[0]?.items?.map((item) => ({
       label: item.label,
@@ -118,7 +127,11 @@ export default async function RootLayout({
       <body
         className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
       >
-        <NavigationProvider items={navItems}>{children}</NavigationProvider>
+        <NavigationProvider items={navItems}>
+          <ClientNavigation />
+          {children}
+          <Footer />
+        </NavigationProvider>
       </body>
     </html>
   );

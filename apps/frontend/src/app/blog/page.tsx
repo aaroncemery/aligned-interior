@@ -8,7 +8,7 @@ import { ArrowRight } from "lucide-react";
 export default async function Blog() {
   const posts = await client.fetch(BlogPostListQuery);
   return (
-    <div className="container mx-auto min-h-screen px-4">
+    <div className="container mx-auto min-h-screen px-4 pb-12">
       <header className="border-brand-interior-green grid grid-cols-1 items-center gap-4 border-t-[1px] border-b-[1px] py-6 lg:grid-cols-2">
         <div className="mb-0 max-w-[700px] gap-4 lg:pr-12">
           <h1 className="font-cormorant text-brand-wispful-black text-5xl lg:text-6xl">
@@ -24,13 +24,13 @@ export default async function Blog() {
               ?.width(800)
               .url();
           return (
-            <li key={post.slug?.current} className="max-w-sm">
+            <li key={post.slug?.current} className="w-full">
               <Link
                 href={`${post.slug?.current}`}
-                className="group border-brand-winter-morning hover:border-brand-winter-morning/50 shadow-card-shadow flex flex-col gap-4 rounded-md border p-4 transition-all duration-300"
+                className="group border-brand-winter-morning hover:border-brand-winter-morning/50 shadow-card-shadow flex h-full flex-col gap-4 rounded-md border p-4 transition-all duration-300"
               >
                 {imageUrl && (
-                  <div className="aspect-[16/10] overflow-hidden rounded-md">
+                  <div className="aspect-[16/10] w-full overflow-hidden rounded-md">
                     <Image
                       src={imageUrl}
                       alt={post.title || ""}
@@ -40,10 +40,12 @@ export default async function Blog() {
                     />
                   </div>
                 )}
-                <h2 className="font-cormorant text-2xl">{post.title}</h2>
-                <p className="group-hover:text-brand-burnt-red flex items-center gap-2 text-sm text-gray-500">
-                  Read post <ArrowRight className="h-4 w-4" />
-                </p>
+                <div className="flex flex-grow flex-col justify-between">
+                  <h2 className="font-cormorant text-2xl">{post.title}</h2>
+                  <p className="group-hover:text-brand-burnt-red flex items-center gap-2 text-sm text-gray-500">
+                    Read post <ArrowRight className="h-4 w-4" />
+                  </p>
+                </div>
               </Link>
             </li>
           );
