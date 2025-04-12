@@ -1,3 +1,5 @@
+"use client";
+
 import { NavigationQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { useState, useEffect } from "react";
