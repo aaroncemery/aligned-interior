@@ -21,9 +21,9 @@ export const Footer = () => {
           </div>
         </div>
       </footer>
-      <div className="bg-brand-aligned-blue fixed bottom-0 -z-20 h-36 w-full overflow-hidden lg:h-40">
-        <div className="mx-auto flex items-center justify-center">
-          <p className="text-brand-winter-morning font-cinzel transform text-center text-[64px] leading-tight md:text-[96px] md:leading-normal lg:translate-y-0 lg:text-[120px] lg:whitespace-nowrap">
+      <div className="bg-brand-aligned-blue fixed bottom-0 -z-20 h-48 w-full overflow-hidden md:h-36">
+        <div className="mx-auto flex h-full items-end justify-center md:items-center">
+          <p className="text-brand-winter-morning font-cinzel transform text-center text-[64px] leading-[1] md:text-[80px] md:whitespace-nowrap lg:translate-y-0 lg:text-[120px]">
             Aligned Interior
           </p>
         </div>
