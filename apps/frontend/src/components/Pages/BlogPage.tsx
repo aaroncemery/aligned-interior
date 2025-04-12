@@ -21,7 +21,7 @@ export default function BlogPage({
       : "";
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto bg-white px-4">
       <header className="border-brand-interior-green grid grid-cols-1 items-center gap-4 border-t-[1px] border-b-[1px] py-6 lg:grid-cols-2">
         <div className="border-r-brand-interior-green mb-0 max-w-[700px] gap-4 lg:border-r-[1px] lg:pr-12">
           {imageUrl && (

@@ -18,9 +18,7 @@
   --color-brand-clear-red: hsl(var(--clear-red));
   --color-brand-wispful-black: hsl(var(--wispful-black));
   --color-brand-wispful-red: hsl(var(--wispful-red));
-
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+  --color-brand-aligned-blue: hsl(var(--aligned-blue));
 
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
@@ -115,6 +113,8 @@
     --wispful-black: 0 0% 5%;
 
     --wispful-red: 12 70% 35%;
+
+    --aligned-blue: 240 21% 32%;
 
     /* Default Colors */
     --background: 0 0% 100%;
@@ -223,6 +223,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white;
   }
 }
