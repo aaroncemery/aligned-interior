@@ -2,18 +2,19 @@ import { PageQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/live";
 import { renderPageBuilder } from "@/lib/pageBuilder";
 
-interface PageProps {
-  params: {
+type PageProps = {
+  params: Promise<{
     slug: string;
-  };
+  }>;
   searchParams?: { [key: string]: string | string[] | undefined };
-}
+};
 
 export default async function Page({ params }: PageProps) {
   try {
+    const resolvedParams = await params;
     const result = await sanityFetch({
       query: PageQuery,
-      params: { slug: params.slug },
+      params: { slug: resolvedParams.slug },
     });
 
     if (!result?.data?.pageBuilder) {
