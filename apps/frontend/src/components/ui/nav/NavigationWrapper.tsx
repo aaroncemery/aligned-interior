@@ -16,12 +16,14 @@ export function NavigationWrapper({ children }: { children: React.ReactNode }) {
 
   return (
     <NavigationProvider items={navItems}>
-      <ClientNavigation />
-      {children}
-      <FormWrapper id="contact" title="Contact">
-        <ContactForm />
-      </FormWrapper>
-      <Footer />
+      <div className="flex min-h-screen flex-col">
+        <ClientNavigation />
+        <main className="flex-1 bg-white">{children}</main>
+        <FormWrapper id="contact" title="Contact">
+          <ContactForm />
+        </FormWrapper>
+        <Footer />
+      </div>
     </NavigationProvider>
   );
 }
