@@ -21,7 +21,7 @@ export const Footer = () => {
           </div>
         </div>
       </footer>
-      <div className="bg-brand-aligned-blue fixed bottom-0 -z-20 h-48 w-full overflow-hidden md:h-36">
+      <div className="bg-brand-aligned-blue fixed bottom-0 -z-20 h-96 w-full overflow-hidden md:h-36">
         <div className="mx-auto flex h-full items-end justify-center md:items-center">
           <p className="text-brand-winter-morning font-cinzel transform text-center text-[64px] leading-[1] md:text-[80px] md:whitespace-nowrap lg:translate-y-0 lg:text-[120px]">
             Aligned Interior
