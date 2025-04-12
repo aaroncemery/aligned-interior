@@ -2,7 +2,14 @@ import { PageQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/live";
 import { renderPageBuilder } from "@/lib/pageBuilder";
 
-export default async function Page({ params }: { params: { slug: string } }) {
+interface PageProps {
+  params: {
+    slug: string;
+  };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+export default async function Page({ params }: PageProps) {
   try {
     const result = await sanityFetch({
       query: PageQuery,
