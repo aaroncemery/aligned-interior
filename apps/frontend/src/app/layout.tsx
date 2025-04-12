@@ -21,6 +21,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
+        suppressHydrationWarning
       >
         <NavigationWrapper>{children}</NavigationWrapper>
       </body>
