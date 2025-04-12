@@ -6,7 +6,6 @@ import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import { VisualHeader } from "@/components/ui/VisualHeader";
 import TestimonialSection from "@/components/testimonial/TestimonialSection";
 import { AccordionSection } from "@/components/ui/Accordion/AccordionSection";
-import { ComponentType } from "react";
 
 type PageBuilderBlock = NonNullable<PageBuilder>[number];
 

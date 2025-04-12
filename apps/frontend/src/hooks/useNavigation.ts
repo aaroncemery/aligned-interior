@@ -1,5 +1,6 @@
 import { NavigationQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/fetch";
+import { useState, useEffect } from "react";
 
 type NavigationItem = {
   label: string;
@@ -18,17 +19,27 @@ export type ProcessedNavItem = {
   isSection: boolean;
 };
 
-export async function useNavigation() {
-  const navigationData = await sanityFetch<NavigationData>({
-    query: NavigationQuery,
-  });
+export function useNavigation() {
+  const [navItems, setNavItems] = useState<ProcessedNavItem[]>([]);
 
-  const navItems: ProcessedNavItem[] =
-    navigationData[0]?.items?.map((item) => ({
-      label: item.label,
-      href: item.url,
-      isSection: item.url.startsWith("#"),
-    })) || [];
+  useEffect(() => {
+    const fetchNavigation = async () => {
+      const navigationData = await sanityFetch<NavigationData>({
+        query: NavigationQuery,
+      });
+
+      const processedItems: ProcessedNavItem[] =
+        navigationData[0]?.items?.map((item) => ({
+          label: item.label,
+          href: item.url,
+          isSection: item.url.startsWith("#"),
+        })) || [];
+
+      setNavItems(processedItems);
+    };
+
+    fetchNavigation();
+  }, []);
 
   return { navItems };
 }

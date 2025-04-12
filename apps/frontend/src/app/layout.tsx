@@ -17,13 +17,27 @@ const ClientNavigation = dynamic(
 
 export { generateMetadata };
 
-export default async function RootLayout({
+// Separate component to handle the navigation data
+function NavigationWrapper({ children }: { children: React.ReactNode }) {
+  const { navItems } = useNavigation();
+
+  return (
+    <NavigationProvider items={navItems}>
+      <ClientNavigation />
+      {children}
+      <FormWrapper id="contact" title="Contact">
+        <ContactForm />
+      </FormWrapper>
+      <Footer />
+    </NavigationProvider>
+  );
+}
+
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { navItems } = await useNavigation();
-
   return (
     <html lang="en">
       <head>
@@ -34,14 +48,7 @@ export default async function RootLayout({
       <body
         className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
       >
-        <NavigationProvider items={navItems}>
-          <ClientNavigation />
-          {children}
-          <FormWrapper id="contact" title="Contact">
-            <ContactForm />
-          </FormWrapper>
-          <Footer />
-        </NavigationProvider>
+        <NavigationWrapper>{children}</NavigationWrapper>
       </body>
     </html>
   );
