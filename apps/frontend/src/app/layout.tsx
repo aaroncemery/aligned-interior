@@ -4,6 +4,7 @@ import { generateMetadata } from "@/config/metadata";
 import { GoogleAnalytics } from "@/components/tracking/GoogleAnalytics";
 import Analytics from "@/components/tracking/Analytics";
 import { NavigationWrapper } from "@/components/ui/nav/NavigationWrapper";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export { generateMetadata };
 
@@ -24,6 +25,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <NavigationWrapper>{children}</NavigationWrapper>
+        <SpeedInsights />
       </body>
     </html>
   );
