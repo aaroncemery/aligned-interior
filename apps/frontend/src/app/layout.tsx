@@ -7,6 +7,8 @@ import { NavigationProvider } from "@/components/ui/nav/NavigationProvider";
 import { Footer } from "@/components/ui/Footer";
 import { GoogleAnalytics } from "@/components/tracking/GoogleAnalytics";
 import Analytics from "@/components/tracking/Analytics";
+import FormWrapper from "@/components/Forms/Wrapper";
+import ContactForm from "@/components/Forms/Contact";
 
 const ClientNavigation = dynamic(
   () => import("@/components/ui/nav/ClientNavigation"),
@@ -35,6 +37,9 @@ export default async function RootLayout({
         <NavigationProvider items={navItems}>
           <ClientNavigation />
           {children}
+          <FormWrapper id="contact" title="Contact">
+            <ContactForm />
+          </FormWrapper>
           <Footer />
         </NavigationProvider>
       </body>

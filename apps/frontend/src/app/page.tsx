@@ -6,40 +6,83 @@ import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import { VisualHeader } from "@/components/ui/VisualHeader";
 import TestimonialSection from "@/components/testimonial/TestimonialSection";
 import { AccordionSection } from "@/components/ui/Accordion/AccordionSection";
-import ContactForm from "@/components/Forms/Contact";
-import FormWrapper from "@/components/Forms/Wrapper";
+import { HomePageQueryResult } from "../../sanity.types";
+
+type PageBuilderBlock = NonNullable<
+  NonNullable<HomePageQueryResult>["pageBuilder"]
+>[number];
+
+// Define a type for the block components
+type BlockComponent = {
+  type: string;
+  component: React.ComponentType<any>;
+  propsTransformer?: (block: PageBuilderBlock) => any;
+};
+
+// Map of block types to their components
+const blockComponents: BlockComponent[] = [
+  {
+    type: "hero",
+    component: Hero,
+    propsTransformer: (block) => {
+      if (block._type !== "hero") return block;
+      return {
+        ...block,
+        backgroundImage: block.backgroundImage as SanityImageObject,
+      };
+    },
+  },
+  {
+    type: "featureSection",
+    component: ContentBlock,
+  },
+  {
+    type: "visualHeader",
+    component: VisualHeader,
+  },
+  {
+    type: "testimonialSection",
+    component: TestimonialSection,
+  },
+  {
+    type: "accordionSection",
+    component: AccordionSection,
+  },
+];
 
 export default async function Home() {
-  const data = await sanityFetch({
-    query: HomePageQuery,
-  });
+  try {
+    const result = await sanityFetch({
+      query: HomePageQuery,
+    });
 
-  return (
-    <>
-      {data?.data?.pageBuilder?.map((block: any) => {
-        if (block._type === "hero") {
-          const heroProps: HeroProps = {
-            ...block,
-            backgroundImage: block.backgroundImage as SanityImageObject,
-          };
-          return <Hero key={block._key} {...heroProps} />;
-        }
-        if (block._type === "featureSection") {
-          return <ContentBlock key={block._key} {...block} />;
-        }
-        if (block._type === "visualHeader") {
-          return <VisualHeader key={block._key} {...block} />;
-        }
-        if (block._type === "testimonialSection") {
-          return <TestimonialSection key={block._key} {...block} />;
-        }
-        if (block._type === "accordionSection") {
-          return <AccordionSection key={block._key} {...block} />;
-        }
-      })}
-      <FormWrapper id="contact" title="Contact">
-        <ContactForm />
-      </FormWrapper>
-    </>
-  );
+    if (!result?.data?.pageBuilder) {
+      return <div>No content found</div>;
+    }
+
+    return (
+      <>
+        {result.data.pageBuilder.map((block: PageBuilderBlock) => {
+          const blockComponent = blockComponents.find(
+            (bc) => bc.type === block._type,
+          );
+
+          if (!blockComponent) {
+            console.warn(`No component found for block type: ${block._type}`);
+            return null;
+          }
+
+          const Component = blockComponent.component;
+          const props = blockComponent.propsTransformer
+            ? blockComponent.propsTransformer(block)
+            : block;
+
+          return <Component key={block._key} {...props} />;
+        })}
+      </>
+    );
+  } catch (error) {
+    console.error("Error fetching page data:", error);
+    return <div>Error loading page content</div>;
+  }
 }
