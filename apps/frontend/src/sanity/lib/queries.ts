@@ -67,7 +67,11 @@ export const BlogPostQuery = defineQuery(`
   *[_type == "blogPage" && slug.current == $slug][0] {
     title,
     slug,
-    mainImage,
+    mainImage {
+      image,
+      alt,
+      "metadata": image.asset->metadata
+    },
     author,
     content,
     publishedAt
