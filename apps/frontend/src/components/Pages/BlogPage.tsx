@@ -13,12 +13,12 @@ export default function BlogPage({
 }) {
   const { title = "Add a title", mainImage, publishedAt, content } = data;
   const formattedDate = publishedAt ? formatDate(publishedAt) : "";
-  const imageUrl =
-    mainImage && mainImage?.image
-      ? urlForImage({ ...mainImage?.image, _type: "imageObject" })
-          ?.width(1200)
-          .url()
-      : "";
+  const imageUrl = mainImage?.image
+    ? urlForImage({ ...mainImage.image, _type: "imageObject" })
+        ?.width(1200)
+        .url()
+    : "";
+  const blurDataUrl = mainImage?.metadata?.lqip || "";
 
   return (
     <div className="container mx-auto bg-white px-4">
@@ -28,10 +28,13 @@ export default function BlogPage({
             <div className="aspect-square w-full overflow-hidden">
               <Image
                 src={imageUrl}
-                alt={mainImage?.image?.alt || ""}
+                alt={mainImage?.alt || ""}
                 width={1200}
                 height={1200}
                 className="h-full w-full object-cover"
+                placeholder="blur"
+                blurDataURL={blurDataUrl}
+                priority
               />
             </div>
           )}
