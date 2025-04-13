@@ -3,6 +3,8 @@ import { BlogPostQuery } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
 import BlogPage from "@/components/Pages/BlogPage";
 import { BlogPostQueryResult } from "../../../../sanity.types";
+import { Suspense } from "react";
+import BlogPageSkeleton from "@/components/Pages/BlogPageSkeleton";
 
 export default async function BlogPost({
   params,
@@ -19,5 +21,9 @@ export default async function BlogPost({
     notFound();
   }
 
-  return <BlogPage data={data} />;
+  return (
+    <Suspense fallback={<BlogPageSkeleton />}>
+      <BlogPage data={data} />
+    </Suspense>
+  );
 }

@@ -1115,7 +1115,13 @@ export type SeoQueryResult = {
 export type BlogPostQueryResult = {
   title: string | null;
   slug: Slug | null;
-  mainImage: ImageObject | null;
+  mainImage: {
+    image: ImageObject | null;
+    alt?: string;
+    metadata?: {
+      lqip?: string;
+    };
+  } | null;
   author: {
     _ref: string;
     _type: "reference";
