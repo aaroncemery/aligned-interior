@@ -7,8 +7,7 @@ import { PortableText } from "@portabletext/react";
 import { AccordionItem } from "./AccordionItem";
 import { AccordionTrigger } from "./AccordionTrigger";
 import { AccordionContent } from "./AccordionContent";
-import { Button } from "../Button";
-import { handleScrollToSection } from "@/lib/utils";
+import { AccordionSerializer } from "../../builders/PortableTextSerializer";
 
 const Accordion = ({ items }: { items: AccordionItemType[] }) => (
   <AccordionPrimitive.Root
@@ -22,16 +21,10 @@ const Accordion = ({ items }: { items: AccordionItemType[] }) => (
         <AccordionTrigger>{item.title}</AccordionTrigger>
         {item.content && (
           <AccordionContent>
-            <PortableText value={item.content} />
-            <Button
-              width="fit"
-              size={"small"}
-              intent="secondary"
-              withArrow={true}
-              onClick={() => handleScrollToSection("contact")}
-            >
-              Contact
-            </Button>
+            <PortableText
+              value={item.content}
+              components={AccordionSerializer}
+            />
           </AccordionContent>
         )}
       </AccordionItem>

@@ -14,7 +14,7 @@ export const AccordionContent = React.forwardRef<
     {...props}
     ref={forwardedRef}
   >
-    <div className="flex flex-col items-center gap-4 px-5 py-[15px] font-sans">
+    <div className="flex flex-col items-start gap-3 px-5 py-[15px] font-sans">
       {children}
     </div>
   </AccordionPrimitive.Content>
