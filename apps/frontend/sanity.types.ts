@@ -46,6 +46,16 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type BlogListingPage = {
+  _id: string;
+  _type: "blogListingPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+};
+
 export type BlogPage = {
   _id: string;
   _type: "blogPage";
@@ -86,6 +96,41 @@ export type Author = {
     {
       _key: string;
     } & SocialLink
+  >;
+};
+
+export type Navigation = {
+  _id: string;
+  _type: "navigation";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+  items?: Array<
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "page";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "home";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "blogListingPage";
+      }
+    | {
+        label?: string;
+        url?: string;
+        _key: string;
+      }
   >;
 };
 
@@ -156,6 +201,7 @@ export type Favicon = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -167,6 +213,7 @@ export type Favicon = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -178,6 +225,7 @@ export type Favicon = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
     };
+    media?: unknown;
     _type: "file";
   };
   appleTouchIcon?: {
@@ -187,6 +235,7 @@ export type Favicon = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -204,7 +253,7 @@ export type AccordionSection = {
       _key: string;
     }>;
     style?: "normal";
-    listItem?: never;
+    listItem?: "bullet";
     markDefs?: Array<{
       href?: string;
       _type: "link";
@@ -410,6 +459,7 @@ export type ImageObject = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
@@ -440,6 +490,7 @@ export type Hero = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -458,6 +509,7 @@ export type Home = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  slug?: Slug;
   pageBuilder?: PageBuilder;
   seo?: Seo;
 };
@@ -485,6 +537,7 @@ export type Seo = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -494,12 +547,6 @@ export type Seo = {
   noFollow?: boolean;
   robots?: string;
   canonicalUrl?: string;
-};
-
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
 };
 
 export type SanityImageCrop = {
@@ -557,6 +604,12 @@ export type SanityImageMetadata = {
   blurHash?: string;
   hasAlpha?: boolean;
   isOpaque?: boolean;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
 };
 
 export type SanityAssistInstructionTask = {
@@ -699,8 +752,10 @@ export type AllSanitySchemaTypes =
   | SanityImagePalette
   | SanityImageDimensions
   | Geopoint
+  | BlogListingPage
   | BlogPage
   | Author
+  | Navigation
   | Category
   | CategoryParent
   | Settings
@@ -725,12 +780,12 @@ export type AllSanitySchemaTypes =
   | Home
   | Page
   | Seo
-  | Slug
   | SanityImageCrop
   | SanityImageHotspot
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
+  | Slug
   | SanityAssistInstructionTask
   | SanityAssistTaskStatus
   | SanityAssistSchemaTypeAnnotations
@@ -763,6 +818,7 @@ export type TestimonialQueryResult = Array<{
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
       };
+      media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       alt?: string;
@@ -802,6 +858,7 @@ export type HomePageQueryResult = {
                 _weak?: boolean;
                 [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
               };
+              media?: unknown;
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
@@ -823,7 +880,7 @@ export type HomePageQueryResult = {
             _key: string;
           }>;
           style?: "normal";
-          listItem?: never;
+          listItem?: "bullet";
           markDefs?: Array<{
             href?: string;
             _type: "link";
@@ -898,6 +955,7 @@ export type HomePageQueryResult = {
               _weak?: boolean;
               [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
             };
+            media?: unknown;
             hotspot?: SanityImageHotspot;
             crop?: SanityImageCrop;
             alt?: string;
@@ -919,6 +977,7 @@ export type HomePageQueryResult = {
             _weak?: boolean;
             [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
           };
+          media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           _type: "image";
@@ -960,6 +1019,7 @@ export type PageQueryResult = {
                 _weak?: boolean;
                 [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
               };
+              media?: unknown;
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
@@ -981,7 +1041,7 @@ export type PageQueryResult = {
             _key: string;
           }>;
           style?: "normal";
-          listItem?: never;
+          listItem?: "bullet";
           markDefs?: Array<{
             href?: string;
             _type: "link";
@@ -1056,6 +1116,7 @@ export type PageQueryResult = {
               _weak?: boolean;
               [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
             };
+            media?: unknown;
             hotspot?: SanityImageHotspot;
             crop?: SanityImageCrop;
             alt?: string;
@@ -1077,6 +1138,7 @@ export type PageQueryResult = {
             _weak?: boolean;
             [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
           };
+          media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           _type: "image";
@@ -1111,16 +1173,26 @@ export type SeoQueryResult = {
   } | null;
 } | null;
 // Variable: BlogPostQuery
-// Query: *[_type == "blogPage" && slug.current == $slug][0] {    title,    slug,    mainImage,    author,    content,    publishedAt  }
+// Query: *[_type == "blogPage" && slug.current == $slug][0] {    title,    slug,    mainImage {      image,      alt,      "metadata": image.asset->metadata    },    author,    content,    publishedAt  }
 export type BlogPostQueryResult = {
   title: string | null;
   slug: Slug | null;
   mainImage: {
-    image: ImageObject | null;
-    alt?: string;
-    metadata?: {
-      lqip?: string;
-    };
+    image: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    } | null;
+    alt: null;
+    metadata: SanityImageMetadata | null;
   } | null;
   author: {
     _ref: string;
@@ -1138,6 +1210,20 @@ export type BlogPostListQueryResult = Array<{
   slug: Slug | null;
   mainImage: ImageObject | null;
 }>;
+// Variable: NavigationQuery
+// Query: *[_type == "navigation"] {    "items": items[] {      _type == "reference" => @-> {        _type == "home" => {          "label": "Home",          "url": "/"        },        _type == "page" => {          "label": title,          "url": slug.current        },        _type == "blogListingPage" => {          "label": title,          "url": slug.current        }      },      _type != "reference" => {        "label": label,        "url": url      }    }  }
+export type NavigationQueryResult = Array<{
+  items: Array<
+    | {
+        label: "Home";
+        url: "/";
+      }
+    | {
+        label: string | null;
+        url: string | null;
+      }
+  > | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -1148,7 +1234,8 @@ declare module "@sanity/client" {
     '*[_type == "home"][0] {\n    "seo": seo,\n    "pageBuilder": pageBuilder[] {\n      _type == "hero" => {\n  _type,\n  _key,\n  title,\n  subtitle,\n  backgroundImage,\n  cta[] {\n    ...,\n  }\n},\n      _type == "featureSection" => {\n  _type,\n  _key,\n  title,\n  description,\n  image {\n    image,\n    alt,\n  },\n  "metadata": image.image.asset->metadata,\n},\n      _type == "visualHeader" => {\n        _type,\n        _key,\n        headline,\n        image,\n        "metadata": image.image.asset->metadata,\n      },\n      _type == "testimonialSection" => {\n  _type,\n  _key,\n  _id,\n  title,\n  "testimonials": testimonials[]-> {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}\n},\n      _type == "accordionSection" => {\n  _type,\n  _key,\n  title,\n  subtitle,\n  image,\n  items[] {\n    ...,\n  }\n},\n    }\n  }': HomePageQueryResult;
     '*[_type == "page" && slug.current == $slug][0] {\n    "seo": seo,\n    "pageBuilder": pageBuilder[] {\n      _type == "hero" => {\n  _type,\n  _key,\n  title,\n  subtitle,\n  backgroundImage,\n  cta[] {\n    ...,\n  }\n},\n      _type == "featureSection" => {\n  _type,\n  _key,\n  title,\n  description,\n  image {\n    image,\n    alt,\n  },\n  "metadata": image.image.asset->metadata,\n},\n      _type == "visualHeader" => {\n        _type,\n        _key,\n        headline,\n        image,\n        "metadata": image.image.asset->metadata,\n      },\n      _type == "testimonialSection" => {\n  _type,\n  _key,\n  _id,\n  title,\n  "testimonials": testimonials[]-> {\n  _type,\n  _key,\n  _id,\n  title,\n  testimonial,\n  author,\n  location,\n  image {\n    image,\n    caption\n  }\n}\n},\n      _type == "accordionSection" => {\n  _type,\n  _key,\n  title,\n  subtitle,\n  image,\n  items[] {\n    ...,\n  }\n},\n    }\n  }': PageQueryResult;
     "\n  *[_type == \"settings\"][0] {\n    seo {\n      _type,\n      title,\n      description,\n      keywords,\n      noIndex,\n      noFollow\n    },\n    favicon {\n      'svg': svg.asset->url,\n      'png96': png96.asset->url,\n      'ico': ico.asset->url,\n      'appleTouchIcon': appleTouchIcon.asset->url\n    }\n  }\n": SeoQueryResult;
-    '\n  *[_type == "blogPage" && slug.current == $slug][0] {\n    title,\n    slug,\n    mainImage,\n    author,\n    content,\n    publishedAt\n  }\n': BlogPostQueryResult;
+    '\n  *[_type == "blogPage" && slug.current == $slug][0] {\n    title,\n    slug,\n    mainImage {\n      image,\n      alt,\n      "metadata": image.asset->metadata\n    },\n    author,\n    content,\n    publishedAt\n  }\n': BlogPostQueryResult;
     '\n  *[_type == "blogPage"] {\n    title,\n    slug,\n    mainImage\n  }\n': BlogPostListQueryResult;
+    '\n  *[_type == "navigation"] {\n    "items": items[] {\n      _type == "reference" => @-> {\n        _type == "home" => {\n          "label": "Home",\n          "url": "/"\n        },\n        _type == "page" => {\n          "label": title,\n          "url": slug.current\n        },\n        _type == "blogListingPage" => {\n          "label": title,\n          "url": slug.current\n        }\n      },\n      _type != "reference" => {\n        "label": label,\n        "url": url\n      }\n    }\n  }\n': NavigationQueryResult;
   }
 }
