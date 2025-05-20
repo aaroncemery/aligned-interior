@@ -1545,7 +1545,12 @@
                   "type": "objectAttribute",
                   "value": {
                     "type": "union",
-                    "of": []
+                    "of": [
+                      {
+                        "type": "string",
+                        "value": "bullet"
+                      }
+                    ]
                   },
                   "optional": true
                 },

@@ -282,7 +282,7 @@ export type AccordionItem = {
       _key: string;
     }>;
     style?: "normal";
-    listItem?: never;
+    listItem?: "bullet";
     markDefs?: Array<{
       link?: string;
       _type: "link";
@@ -903,7 +903,7 @@ export type HomePageQueryResult = {
               _key: string;
             }>;
             style?: "normal";
-            listItem?: never;
+            listItem?: "bullet";
             markDefs?: Array<{
               link?: string;
               _type: "link";
@@ -1064,7 +1064,7 @@ export type PageQueryResult = {
               _key: string;
             }>;
             style?: "normal";
-            listItem?: never;
+            listItem?: "bullet";
             markDefs?: Array<{
               link?: string;
               _type: "link";
