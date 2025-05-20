@@ -45,7 +45,7 @@ export const AccordionSection = ({
         {title}
       </h2>
       {subtitle && (
-        <div className="container mx-auto max-w-3xl px-4 text-center">
+        <div className="container mx-auto mb-4 max-w-3xl px-4 text-center">
           <PortableText value={subtitle} components={PortableTextSerializer} />
         </div>
       )}

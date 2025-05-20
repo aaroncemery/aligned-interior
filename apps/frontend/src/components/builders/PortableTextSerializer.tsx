@@ -17,6 +17,11 @@ export const PortableTextSerializer = {
     ),
     // ... other block types
   },
+  list: {
+    bullet: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <ul className="list-inside list-disc text-center">{children}</ul>
+    ),
+  },
   marks: {
     strong: ({ children }: PortableTextMarkComponentProps) => (
       <span className="font-bold">{children}</span>
