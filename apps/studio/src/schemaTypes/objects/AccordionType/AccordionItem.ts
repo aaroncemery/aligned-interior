@@ -18,7 +18,7 @@ export const AccordionItem = defineType({
         defineArrayMember({
           type: 'block',
           styles: [{title: 'Normal', value: 'normal'}],
-          lists: [],
+          lists: [{title: 'Bullet', value: 'bullet'}],
           marks: {
             decorators: [],
             annotations: [

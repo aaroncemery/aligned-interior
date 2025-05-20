@@ -23,7 +23,7 @@ const HeroComponent = ({ backgroundImage, title, subtitle }: HeroProps) => {
         className="relative flex min-h-[50vh] flex-col items-center justify-center bg-cover bg-center py-32 before:absolute before:inset-0 before:bg-black/20"
         style={{ backgroundImage: `url(${imageUrl})` }}
       >
-        <div className="relative max-w-3xl text-center text-white">
+        <div className="relative max-w-4xl text-center text-white">
           <h1 className="font-cinzel mb-4 text-4xl tracking-widest md:text-7xl">
             {title}
           </h1>
