@@ -6,6 +6,8 @@ import Analytics from "@/components/tracking/Analytics";
 import { NavigationWrapper } from "@/components/ui/nav/NavigationWrapper";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import { SanityLive } from "@/sanity/lib/live";
+
 export { generateMetadata };
 
 export default function RootLayout({
@@ -24,7 +26,10 @@ export default function RootLayout({
         className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
-        <NavigationWrapper>{children}</NavigationWrapper>
+        <NavigationWrapper>
+          {children}
+          <SanityLive />
+        </NavigationWrapper>
         <SpeedInsights />
       </body>
     </html>

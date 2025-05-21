@@ -6,17 +6,10 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  useCdn: process.env.NODE_ENV === "production",
   perspective: "published",
   stega: {
     studioUrl,
-    logger: console,
-    filter: (props) => {
-      if (props.sourcePath.at(-1) === "title") {
-        return true;
-      }
-
-      return props.filterDefault(props);
-    },
+    enabled: process.env.NEXT_PUBLIC_VERCEL_ENV === "preview",
   },
 });
