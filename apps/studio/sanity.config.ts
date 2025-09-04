@@ -33,8 +33,7 @@ export default defineConfig([
       }),
       visionTool(),
       assist(),
-      singletonPlugin([Home.name, Settings.name]),
-      vercelDeployTool()
+      singletonPlugin([Home.name, Settings.name])
     ],
 
     schema: {
