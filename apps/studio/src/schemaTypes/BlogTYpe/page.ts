@@ -1,4 +1,4 @@
-import {defineType, defineField, defineArrayMember} from 'sanity'
+import {defineType, defineField} from 'sanity'
 import {FaNewspaper} from 'react-icons/fa6'
 
 export default defineType({
