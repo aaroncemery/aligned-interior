@@ -16,7 +16,7 @@ export const Cta = defineType({
       name: 'url',
       title: 'URL',
       type: 'reference',
-      to: [{type: 'page'}]
+      to: [{type: 'page'}, {type: 'blogPage'}]
     })
   ]
 })

@@ -110,3 +110,18 @@ export const NavigationQuery = defineQuery(`
     }
   }
 `);
+
+export const ANNOUNCEMENT_QUERY = defineQuery(`
+  *[_type == "announcement"]
+  | order(_createdAt desc)[0] {
+    _id,
+    _createdAt,
+    title,
+    image,
+    content,
+    cta {
+      ...,
+    },
+    popup
+  }
+`);

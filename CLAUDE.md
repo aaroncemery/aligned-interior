@@ -136,3 +136,38 @@ Required environment variables (from turbo.json globalEnv):
 ## Testing
 
 No specific test framework is configured. Check with the user before implementing tests.
+
+## Tailwind CSS Best Practices
+
+### Opacity Classes
+
+**✅ CORRECT - Use the modern slash syntax for opacity:**
+
+```jsx
+// Background with opacity
+<div className="bg-black/50" />        // 50% opacity
+<div className="bg-white/20" />        // 20% opacity
+<div className="bg-red-500/75" />      // 75% opacity
+
+// Text with opacity
+<span className="text-gray-900/80" />  // 80% opacity
+```
+
+**❌ INCORRECT - Don't use the deprecated bg-opacity classes:**
+
+```jsx
+// This format is deprecated and doesn't work reliably
+<div className="bg-black bg-opacity-50" />
+<div className="bg-white bg-opacity-20" />
+<div className="text-gray-900 text-opacity-80" />
+```
+
+### Animation Classes
+
+**✅ PREFERRED - Use Tailwind's built-in transition utilities:**
+
+```jsx
+// Smooth transitions
+<div className="transition-all duration-300 ease-out" />
+<div className="transform translate-y-0 opacity-100" />
+```

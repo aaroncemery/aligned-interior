@@ -4,6 +4,7 @@ import { generateMetadata } from "@/config/metadata";
 import { GoogleAnalytics } from "@/components/tracking/GoogleAnalytics";
 import Analytics from "@/components/tracking/Analytics";
 import { NavigationWrapper } from "@/components/ui/nav/NavigationWrapper";
+import { AnnouncementWrapper } from "@/components/announcement";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { SanityLive } from "@/sanity/lib/live";
@@ -26,6 +27,7 @@ export default function RootLayout({
         className={`${belleAurore.variable} ${cinzel.variable} ${cormorant.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
+        <AnnouncementWrapper />
         <NavigationWrapper>
           {children}
           <SanityLive />
