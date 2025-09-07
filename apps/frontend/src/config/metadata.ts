@@ -1,19 +1,24 @@
 import { SeoQuery } from "@/sanity/lib/queries";
-import { sanityFetch } from "@/sanity/lib/fetch";
+import { sanityFetch } from "@/sanity/lib/live";
 import { SeoQueryResult } from "../../sanity.types";
+import { Metadata } from "next";
 
-export async function generateMetadata() {
-  const settings = await sanityFetch<SeoQueryResult>({ query: SeoQuery });
+export async function generateMetadata(): Promise<Metadata> {
+  const { data: settings } = (await sanityFetch({
+    query: SeoQuery,
+  })) as { data: SeoQueryResult };
 
   return {
-    title: settings?.seo?.title,
-    description: settings?.seo?.description,
-    keywords: settings?.seo?.keywords,
-    noIndex: settings?.seo?.noIndex,
-    noFollow: settings?.seo?.noFollow,
+    title: settings?.seo?.title || undefined,
+    description: settings?.seo?.description || undefined,
+    keywords: settings?.seo?.keywords || undefined,
+    robots: {
+      index: !settings?.seo?.noIndex,
+      follow: !settings?.seo?.noFollow,
+    },
     openGraph: {
-      title: settings?.seo?.title,
-      description: settings?.seo?.description,
+      title: settings?.seo?.title || undefined,
+      description: settings?.seo?.description || undefined,
     },
     icons: {
       icon: [
@@ -27,7 +32,7 @@ export async function generateMetadata() {
           type: "image/png",
         },
       ],
-      shortcut: { url: settings?.favicon?.ico },
+      shortcut: settings?.favicon?.ico || undefined,
       apple: {
         url:
           settings?.favicon?.appleTouchIcon || "/favicon/apple-touch-icon.png",

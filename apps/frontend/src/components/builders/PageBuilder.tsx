@@ -1,14 +1,16 @@
 import ContentBlock from "@/components/ContentBlock";
 import { HomePageQuery } from "@/sanity/lib/queries";
 import { HomePageQueryResult } from "../../../sanity.types";
-import { sanityFetch } from "@/sanity/lib/fetch";
+import { sanityFetch } from "@/sanity/lib/live";
 import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import Hero, { type HeroProps } from "@/components/Hero";
 import { VisualHeader } from "@/components/ui/VisualHeader";
 import TestimonialSection from "@/components/testimonial/TestimonialSection";
 
 export default async function Home() {
-  const data = await sanityFetch<HomePageQueryResult>({ query: HomePageQuery });
+  const { data } = (await sanityFetch({
+    query: HomePageQuery,
+  })) as { data: HomePageQueryResult };
   return data?.pageBuilder?.map((block: any) => {
     if (block._type === "hero") {
       const heroProps: HeroProps = {
