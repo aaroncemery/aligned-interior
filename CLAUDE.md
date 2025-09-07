@@ -11,6 +11,7 @@ This is a Turborepo monorepo using pnpm as the package manager. Commands should 
 - `pnpm dev` - Start development servers for all apps
 - `pnpm build` - Build all apps and packages
 - `pnpm lint` - Lint all apps and packages
+- `turbo check-types` - TypeScript type checking for all packages
 - `pnpm format` - Format code with Prettier
 
 ### App-Specific Commands
@@ -37,21 +38,24 @@ Run these from the root using Turbo's filtering:
 - `apps/studio/` - Sanity Studio CMS
 - `packages/eslint-config/` - Shared ESLint configurations
 - `packages/typescript-config/` - Shared TypeScript configurations
+- `packages/ui/` - Shared React component library (currently minimal)
+- `packages/sanity-config/` - Shared Sanity configurations and utilities
 
 ### Frontend App (Next.js)
 
 - **Framework**: Next.js 15 with App Router and Turbopack for dev
 - **Styling**: Tailwind CSS v4 with custom design system
-- **CMS Integration**: Sanity CMS with next-sanity and SanityLive for real-time updates
+- **CMS Integration**: Sanity CMS with next-sanity and SanityLive for real-time preview updates
 - **Components**: Modular component architecture with component builders
 - **Email**: Resend for transactional emails via `/api/send` route
 - **Analytics**: Google Analytics and Vercel Speed Insights
 
 #### Key Frontend Patterns
 
-- **PageBuilder**: Content rendered via `PageBuilder.tsx` which maps Sanity block types to React components
+- **PageBuilder**: Content rendered via `PageBuilder.tsx` in `/src/components/builders/` which maps Sanity block types to React components
 - **Component Structure**: Each component has index.ts, component file, and query.ts for Sanity data fetching
-- **Sanity Integration**: Uses typed queries with sanity-typegen, live preview support
+- **Sanity Integration**: Uses typed queries with sanity-typegen, SanityLive for real-time preview updates
+- **Live Preview**: SanityLive integration provides real-time content updates without page refresh
 - **Fonts**: Custom font loading with multiple typefaces (Cinzel, Cormorant, Belle Aurore, Inter)
 
 ### Studio App (Sanity CMS)
