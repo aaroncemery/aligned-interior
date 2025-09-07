@@ -12,8 +12,10 @@ export async function generateMetadata(): Promise<Metadata> {
     title: settings?.seo?.title || undefined,
     description: settings?.seo?.description || undefined,
     keywords: settings?.seo?.keywords || undefined,
-    noIndex: settings?.seo?.noIndex || undefined,
-    noFollow: settings?.seo?.noFollow || undefined,
+    robots: {
+      index: !settings?.seo?.noIndex,
+      follow: !settings?.seo?.noFollow,
+    },
     openGraph: {
       title: settings?.seo?.title || undefined,
       description: settings?.seo?.description || undefined,
