@@ -23,12 +23,11 @@ export async function sanityFetch<QueryResponse>({
   stega?: boolean;
 }) {
   const isDraftMode = (await draftMode()).isEnabled;
-  perspective = perspective ?? (isDraftMode ? "previewDrafts" : "published");
+  perspective = perspective ?? (isDraftMode ? "drafts" : "published");
   stega =
-    stega ??
-    (perspective === "previewDrafts" || process.env.VERCEL_ENV === "preview");
+    stega ?? (perspective === "drafts" || process.env.VERCEL_ENV === "preview");
 
-  if (perspective === "previewDrafts") {
+  if (perspective === "drafts") {
     if (!token) {
       throw new Error(
         "Missing SANITY_API_READ_TOKEN: Preview mode requires an API token",
@@ -36,7 +35,7 @@ export async function sanityFetch<QueryResponse>({
     }
     return client.fetch<QueryResponse>(query, params, {
       stega,
-      perspective: "previewDrafts",
+      perspective: "drafts",
       token,
       useCdn: false,
       next: { revalidate: 0 },

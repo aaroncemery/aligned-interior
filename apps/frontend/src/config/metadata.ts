@@ -1,9 +1,12 @@
 import { SeoQuery } from "@/sanity/lib/queries";
-import { sanityFetch } from "@/sanity/lib/fetch";
+import { sanityFetch } from "@/sanity/lib/live";
 import { SeoQueryResult } from "../../sanity.types";
+import { Metadata } from "next";
 
-export async function generateMetadata() {
-  const settings = await sanityFetch<SeoQueryResult>({ query: SeoQuery });
+export async function generateMetadata(): Promise<Metadata> {
+  const { data: settings } = await sanityFetch<SeoQueryResult>({
+    query: SeoQuery,
+  });
 
   return {
     title: settings?.seo?.title,

@@ -14,6 +14,10 @@ import {Testimonial} from './src/schemaTypes/objects/TestimonialType/Testimonial
 import {Author} from './src/schemaTypes/documents/Author'
 import {Navigation} from './src/schemaTypes/SettingsType/Navigation'
 import {blogTypes} from './src/schemaTypes/BlogType'
+import {presentationTool} from 'sanity/presentation'
+
+import {getPresentationUrl} from './src/utils/helpers'
+import {locations} from './location'
 
 const typeDefArray = [Home, Author]
 const customGroupItems = [Testimonial, Author]
@@ -34,7 +38,17 @@ export default defineConfig([
       visionTool(),
       assist(),
       singletonPlugin([Home.name, Settings.name]),
-      vercelDeployTool()
+      presentationTool({
+        resolve: {
+          locations
+        },
+        previewUrl: {
+          origin: getPresentationUrl(),
+          previewMode: {
+            enable: '/api/draft-mode/enable'
+          }
+        }
+      })
     ],
 
     schema: {
@@ -54,8 +68,7 @@ export default defineConfig([
       }),
       visionTool(),
       assist(),
-      singletonPlugin([Home.name, Settings.name]),
-      vercelDeployTool()
+      singletonPlugin([Home.name, Settings.name])
     ],
 
     schema: {

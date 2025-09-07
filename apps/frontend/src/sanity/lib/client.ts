@@ -10,6 +10,8 @@ export const client = createClient({
   perspective: "published",
   stega: {
     studioUrl,
-    enabled: process.env.NEXT_PUBLIC_VERCEL_ENV === "preview",
+    enabled:
+      process.env.NEXT_PUBLIC_VERCEL_ENV === "preview" ||
+      process.env.NODE_ENV === "development",
   },
 });
