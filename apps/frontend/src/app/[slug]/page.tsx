@@ -1,5 +1,5 @@
 import { PageQuery } from "@/sanity/lib/queries";
-import { sanityFetch } from "@/sanity/lib/live";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { renderPageBuilder } from "@/lib/pageBuilder";
 
 type PageProps = {
@@ -21,7 +21,12 @@ export default async function Page({ params }: PageProps) {
       return <div>No content found</div>;
     }
 
-    return <>{renderPageBuilder(result.data.pageBuilder)}</>;
+    return (
+      <>
+        {renderPageBuilder(result.data.pageBuilder)}
+        <SanityLive />
+      </>
+    );
   } catch (error) {
     console.error("Error fetching page data:", error);
     return <div>Error loading page content</div>;
