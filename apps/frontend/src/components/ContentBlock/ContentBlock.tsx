@@ -14,8 +14,8 @@ const ContentBlock = ({ description, image }: ContentBlockProps) => {
   const imageUrl =
     image && image?.image
       ? urlForImage({ ...image?.image, _type: "imageObject" })
-          ?.width(1200)
-          .height(400)
+          ?.width(800)
+          .height(600)
           .url()
       : "";
 
@@ -35,8 +35,8 @@ const ContentBlock = ({ description, image }: ContentBlockProps) => {
             className="rounded-md object-cover"
             src={imageUrl}
             alt={image?.image?.alt || ""}
-            width={1200}
-            height={400}
+            width={800}
+            height={600}
           />
         )}
         {description && (
