@@ -4,9 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { urlForImage } from "@/sanity/lib/utils";
 import { ArrowRight } from "lucide-react";
+import { BlogPostListQueryResult } from "../../../sanity.types";
 
 export default async function Blog() {
-  const posts = await client.fetch(BlogPostListQuery);
+  const posts: BlogPostListQueryResult = await client.fetch(BlogPostListQuery);
   return (
     <div className="container mx-auto px-4 pb-12">
       <header className="border-brand-interior-green grid grid-cols-1 items-center gap-4 border-t-[1px] border-b-[1px] py-6 lg:grid-cols-2">

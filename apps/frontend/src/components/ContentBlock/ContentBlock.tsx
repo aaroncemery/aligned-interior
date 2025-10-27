@@ -10,7 +10,7 @@ export type ContentBlockProps = FeatureSection & {
   metadata?: SanityImageMetadata;
 };
 
-const ContentBlock = ({ description, image, metadata }: ContentBlockProps) => {
+const ContentBlock = ({ description, image }: ContentBlockProps) => {
   const imageUrl =
     image && image?.image
       ? urlForImage({ ...image?.image, _type: "imageObject" })
