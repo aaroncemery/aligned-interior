@@ -12,7 +12,11 @@ export const TestimonialFragment = `{
   author,
   location,
   image {
-    image,
+    image {
+      asset,
+      crop,
+      hotspot
+    },
     caption
   }
 }`;

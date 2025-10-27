@@ -4,7 +4,11 @@ export const ContentBlockFragment = `{
   title,
   description,
   image {
-    image,
+    image {
+      asset,
+      crop,
+      hotspot
+    },
     alt,
   },
   "metadata": image.image.asset->metadata,

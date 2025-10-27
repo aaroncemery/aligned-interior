@@ -20,7 +20,10 @@ export const Hero = defineType({
     defineField({
       name: 'backgroundImage',
       title: 'Background Image',
-      type: 'image'
+      type: 'image',
+      options: {
+        hotspot: true
+      }
     })
   ],
   preview: {
