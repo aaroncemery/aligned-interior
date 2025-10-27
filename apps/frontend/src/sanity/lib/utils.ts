@@ -24,7 +24,9 @@ export const urlForImage = (
     return undefined;
   }
 
-  return imageBuilder?.image(source).auto("format").fit("max");
+  // Don't use .fit() here - it will override crop settings from Sanity
+  // The image builder will automatically apply crop and hotspot from the source
+  return imageBuilder?.image(source).auto("format");
 };
 
 export function resolveOpenGraphImage(

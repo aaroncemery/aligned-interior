@@ -3,7 +3,12 @@ export const AccordionFragment = `{
   _key,
   title,
   subtitle,
-  image,
+  image {
+    asset,
+    crop,
+    hotspot,
+    alt
+  },
   items[] {
     ...,
   }

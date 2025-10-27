@@ -3,7 +3,12 @@ export const HeroFragment = `{
   _key,
   title,
   subtitle,
-  backgroundImage,
+  backgroundImage {
+    asset,
+    crop,
+    hotspot,
+    alt
+  },
   cta[] {
     ...,
   }

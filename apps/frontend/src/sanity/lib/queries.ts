@@ -16,7 +16,14 @@ export const HomePageQuery = defineQuery(
         _type,
         _key,
         headline,
-        image,
+        image {
+          image {
+            asset,
+            crop,
+            hotspot
+          },
+          alt
+        },
         "metadata": image.image.asset->metadata,
       },
       _type == "testimonialSection" => ${TestimonialSectionFragment},
@@ -35,7 +42,14 @@ export const PageQuery = defineQuery(
         _type,
         _key,
         headline,
-        image,
+        image {
+          image {
+            asset,
+            crop,
+            hotspot
+          },
+          alt
+        },
         "metadata": image.image.asset->metadata,
       },
       _type == "testimonialSection" => ${TestimonialSectionFragment},
@@ -68,7 +82,11 @@ export const BlogPostQuery = defineQuery(`
     title,
     slug,
     mainImage {
-      image,
+      image {
+        asset,
+        crop,
+        hotspot
+      },
       alt,
       "metadata": image.asset->metadata
     },
@@ -82,7 +100,14 @@ export const BlogPostListQuery = defineQuery(`
   *[_type == "blogPage"] {
     title,
     slug,
-    mainImage
+    mainImage {
+      image {
+        asset,
+        crop,
+        hotspot
+      },
+      alt
+    }
   }
 `);
 
